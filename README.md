@@ -1,6 +1,8 @@
 # RandData
 Data generator with support for complex data and dependency realization
 
+**Under development**
+
 ## Installation
 
 ## Basic usage
@@ -11,7 +13,7 @@ More examples in src/examples folder
 
 ```php
 $dataSetInteger = $fabric->createObjectFromString("integer");
-for ($i = 1; $i <= 10; $i++) {
+for ($i = 1; $i <= 5; $i++) {
     echo $dataSetInteger->get() . PHP_EOL;
 }
 
@@ -23,11 +25,6 @@ Output:
 152505278
 1758321788
 1400455855
-517434730
-903432992
-1511282239
-786915254
-632789484
 */
 
 $dataSetInteger2 = $fabric->createObjectFromString("integer:min=-5;max=7");
@@ -38,13 +35,8 @@ Output:
 
 5
 7
-3
-2
--1
 -5
 -3
-3
-4
 4
 
 */
@@ -57,25 +49,52 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 208
 159
 153
-180
-178
-194
-142
-178
 */
 ```
 
+#### TODO ####
+
+**Simple**
+
+* (+) NULL
+* (+) Integer
+* (+) Float
+* (-) Boolean
+* (-) StringList
+* (-) String
+
+**Complex**
+
+* (-) Date
+* (-) Time
+* (-) Datetime
+* (-) Phone
+* (-) Person
+* (-) Address
+* (-) Domain
+* (-) Email
+
+**And also**
+
+* Object fabric
+* Required or NULL
+* Possibility of value
+* Data dependency (subobjects, date difference and so on)
+* Output formats (csv, sql, json)
+* Generating datasets from database tables
+* Graphic interface
+
 ### Filling database
 
-TBD
+TBA
 
 ### Filling string by template
 
-TBD
+TBA
 
 ### Filling forms
 
-TBD
+TBA
 
 ## Main Objects 
 
