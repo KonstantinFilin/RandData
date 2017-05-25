@@ -1,0 +1,26 @@
+{
+    "name": "kfilin/randdata",
+    "type": "library",
+    "description": "Data generator with support for complex data and dependency realization ",
+    "keywords": [],
+    "homepage": "https://github.com/KonstantinFilin/RandData",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Konstantin Filin",
+            "email": "info@kfilin.ru",
+            "homepage": "http://www.kfilin.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
