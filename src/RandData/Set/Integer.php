@@ -36,6 +36,7 @@ class Integer extends \RandData\Set
     {
         return $this->min;
     }
+
     /**
      * Returns maximum range value. Default is getrandmax()
      * @return integer Maximum range value. Default is getrandmax()
@@ -67,6 +68,12 @@ class Integer extends \RandData\Set
      */
     public function get()
     {
+        if ($this->min > $this->max) {
+            $min = $this->min;
+            $this->min = $this->max;
+            $this->max = $min;
+        }
+
         return rand($this->min, $this->max);
     }    
 
@@ -79,7 +86,7 @@ class Integer extends \RandData\Set
         }
         
         if (!empty($params["max"])) {
-            $this->setMax($params["max"]);
+            $this->setMax(intval($params["max"]));
         }
     }
 }

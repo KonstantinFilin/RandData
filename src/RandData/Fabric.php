@@ -20,6 +20,8 @@ class Fabric
         
         if ($setInfo->getName() == "integer") {
             $setObj = new Set\Integer;
+        } elseif ($setInfo->getName() == "float") {
+            $setObj = new Set\Float();
         }
         
         if ($setInfo->getParams()) {
