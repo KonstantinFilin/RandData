@@ -3,16 +3,14 @@
 require '../../vendor/autoload.php';
 
 $fabric = new RandData\Fabric();
-$dataSetInteger = new RandData\Set\Integer();
+$dataSetInteger = $fabric->createObjectFromString("integer");
 printData("No parameters", $dataSetInteger);
 
-$dataSetInteger->setMin(-5);
-$dataSetInteger->setMax(7);
-printData("-5 to 7", $dataSetInteger);
+$dataSetInteger2 = $fabric->createObjectFromString("integer:min=-5;max=7");
+printData("-5 to 7", $dataSetInteger2);
 
-$dataSetInteger->setMin(111);
-$dataSetInteger->setMax(222);
-printData("111 to 222", $dataSetInteger);
+$dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
+printData("111 to 222", $dataSetInteger3);
 
 function printData($desc, RandData\Set $dataset)
 {
