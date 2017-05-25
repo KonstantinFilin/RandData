@@ -12,13 +12,57 @@ More examples in src/examples folder
 ```php
 $dataSetInteger = $fabric->createObjectFromString("integer");
 for ($i = 1; $i <= 10; $i++) {
-    $dataSetInteger->get();
+    echo $dataSetInteger->get() . PHP_EOL;
 }
+
+/*
+Output: 
+
+1240165304
+410574832
+152505278
+1758321788
+1400455855
+517434730
+903432992
+1511282239
+786915254
+632789484
+*/
 
 $dataSetInteger2 = $fabric->createObjectFromString("integer:min=-5;max=7");
 // ...
+
+/*
+Output: 
+
+5
+7
+3
+2
+-1
+-5
+-3
+3
+4
+4
+
+*/
 $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 // ...
+
+/*
+168
+170
+208
+159
+153
+180
+178
+194
+142
+178
+*/
 ```
 
 ### Filling database
