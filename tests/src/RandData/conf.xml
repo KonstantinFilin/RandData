@@ -12,8 +12,20 @@
          stopOnSkipped="false"
          bootstrap="./vendor/autoload.php"
 >
+    <testsuites>
+        <testsuite name="Basic">
+            <directory>/var/www/github/RandData/src/RandData</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">/var/www/github/RandData/src/RandData</directory>
+        </whitelist>
+    </filter>
     <logging>
         <log type="coverage-html" 
+             addUncoveredFilesFromWhitelist="true"
+             processUncoveredFilesFromWhitelist="true"
              target="/var/www/github/RandData/tests/src/RandData/_Coverage" 
              charset="UTF-8" 
              lowUpperBound="true"
