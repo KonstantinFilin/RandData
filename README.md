@@ -9,7 +9,7 @@ Data generator with support for complex data and dependency realization
 
 More examples in src/examples folder
 
-### Raw random values
+### Raw random values example
 
 ```php
 $dataSetInteger = $fabric->createObjectFromString("integer");
@@ -52,37 +52,11 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 */
 ```
 
-#### TODO ####
+## DataSet options
 
-**Simple**
+### Boolean
 
-* (+) NULL
-* (+) Integer
-* (+) Float
-* (+) Boolean
-* (-) StringList
-* (-) String
 
-**Complex**
-
-* (-) Date
-* (-) Time
-* (-) Datetime
-* (-) Phone
-* (-) Person
-* (-) Address
-* (-) Domain
-* (-) Email
-
-**And also**
-
-* Object fabric
-* Required or NULL
-* Possibility of value
-* Data dependency (subobjects, date difference and so on)
-* Output formats (csv, sql, json)
-* Generating datasets from database tables
-* Graphic interface
 
 ### Filling database
 
@@ -112,4 +86,35 @@ Just manages generation process
 
 Creates RandDataSet objects 
 
+## TODO ##
+
+**Simple**
+
+* (+) NULL
+* (+) Integer
+* (+) Float
+* (+) Boolean
+* (+) StringList
+* (-) String
+
+**Complex**
+
+* (-) Date
+* (-) Time
+* (-) Datetime
+* (-) Phone
+* (-) Person
+* (-) Address
+* (-) Domain
+* (-) Email
+
+**And also**
+
+* Object fabric
+* Required or NULL
+* Possibility of value
+* Data dependency (subobjects, date difference and so on)
+* Output formats (csv, sql, json)
+* Generating datasets from database tables
+* Graphic interface
 

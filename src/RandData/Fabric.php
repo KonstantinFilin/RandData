@@ -17,13 +17,15 @@ class Fabric
     {
         $setInfo = $this->parse($string);
         $setObj = new Set\NullValue();
-        
+
         if ($setInfo->getName() == "integer") {
             $setObj = new Set\Integer;
         } elseif ($setInfo->getName() == "float") {
             $setObj = new Set\Float();
         } elseif ($setInfo->getName() == "boolean") {
             $setObj = new Set\Boolean();
+        } elseif ($setInfo->getName() == "string_list") {
+            $setObj = new Set\StringList();
         }
         
         if ($setInfo->getParams()) {
