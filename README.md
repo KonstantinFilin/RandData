@@ -52,12 +52,6 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 */
 ```
 
-## DataSet options
-
-### Boolean
-
-
-
 ### Filling database
 
 TBA
@@ -69,6 +63,19 @@ TBA
 ### Filling forms
 
 TBA
+
+## DataSet options
+
+### Boolean
+
+**ID**
+
+> boolean
+
+**Params**
+
+* valTrue: String to show when true (examples: 1, Y, Yes, +, ...)
+* valFalse: String to show when false (examples: 0, N, No, -, ...)
 
 ## Main Objects 
 
