@@ -64,6 +64,20 @@ ID:letters:a,b,c;persons:John,Mary,Jane
 * valTrue: String to show when true (examples: 1, Y, Yes, +, ...)
 * valFalse: String to show when false (examples: 0, N, No, -, ...)
 
+**Initialization string example**
+
+```
+boolean
+```
+
+```
+boolean:valTrue=1;valFalse=0
+```
+
+```
+boolean:valTrue=true;valFalse=false
+```
+
 ### Integer
 
 **ID**
@@ -73,7 +87,16 @@ ID:letters:a,b,c;persons:John,Mary,Jane
 **Params**
 
 * min: Minimum value (default to 0)
-* max: Maximum value (default to [getrandmax](http://php.net/manual/en/function.getrandmax.php)
+* max: Maximum value (default to return value of [getrandmax()](http://php.net/manual/en/function.getrandmax.php) PHP function
+
+**Initialization string example**
+
+```
+integer
+```
+```
+integer:min=-5;max=7
+```
 
 ### Float
 
@@ -84,9 +107,19 @@ ID:letters:a,b,c;persons:John,Mary,Jane
 **Params**
 
 * min: Minimum value (default to 0)
-* max: Maximum value (default to [getrandmax](http://php.net/manual/en/function.getrandmax.php)
+* max: Maximum value (default to return value of [getrandmax()](http://php.net/manual/en/function.getrandmax.php) PHP function
 * minFractionDigits: Minimum digits after the point. Default to 0
 * maxFractionDigits: Maximum digits after the point. Default to 8
+
+**Initialization string example**
+
+```
+float:min=8;max=13
+```
+
+```
+float:min=4;max=6;minFractionDigits=2;maxFractionDigits=4
+```
 
 ### String List
 
@@ -99,6 +132,12 @@ One random string from the list
 **Params**
 
 * values: Comma seperated list of available values
+
+**Initialization string example**
+
+```
+string_list:values=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+```
 
 ## Main Objects 
 
