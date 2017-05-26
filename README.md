@@ -59,7 +59,7 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 * (+) NULL
 * (+) Integer
 * (+) Float
-* (-) Boolean
+* (+) Boolean
 * (-) StringList
 * (-) String
 
