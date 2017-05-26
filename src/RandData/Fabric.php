@@ -22,6 +22,8 @@ class Fabric
             $setObj = new Set\Integer;
         } elseif ($setInfo->getName() == "float") {
             $setObj = new Set\Float();
+        } elseif ($setInfo->getName() == "boolean") {
+            $setObj = new Set\Boolean();
         }
         
         if ($setInfo->getParams()) {
