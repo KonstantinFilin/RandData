@@ -121,6 +121,26 @@ float:min=8;max=13
 float:min=4;max=6;minFractionDigits=2;maxFractionDigits=4
 ```
 
+### String
+
+A string of selected chars
+
+**ID**
+
+> string
+
+**Params**
+
+* length: String length. Defaults to 10
+* char_list: List of chars that random string consists of. Defaults to [A-Za-z0-9]
+
+**Initialization string example**
+
+```
+string:length=4;char_list=abc
+string:length=10;char_list=ABCDEFGHIKLMNOPRSTUVWXYZabcdefghijklmnoprstuvwxyz0123456789!?();:@#$%&_
+```
+
 ### String List
 
 One random string from the list
@@ -164,10 +184,11 @@ Creates RandDataSet objects
 * (+) Float
 * (+) Boolean
 * (+) StringList
-* (-) String
+* (+) String
 
 **Complex**
-
+* (-) Word
+* (-) Paragraph
 * (-) Date
 * (-) Time
 * (-) Datetime

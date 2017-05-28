@@ -26,6 +26,8 @@ class Fabric
             $setObj = new Set\Boolean();
         } elseif ($setInfo->getName() == "string_list") {
             $setObj = new Set\StringList();
+        } elseif ($setInfo->getName() == "string") {
+            $setObj = new Set\String();
         }
         
         if ($setInfo->getParams()) {
