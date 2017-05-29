@@ -148,8 +148,6 @@ A string of selected chars
 **Initialization string example**
 
 ```
-string:length_min=4;length_max=4;char_list=abc
-string:length_min=3;length_max=7;char_list=abcdefghijklmnoprstuvwxyz
 string:length_min=3;length_max=5;char_list=ABCDEF0123456789
 ```
 
