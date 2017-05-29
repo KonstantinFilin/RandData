@@ -1,6 +1,15 @@
 # RandData
 Data generator with support for complex data and dependency realization
 
+** [Installation](https://github.com/KonstantinFilin/RandData#installation)
+** [Basic usage](https://github.com/KonstantinFilin/RandData#basic-usage)
+** [DataSet](https://github.com/KonstantinFilin/RandData#dataset-options)
+    ** [Boolean](https://github.com/KonstantinFilin/RandData#boolean)
+    ** [Integer](https://github.com/KonstantinFilin/RandData#integer)
+    ** [Float](https://github.com/KonstantinFilin/RandData#float)
+    ** [String](https://github.com/KonstantinFilin/RandData#string)
+    ** [String List](https://github.com/KonstantinFilin/RandData#string-list)
+** [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 **Under development**
 
 ## Installation
@@ -22,11 +31,11 @@ $dataSetInteger2 = $fabric->createObjectFromString("integer:min=-5;max=7");
 $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 ```
 
-### Filling database
+### Filling string by template
 
 TBA
 
-### Filling string by template
+### Filling database
 
 TBA
 
