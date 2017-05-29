@@ -29,14 +29,20 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\String::getLength
-     * @covers RandData\Set\String::setLength
+     * @covers RandData\Set\String::getLengthMin
+     * @covers RandData\Set\String::setLengthMin
+     * @covers RandData\Set\String::getLengthMax
+     * @covers RandData\Set\String::setLengthMax
      */
     public function testGetLength() {
-        $this->assertEquals(10, $this->object->getLength());
-        $val1 = 20;
-        $this->object->setLength($val1);
-        $this->assertEquals($val1, $this->object->getLength());
+        $this->assertEquals(1, $this->object->getLengthMin());
+        $this->assertEquals(10, $this->object->getLengthMax());
+        $val1 = 4;
+        $val2 = 20;
+        $this->object->setLengthMin($val1);
+        $this->object->setLengthMax($val2);
+        $this->assertEquals($val1, $this->object->getLengthMin());
+        $this->assertEquals($val2, $this->object->getLengthMax());
     }
 
     /**
@@ -78,7 +84,9 @@ class StringTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\String::get
      */
     public function testGet() {
-        $obj = new String(5);
+        $minLen = 5;
+        $maxLen = 7;
+        $obj = new String($minLen, $maxLen);
         
         foreach ( [ "abc", "7890", "+-*/=" ] as $charList ) {
             $obj->setChars($charList);
@@ -89,6 +97,8 @@ class StringTest extends \PHPUnit_Framework_TestCase {
                 
                 for ($j = 0; $j <= $len-1; $j++) {
                     $this->assertContains($res[$j], $charList);
+                    $this->assertTrue($len >= $minLen);
+                    $this->assertTrue($len <= $maxLen);
                 }
             }            
         }
@@ -98,26 +108,33 @@ class StringTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\String::init
      */
     public function testInit() {
-        $len1 = 12;
-        $len2 = 5;
+        $lenMin1 = 7;
+        $lenMax1 = 12;
+        $lenMin2 = 5;
+        $lenMax2 = 9;
         $charList1 = "abcdefghi";
         $charList2 = "xyzfs";
         
         $params1 = [
-            "length" => $len1,
+            "length_min" => $lenMin1,
+            "length_max" => $lenMax1,
             "char_list" => $charList1
         ];
         
         $params2 = [
-            "length" => $len2,
+            "length_min" => $lenMin2,
+            "length_max" => $lenMax2,
             "char_list" => $charList2
         ];
         
         $this->object->init($params1);
-        $this->assertEquals($len1, $this->object->getLength());
+        $this->assertEquals($lenMin1, $this->object->getLengthMin());
+        $this->assertEquals($lenMax1, $this->object->getLengthMax());
         $this->assertEquals($charList1, $this->object->getChars());
+
         $this->object->init($params2);
-        $this->assertEquals($len2, $this->object->getLength());
+        $this->assertEquals($lenMin2, $this->object->getLengthMin());
+        $this->assertEquals($lenMax2, $this->object->getLengthMax());
         $this->assertEquals($charList2, $this->object->getChars());
     }
 }

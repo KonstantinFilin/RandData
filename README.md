@@ -141,14 +141,16 @@ A string of selected chars
 
 **Params**
 
-* length: String length. Defaults to 10
+* length_min: String length. Defaults to 1. Must be minimum 1
+* length_max: String length. Defaults to 10. Must be maximum 100
 * char_list: List of chars that random string consists of. Defaults to [A-Za-z0-9]
 
 **Initialization string example**
 
 ```
-string:length=4;char_list=abc
-string:length=10;char_list=ABCDEFGHIKLMNOPRSTUVWXYZabcdefghijklmnoprstuvwxyz0123456789!?();:@#$%&_
+string:length_min=4;length_max=4;char_list=abc
+string:length_min=3;length_max=7;char_list=abcdefghijklmnoprstuvwxyz
+string:length_min=3;length_max=5;char_list=ABCDEF0123456789
 ```
 
 ### String List

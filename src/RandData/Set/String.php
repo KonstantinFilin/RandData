@@ -10,25 +10,35 @@ class String extends \RandData\Set
     const CHARS_PUNCTUATION = ".,!?();:";
     const CHARS_OTH = "@#$%^&*+-/";
         
-    protected $length;
+    protected $lengthMin;
+    protected $lengthMax;
     protected $chars;
     
-    function __construct($length=10) 
+    function __construct($lengthMin=1, $lengthMax=10) 
     {
-        $this->length = $length;
+        $this->lengthMin = $lengthMin;
+        $this->lengthMax = $lengthMax;
         $this->chars = self::CHARS_LAT_U . self::CHARS_LAT_L . self::CHARS_DIGITS;
 
     }
-    function getLength() {
-        return $this->length;
+    function getLengthMax() {
+        return $this->lengthMax;
     }
 
     function getChars() {
         return $this->chars;
     }
 
-    function setLength($length) {
-        $this->length = $length;
+    function setLengthMax($length) {
+        $this->lengthMax = $length;
+    }
+
+    function getLengthMin() {
+        return $this->lengthMin;
+    }
+
+    function setLengthMin($lengthMin) {
+        $this->lengthMin = $lengthMin;
     }
 
     function addChars($chars) {
@@ -45,17 +55,45 @@ class String extends \RandData\Set
         $variant = $this->getChars();
         $variantLen = mb_strlen($this->getChars());
         
-        for ($i = 1; $i <= $this->getLength(); $i++) {
+        $length = $this->generateLength();
+        
+        for ($i = 1; $i <= $length; $i++) {
             $ret .= mb_substr($variant, rand(0, $variantLen - 1), 1);
         }
         
         return $ret;
     }
+    
+    protected function generateLength()
+    {
+        $lengthMin = $this->getLengthMin();
+        $lengthMax = $this->getLengthMax();
+        
+        if ($lengthMin > $lengthMax) {
+            $buffer = $lengthMin;
+            $lengthMin = $lengthMax;
+            $lengthMax = $buffer;
+        }
+        
+        if ($lengthMin < 1) {
+            $lengthMin = 1;
+        }
+        
+        if ($lengthMax > 100) {
+            $lengthMax = 100;
+        }
+         
+        return rand($lengthMin, $lengthMax);
+    }
 
     public function init($params = array()) 
     {
-        if (!empty($params["length"])) {
-            $this->setLength($params["length"]);
+        if (!empty($params["length_min"])) {
+            $this->setLengthMin($params["length_min"]);
+        }
+
+        if (!empty($params["length_max"])) {
+            $this->setLengthMax($params["length_max"]);
         }
 
         if (!empty($params["char_list"])) {
