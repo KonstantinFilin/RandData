@@ -28,6 +28,8 @@ class Fabric
             $setObj = new Set\StringList();
         } elseif ($setInfo->getName() == "string") {
             $setObj = new Set\String();
+        } elseif ($setInfo->getName() == "paragraph") {
+            $setObj = new Set\Paragraph();
         }
         
         if ($setInfo->getParams()) {

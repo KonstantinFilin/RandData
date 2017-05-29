@@ -9,6 +9,7 @@ Data generator with support for complex data and dependency realization
     * [Float](https://github.com/KonstantinFilin/RandData#float)
     * [String](https://github.com/KonstantinFilin/RandData#string)
     * [String List](https://github.com/KonstantinFilin/RandData#string-list)
+    * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 **Under development**
@@ -151,6 +152,29 @@ A string of selected chars
 string:length_min=3;length_max=5;char_list=ABCDEF0123456789
 ```
 
+### Paragraph
+
+A paragraph of words (random char strings) separated by spaces
+
+**ID**
+
+> paragraph
+
+**Params**
+
+* words_min: Minimum  words in paragraph. Defaults to 3. Must be minimum 1
+* words_max: Maximum  words in paragraph. Defaults to 100. Must be maximum 500
+* length_min: String length. Defaults to 1. Must be minimum 1
+* length_max: String length. Defaults to 10. Must be maximum 100
+* char_list: List of chars that random string consists of. Defaults to [A-Za-z0-9]
+
+**Initialization string example**
+
+```
+paragraph:words_min=15;words_max=30
+paragraph:words_min=15;words_max=30;length_min=4;length_max=6;char_list=ABCDEF0123456789
+```
+
 ### String List
 
 One random string from the list
@@ -197,8 +221,7 @@ Creates RandDataSet objects
 * (+) String
 
 **Complex**
-* (-) Word
-* (-) Paragraph
+* (+) Paragraph
 * (-) Date
 * (-) Time
 * (-) Datetime
