@@ -67,7 +67,7 @@ class Paragraph extends \RandData\Set\String
         return rand($wordsMin, $wordsMax);
     }
     
-    public function init($params = array()) {
+    public function init($params = []) {
         if (!empty($params["words_min"])) {
             $this->setWordsMin($params["words_min"]);
         }

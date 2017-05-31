@@ -10,7 +10,7 @@ function printBlock($desc, RandData\Set $dataset)
 
     for ($i = 1; $i <= 10; $i++) {
         
-        echo $i . ":" . PHP_EOL;
+        printf("%02.0u:" . PHP_EOL, $i);
         echo str_repeat("-", 100) . PHP_EOL;
         printf(
             "%s" . PHP_EOL, 
@@ -28,7 +28,7 @@ function printData($desc, RandData\Set $dataset)
 
     for ($i = 1; $i <= 10; $i++) {
         printf(
-            "%u: %s" . PHP_EOL, 
+            "%02u: %s" . PHP_EOL, 
             $i, 
             $dataset->get()
         );

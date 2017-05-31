@@ -10,6 +10,7 @@ Data generator with support for complex data and dependency realization
     * [String](https://github.com/KonstantinFilin/RandData#string)
     * [String List](https://github.com/KonstantinFilin/RandData#string-list)
     * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
+    * [Time](https://github.com/KonstantinFilin/RandData#time)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 **Under development**
@@ -193,6 +194,28 @@ One random string from the list
 string_list:values=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
 ```
 
+
+### Time
+
+Random time
+
+**ID**
+
+> time
+
+**Params**
+
+* min: Minimum time. Default to "00:00"
+* max: Maximum time. Default to "23:59"
+* seconds: Whether to show seconds. 1 - show, 0 - hide. Default to 0
+
+**Initialization string example**
+
+```
+time:seconds=1
+time:min=12:30;max=13:15
+```
+
 ## Main Objects 
 
 ### RandDataSet
@@ -222,8 +245,8 @@ Creates RandDataSet objects
 
 **Complex**
 * (+) Paragraph
+* (+) Time
 * (-) Date
-* (-) Time
 * (-) Datetime
 * (-) Phone
 * (-) Person
@@ -240,4 +263,6 @@ Creates RandDataSet objects
 * Output formats (csv, sql, json)
 * Generating datasets from database tables
 * Graphic interface
+* API documentation
+* Class members checking
 

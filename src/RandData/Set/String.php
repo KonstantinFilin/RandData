@@ -86,7 +86,7 @@ class String extends \RandData\Set
         return rand($lengthMin, $lengthMax);
     }
 
-    public function init($params = array()) 
+    public function init($params = []) 
     {
         if (!empty($params["length_min"])) {
             $this->setLengthMin($params["length_min"]);

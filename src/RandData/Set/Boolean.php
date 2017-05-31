@@ -35,7 +35,7 @@ class Boolean extends \RandData\Set
         $this->valFalse = $valFalse;
     }
 
-    public function init($params = array()) 
+    public function init($params = []) 
     {
         if (!empty($params["valTrue"])) {
             $this->setValTrue($params["valTrue"]);

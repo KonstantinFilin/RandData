@@ -48,7 +48,7 @@ class Float extends \RandData\Set\Integer
         $this->maxFractionDigits = abs($maxFractionDigits);
     }
         
-    public function init($params = array()) {
+    public function init($params = []) {
         parent::init($params);
         
         if (!empty($params["minFractionDigits"])) {

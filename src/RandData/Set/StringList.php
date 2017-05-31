@@ -23,7 +23,7 @@ class StringList extends \RandData\Set
         $this->values = $values;
     }
 
-    public function init($params = array()) {
+    public function init($params = []) {
         if (!empty($params["values"])) {
             $this->setValues($params["values"]);
         }

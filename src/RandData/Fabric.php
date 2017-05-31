@@ -30,6 +30,8 @@ class Fabric
             $setObj = new Set\String();
         } elseif ($setInfo->getName() == "paragraph") {
             $setObj = new Set\Paragraph();
+        } elseif ($setInfo->getName() == "time") {
+            $setObj = new Set\Time();
         }
         
         if ($setInfo->getParams()) {
