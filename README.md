@@ -11,6 +11,7 @@ Data generator with support for complex data and dependency realization
     * [String List](https://github.com/KonstantinFilin/RandData#string-list)
     * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
     * [Time](https://github.com/KonstantinFilin/RandData#time)
+    * [Date](https://github.com/KonstantinFilin/RandData#date)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 **Under development**
@@ -194,7 +195,6 @@ One random string from the list
 string_list:values=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
 ```
 
-
 ### Time
 
 Random time
@@ -214,6 +214,27 @@ Random time
 ```
 time:seconds=1
 time:min=12:30;max=13:15
+```
+
+### Date
+
+Random date
+
+**ID**
+
+> date
+
+**Params**
+
+* min: Minimum date. Default to today minus one month. Input format YYYY-MM-DD.
+* max: Maximum date. Default to today. Input format YYYY-MM-DD.
+* format: Output format. Understands any format of [date](http://php.net/manual/en/function.date.php). Default to YYYY-MM-DD
+
+**Initialization string example**
+
+```
+date:format=d.m.Y
+date:min=2017-12-25;max=2017-12-28
 ```
 
 ## Main Objects 
@@ -246,7 +267,7 @@ Creates RandDataSet objects
 **Complex**
 * (+) Paragraph
 * (+) Time
-* (-) Date
+* (+) Date
 * (-) Datetime
 * (-) Phone
 * (-) Person

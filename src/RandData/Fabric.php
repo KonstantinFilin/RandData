@@ -32,6 +32,8 @@ class Fabric
             $setObj = new Set\Paragraph();
         } elseif ($setInfo->getName() == "time") {
             $setObj = new Set\Time();
+        } elseif ($setInfo->getName() == "date") {
+            $setObj = new Set\Date();
         }
         
         if ($setInfo->getParams()) {
