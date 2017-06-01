@@ -293,7 +293,7 @@ Creates RandDataSet objects
 * (+) Paragraph
 * (+) Time
 * (+) Date
-* (-) Datetime
+* (+) Datetime
 * (-) Phone
 * (-) Person
 * (-) Address
