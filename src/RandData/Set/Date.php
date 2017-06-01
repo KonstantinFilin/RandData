@@ -41,7 +41,7 @@ class Date extends \RandData\Set
         }
         $dt->add(new \DateInterval("P1D"));
         
-        $this->max = $dt->format("U");
+        $this->max = $dt->format("U")-1;
     }
     
     function getFormat() {

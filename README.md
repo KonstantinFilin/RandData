@@ -228,7 +228,7 @@ Random date
 
 * min: Minimum date. Default to today minus one month. Input format YYYY-MM-DD.
 * max: Maximum date. Default to today. Input format YYYY-MM-DD.
-* format: Output format. Understands any format of [date](http://php.net/manual/en/function.date.php). Default to YYYY-MM-DD
+* format: Output format. Understands any format of [date()](http://php.net/manual/en/function.date.php) PHP function. Default to YYYY-MM-DD
 
 **Initialization string example**
 
