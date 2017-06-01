@@ -47,7 +47,7 @@ class DateTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Date::setMax
      */
     public function testGetMax() {
-        $dt = new \DateTime();
+        $dt = new \DateTime(date("Y-m-d"));
         $this->assertEquals($dt->format("U"), $this->object->getMax());
         
         $dt2 = "2017-12-31";

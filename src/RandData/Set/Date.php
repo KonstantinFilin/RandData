@@ -36,12 +36,11 @@ class Date extends \RandData\Set
     function setMax($max) {
         $dt =  new \DateTime($max);
         
-        if (!$dt) {
-            $dt = new \DateTime();
+        if (!$max || !$dt) {
+            $dt = new \DateTime(date("Y-m-d"));
         }
-        $dt->add(new \DateInterval("P1D"));
         
-        $this->max = $dt->format("U")-1;
+        $this->max = $dt->format("U");
     }
     
     function getFormat() {
@@ -59,7 +58,7 @@ class Date extends \RandData\Set
             $this->max = $m;
         }
         
-        $ts = rand($this->min, $this->max);
+        $ts = rand($this->min, $this->max+3600*24-1);
         return date($this->format, $ts);
     }
 

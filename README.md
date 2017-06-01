@@ -12,6 +12,7 @@ Data generator with support for complex data and dependency realization
     * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
     * [Time](https://github.com/KonstantinFilin/RandData#time)
     * [Date](https://github.com/KonstantinFilin/RandData#date)
+    * [Datetime](https://github.com/KonstantinFilin/RandData#datetime)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 **Under development**
@@ -235,6 +236,30 @@ Random date
 ```
 date:format=d.m.Y
 date:min=2017-12-25;max=2017-12-28
+```
+
+### Datetime
+
+Random date and time
+
+**ID**
+
+> datetime
+
+**Params**
+
+* date_min: Minimum date. Default to today minus one month. Input format YYYY-MM-DD.
+* date_max: Maximum date. Default to today. Input format YYYY-MM-DD.
+* date_format: Output format. Understands any format of [date()](http://php.net/manual/en/function.date.php) PHP function. Default to YYYY-MM-DD
+* time_min: Minimum time. Default to "00:00"
+* time_max: Maximum time. Default to "23:59"
+* seconds: Whether to show seconds. 1 - show, 0 - hide. Default to 1
+
+**Initialization string example**
+
+```
+datetime:date_format=d.m.Y;seconds=0
+datetime:date_min=2017-05-17;date_max=2017-05-21;time_min=11:00;time_max=14:30
 ```
 
 ## Main Objects 
