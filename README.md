@@ -267,6 +267,29 @@ phone:format=0
 phone:country_list=3,7;region_list=123,456,7890
 ```
 
+## DataSet (ru_RU)
+
+### Person
+
+**ID**
+
+> ru_person
+
+**Params**
+
+* sex: List of person's sex. m - Male, f - female. Default to both
+* format: First name (f), middle name (m) and last name (l) order. 
+    Default to "l f m". f1 - first letter of the first name,
+    m1 - first letter of the middle name
+
+**Initialization string examples**
+
+```
+ru_person:format=f m l
+ru_person:format=l f1. m1.
+ru_person:sex=m
+```
+
 ## Main Objects 
 
 ### RandDataSet
@@ -300,10 +323,10 @@ Creates RandDataSet objects
 * (+) Date
 * (+) Datetime
 * (+) Phone
-* (-) Person
-* (-) Address
+* (+) Person
 * (-) Domain
 * (-) Email
+* (-) Address
 
 **And also**
 
