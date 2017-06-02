@@ -36,6 +36,8 @@ class Fabric
             $setObj = new Set\Date();
         } elseif ($setInfo->getName() == "datetime") {
             $setObj = new Set\Datetime();
+        } elseif ($setInfo->getName() == "phone") {
+            $setObj = new Set\Phone();
         }
         
         if ($setInfo->getParams()) {

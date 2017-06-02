@@ -13,6 +13,7 @@ Data generator with support for complex data and dependency realization
     * [Time](https://github.com/KonstantinFilin/RandData#time)
     * [Date](https://github.com/KonstantinFilin/RandData#date)
     * [Datetime](https://github.com/KonstantinFilin/RandData#datetime)
+    * [Phone](https://github.com/KonstantinFilin/RandData#phone)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 **Under development**
@@ -78,17 +79,10 @@ ID:letters:a,b,c;persons:John,Mary,Jane
 * valTrue: String to show when true (examples: 1, Y, Yes, +, ...)
 * valFalse: String to show when false (examples: 0, N, No, -, ...)
 
-**Initialization string example**
-
-```
-boolean
-```
+**Initialization string examples**
 
 ```
 boolean:valTrue=1;valFalse=0
-```
-
-```
 boolean:valTrue=true;valFalse=false
 ```
 
@@ -103,12 +97,10 @@ boolean:valTrue=true;valFalse=false
 * min: Minimum value (default to 0)
 * max: Maximum value (default to return value of [getrandmax()](http://php.net/manual/en/function.getrandmax.php) PHP function
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 integer
-```
-```
 integer:min=-5;max=7
 ```
 
@@ -125,13 +117,10 @@ integer:min=-5;max=7
 * minFractionDigits: Minimum digits after the point. Default to 0
 * maxFractionDigits: Maximum digits after the point. Default to 8
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 float:min=8;max=13
-```
-
-```
 float:min=4;max=6;minFractionDigits=2;maxFractionDigits=4
 ```
 
@@ -149,7 +138,7 @@ A string of selected chars
 * length_max: String length. Defaults to 10. Must be maximum 100
 * char_list: List of chars that random string consists of. Defaults to [A-Za-z0-9]
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 string:length_min=3;length_max=5;char_list=ABCDEF0123456789
@@ -171,7 +160,7 @@ A paragraph of words (random char strings) separated by spaces
 * length_max: String length. Defaults to 10. Must be maximum 100
 * char_list: List of chars that random string consists of. Defaults to [A-Za-z0-9]
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 paragraph:words_min=15;words_max=30
@@ -180,7 +169,7 @@ paragraph:words_min=15;words_max=30;length_min=4;length_max=6;char_list=ABCDEF01
 
 ### String List
 
-One random string from the list
+String from the list
 
 **ID**
 
@@ -190,15 +179,13 @@ One random string from the list
 
 * values: Comma seperated list of available values
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 string_list:values=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
 ```
 
 ### Time
-
-Random time
 
 **ID**
 
@@ -210,7 +197,7 @@ Random time
 * max: Maximum time. Default to "23:59"
 * seconds: Whether to show seconds. 1 - show, 0 - hide. Default to 0
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 time:seconds=1
@@ -218,8 +205,6 @@ time:min=12:30;max=13:15
 ```
 
 ### Date
-
-Random date
 
 **ID**
 
@@ -231,7 +216,7 @@ Random date
 * max: Maximum date. Default to today. Input format YYYY-MM-DD.
 * format: Output format. Understands any format of [date()](http://php.net/manual/en/function.date.php) PHP function. Default to YYYY-MM-DD
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 date:format=d.m.Y
@@ -239,8 +224,6 @@ date:min=2017-12-25;max=2017-12-28
 ```
 
 ### Datetime
-
-Random date and time
 
 **ID**
 
@@ -255,11 +238,31 @@ Random date and time
 * time_max: Maximum time. Default to "23:59"
 * seconds: Whether to show seconds. 1 - show, 0 - hide. Default to 1
 
-**Initialization string example**
+**Initialization string examples**
 
 ```
 datetime:date_format=d.m.Y;seconds=0
 datetime:date_min=2017-05-17;date_max=2017-05-21;time_min=11:00;time_max=14:30
+
+### Phone
+
+**ID**
+
+> phone
+
+**Params**
+
+* country_list: List of available country codes (1-9)
+* region_list:  List of available region codes (3 or 4 digits)
+* format: Whether to show number formatted as +# (###) ###-##-## 
+    or +# (####) ###-### or as 11 digits. 
+    1 - formatted (default), 0 - unformatted.
+
+**Initialization string examples**
+
+```
+phone:format=0
+phone:country_list=3,7;region_list=123,456,7890
 ```
 
 ## Main Objects 
@@ -294,7 +297,7 @@ Creates RandDataSet objects
 * (+) Time
 * (+) Date
 * (+) Datetime
-* (-) Phone
+* (+) Phone
 * (-) Person
 * (-) Address
 * (-) Domain
