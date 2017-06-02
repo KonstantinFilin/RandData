@@ -14,6 +14,7 @@ Data generator with support for complex data and dependency realization
     * [Date](https://github.com/KonstantinFilin/RandData#date)
     * [Datetime](https://github.com/KonstantinFilin/RandData#datetime)
     * [Phone](https://github.com/KonstantinFilin/RandData#phone)
+* [DataSet (ru_RU)](https://github.com/KonstantinFilin/RandData#phone)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 **Under development**
