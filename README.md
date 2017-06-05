@@ -3,6 +3,10 @@ Data generator with support for complex data and dependency realization
 
 * [Installation](https://github.com/KonstantinFilin/RandData#installation)
 * [Basic usage](https://github.com/KonstantinFilin/RandData#basic-usage)
+    * [Raw random values example](https://github.com/KonstantinFilin/RandData#raw-random-values-example)
+    * [Filling string by template](https://github.com/KonstantinFilin/RandData#filling-string-by-template)
+    * [Generators. Creating csv](https://github.com/KonstantinFilin/RandData#generators-creating-csv)
+    * [Generators. Filling database and more](https://github.com/KonstantinFilin/RandData#generators-filling-database-and-more)
 * [Main Objects](https://github.com/KonstantinFilin/RandData#main-objects) 
     * [RandData Fabric](https://github.com/KonstantinFilin/RandData#randdata-fabric)
     * [RandData Set](https://github.com/KonstantinFilin/RandData#randdata-set)
@@ -53,8 +57,6 @@ TBA
 ```
 <?php
 
-require 'init.php';
-
 class PersonCsv extends \RandData\Generator\Csv
 {
     public function getHeaders() {
@@ -83,11 +85,55 @@ $generator->setAmount(100);
 $result = $generator->run();
 
 echo implode(PHP_EOL, $result);
+/*
+#;Name;Birth;Phone;Sum
+1;John Doe;1904-04-26;+7 (919) 265-86-65;8248
+2;Mary Smith;1978-08-12;+7 (905) 952-62-31;8751
+3;Peter Smith;1955-08-29;+7 (903) 322-18-14;7004
+...
+*/
 ```
 
 ### Generators. Filling database and more
 
-TBA
+```
+
+class PersonSql extends \RandData\Generator\Sql
+{
+    protected function getHeaders() {
+        return [
+            "Name",
+            "Birth",
+            "Phone",
+            "Sum"
+        ];
+    }
+    
+    public function getDataSets() 
+    {
+        return [
+            "ru_person",
+            "date:min=1900-01-01;max=2005-12-31",
+            "phone:country_list=7;region_list=495,499,915,919,905,903",
+            "integer:min=100;max=10000"
+        ];
+    }
+}
+
+$generator = new PersonSql(new RandData\Tuple(), "clients");
+$generator->setAmount(100);
+$result = $generator->run();
+
+foreach ($result as $r) {
+    echo $r . PHP_EOL;
+}
+
+/*
+INSERT INTO `clients` (Name,Birth,Phone,Sum) VALUES ('John Doe','1981-10-01','+7 (919) 010-87-43','5901');
+INSERT INTO `clients` (Name,Birth,Phone,Sum) VALUES ('Mary Smith','1953-04-28','+7 (495) 263-14-69','5419');
+INSERT INTO `clients` (Name,Birth,Phone,Sum) VALUES ('Peter Smith','1977-12-03','+7 (919) 257-55-17','3948');
+*/
+```
 
 ### Filling forms
 

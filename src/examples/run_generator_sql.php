@@ -13,11 +13,6 @@ class PersonSql extends \RandData\Generator\Sql
         ];
     }
     
-    protected function runOne() {
-        echo parent::runOne() . PHP_EOL;
-    }
-
-    
     public function getDataSets() 
     {
         return [
@@ -31,4 +26,8 @@ class PersonSql extends \RandData\Generator\Sql
 
 $generator = new PersonSql(new RandData\Tuple(), "clients");
 $generator->setAmount(100);
-$generator->run();
+$result = $generator->run();
+
+foreach ($result as $r) {
+    echo $r . PHP_EOL;
+}
