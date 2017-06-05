@@ -14,20 +14,22 @@ abstract class Csv extends \RandData\Generator
     {
         $headers = $this->getHeaders();
         return $headers 
-            ? array_merge($this->getHeaders(), parent::run()) 
+            ? array_merge([ $this->runHeaders() ], parent::run()) 
             : parent::run();
     }
 
     protected function runHeaders()
     {
         $headers = $this->getHeaders();
-        return $headers ? implode($this->columnDelim, $headers) : "";
+        return $headers 
+            ? implode($this->columnDelim, $headers) 
+            : "";
     }
 
     protected function runOne()
     {
         $arr = $this->tuple->get();
-        return implode($this->columnDelim, $arr);
+        return $this->counter . $this->columnDelim . implode($this->columnDelim, $arr);
     }
     
     public function getHeaders()

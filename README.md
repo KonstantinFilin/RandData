@@ -51,17 +51,13 @@ TBA
 ### Generators. Creating csv
 
 ```
+<?php
+
+require 'init.php';
+
 class PersonCsv extends \RandData\Generator\Csv
 {
-    protected function runHeaders() {
-        echo $this->counter . $this->columnDelim . parent::runOne() . PHP_EOL;
-    }
-    
-    protected function runOne() {
-        echo $this->counter . $this->columnDelim . parent::runOne() . PHP_EOL;
-    }
-
-    protected function getHeaders() {
+    public function getHeaders() {
         return [
             "#",
             "Name",
@@ -84,7 +80,9 @@ class PersonCsv extends \RandData\Generator\Csv
 
 $generator = new PersonCsv(new RandData\Tuple());
 $generator->setAmount(100);
-$generator->run();
+$result = $generator->run();
+
+echo implode(PHP_EOL, $result);
 ```
 
 ### Generators. Filling database and more
