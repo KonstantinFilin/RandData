@@ -3,6 +3,11 @@ Data generator with support for complex data and dependency realization
 
 * [Installation](https://github.com/KonstantinFilin/RandData#installation)
 * [Basic usage](https://github.com/KonstantinFilin/RandData#basic-usage)
+* [Main Objects](https://github.com/KonstantinFilin/RandData#main-objects) 
+    * [RandData Fabric](https://github.com/KonstantinFilin/RandData#randdata-fabric)
+    * [RandData Set](https://github.com/KonstantinFilin/RandData#randdata-set)
+    * [Tuple](https://github.com/KonstantinFilin/RandData#tuple)
+    * [RandData Generator](https://github.com/KonstantinFilin/RandData#randdata-generator)
 * [DataSet](https://github.com/KonstantinFilin/RandData#dataset-options)
     * [Boolean](https://github.com/KonstantinFilin/RandData#boolean)
     * [Integer](https://github.com/KonstantinFilin/RandData#integer)
@@ -50,6 +55,32 @@ TBA
 ### Filling forms
 
 TBA
+
+
+## Main Objects 
+
+### RandData Fabric
+
+Creates RandDataSet objects 
+
+### RandData Set
+
+Generates one random value. Atomic piece of data, may be simple 
+(boolean, number or char) or complex, for 
+example *PersonName* Object (FirstName + MiddleName + LastName) 
+or *AviaTicket Order* Object 
+(departure information, route, passenger list, status information and so on)
+
+### Tuple
+
+Manages list of datasets. Can add dataset from PHP object or from string. Generates
+array of random values
+
+### RandData Generator
+
+Manages generation process. Produces amount of random datasets 
+(array of arrays of random values). 
+Currently has csv, json and sql children.
 
 ## DataSet options
 
@@ -290,32 +321,6 @@ ru_person:format=f m l
 ru_person:format=l f1. m1.
 ru_person:sex=m
 ```
-
-## Main Objects 
-
-### RandData Fabric
-
-Creates RandDataSet objects 
-
-### RandData Set
-
-Generates one random value. Atomic piece of data, may be simple 
-(boolean, number or char) or complex, for 
-example *PersonName* Object (FirstName + MiddleName + LastName) 
-or *AviaTicket Order* Object 
-(departure information, route, passenger list, status information and so on)
-
-### Tuple
-
-Manages list of datasets. Can add dataset from PHP object or from string. Generates
-array of random values
-
-### RandData Generator
-
-Manages generation process. Produces amount of random datasets 
-(array of arrays of random values). 
-Currently has csv, json and sql children.
-
 ## TODO ##
 
 **Simple**
