@@ -39,7 +39,6 @@ abstract class Generator
         $amount = $this->getAmount();
         
         for ($this->counter = 1; $this->counter <= $amount; $this->counter++) {
-            // printf("%u: %u\n", $this->counter, $amount);
             $this->result[] = $this->runOne();
         }
         

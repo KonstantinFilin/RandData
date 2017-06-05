@@ -7,6 +7,7 @@ Data generator with support for complex data and dependency realization
     * [Filling string by template](https://github.com/KonstantinFilin/RandData#filling-string-by-template)
     * [Generators. Creating csv](https://github.com/KonstantinFilin/RandData#generators-creating-csv)
     * [Generators. Filling database and more](https://github.com/KonstantinFilin/RandData#generators-filling-database-and-more)
+    * [Filling forms](https://github.com/KonstantinFilin/RandData#filling-forms)
 * [Main Objects](https://github.com/KonstantinFilin/RandData#main-objects) 
     * [RandData Fabric](https://github.com/KonstantinFilin/RandData#randdata-fabric)
     * [RandData Set](https://github.com/KonstantinFilin/RandData#randdata-set)
