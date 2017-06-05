@@ -17,11 +17,16 @@ abstract class Sql extends \RandData\Generator
         $valuesArr = $this->tuple->get();
 
         return sprintf(
-            "INSERT INTO `%s` (%s) VALUES ('%s');",
+            $this->getPattern(),
             $this->tableName,
             implode(",", $headersArr),
             implode("','", $valuesArr)
         );
+    }
+    
+    protected function getPattern()
+    {
+        return "INSERT INTO `%s` (%s) VALUES ('%s');";
     }
     
     abstract protected function getHeaders();

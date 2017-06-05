@@ -75,7 +75,7 @@ class DateTest extends \PHPUnit_Framework_TestCase {
         for ($i = 1; $i <= 10; $i++) {
             $val = $this->object->get();
             $this->assertNotEmpty($val);
-            $this->assertRegExp("/[\d]{4}-[\d]{2}-[\d]{2}/", $val);
+            $this->assertRegExp("/^[\d]{4}-[\d]{2}-[\d]{2}$/", $val);
         }
         
         $min = "2016-12-23";

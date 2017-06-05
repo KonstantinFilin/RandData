@@ -12,8 +12,10 @@ abstract class Csv extends \RandData\Generator
         
     public function run()
     {
-        $this->runHeaders();
-        return parent::run();
+        $headers = $this->getHeaders();
+        return $headers 
+            ? array_merge($this->getHeaders(), parent::run()) 
+            : parent::run();
     }
 
     protected function runHeaders()
@@ -28,5 +30,8 @@ abstract class Csv extends \RandData\Generator
         return implode($this->columnDelim, $arr);
     }
     
-    abstract protected function getHeaders();
+    public function getHeaders()
+    {
+        return [];
+    }
 }

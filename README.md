@@ -43,7 +43,7 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 
 TBA
 
-### Filling database
+### Generators. Filling database and more
 
 TBA
 
@@ -293,19 +293,28 @@ ru_person:sex=m
 
 ## Main Objects 
 
-### RandDataSet
-
-Atomic piece of data, may be simple (boolean, number or char) or complex, for 
-example *PersonName* Object (FirstName + MiddleName + LastName) or *AviaTicket Order* Object 
-(departure information, route, passenger list, status information and so on)
-
-### RandDataGenerator
-
-Just manages generation process
-
-### RandDataFabric
+### RandData Fabric
 
 Creates RandDataSet objects 
+
+### RandData Set
+
+Generates one random value. Atomic piece of data, may be simple 
+(boolean, number or char) or complex, for 
+example *PersonName* Object (FirstName + MiddleName + LastName) 
+or *AviaTicket Order* Object 
+(departure information, route, passenger list, status information and so on)
+
+### Tuple
+
+Manages list of datasets. Can add dataset from PHP object or from string. Generates
+array of random values
+
+### RandData Generator
+
+Manages generation process. Produces amount of random datasets 
+(array of arrays of random values). 
+Currently has csv, json and sql children.
 
 ## TODO ##
 
@@ -331,13 +340,13 @@ Creates RandDataSet objects
 
 **And also**
 
-* Object fabric
-* Required or NULL
-* Possibility of value
-* Data dependency (subobjects, date difference and so on)
-* Output formats (csv, sql, json)
-* Generating datasets from database tables
-* Graphic interface
-* API documentation
-* Class members checking
-
+* (+) Object fabric
+* (-) Required or NULL
+* (-) Possibility of value
+* (-) Data dependency (subobjects, date difference and so on)
+* (+) Output formats (csv, sql, json)
+* (-) Generating datasets from database tables
+* (-) Graphic interface
+* (-) API documentation
+* (-) Class members checking
+* (-) CI

@@ -84,7 +84,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
         for ($i = 1; $i <= 10; $i++) {
             $val = $this->object->get();
             $this->assertNotEmpty($val);
-            $this->assertRegExp("/[0-9]{2}:[0-9]{2}/", $val);
+            $this->assertRegExp("/^[0-9]{2}:[0-9]{2}$/", $val);
             $this->assertTrue(strlen($val) == 5);
         }
         
@@ -93,7 +93,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
         for ($i = 1; $i <= 10; $i++) {
             $val = $this->object->get();
             $this->assertNotEmpty($val);
-            $this->assertRegExp("/[0-9]{2}:[0-9]{2}:[0-9]{2}/", $val);
+            $this->assertRegExp("/^[0-9]{2}:[0-9]{2}:[0-9]{2}$/", $val);
             $this->assertTrue(strlen($val) == 8);
         }
         

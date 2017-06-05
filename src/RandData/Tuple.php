@@ -6,6 +6,11 @@ class Tuple
 {
     protected $dataSets;
     
+    function __construct() 
+    {
+        $this->dataSets = [];
+    }
+    
     public function addDatasetFromStr($str) {
         $fabric = new Fabric();
         $this->addDataset($fabric->createObjectFromString($str));
@@ -15,6 +20,10 @@ class Tuple
         $this->dataSets[] = $set;
     }
     
+    function getDataSets() {
+        return $this->dataSets;
+    }
+
     public function get()
     {
         $ret = [];
