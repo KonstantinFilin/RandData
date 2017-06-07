@@ -24,6 +24,8 @@ Data generator with support for complex data and dependency realization
     * [Date](https://github.com/KonstantinFilin/RandData#date)
     * [Datetime](https://github.com/KonstantinFilin/RandData#datetime)
     * [Phone](https://github.com/KonstantinFilin/RandData#phone)
+    * [Domain](https://github.com/KonstantinFilin/RandData#domain)
+    * [Email](https://github.com/KonstantinFilin/RandData#email)
 * [DataSet (ru_RU)](https://github.com/KonstantinFilin/RandData#dataset-ru_ru)
     * [Person](https://github.com/KonstantinFilin/RandData#person)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
@@ -404,6 +406,45 @@ phone:format=0
 phone:country_list=3,7;region_list=123,456,7890
 ```
 
+### Domain
+
+**ID**
+
+Two level www domain
+
+> domain
+
+**Params**
+
+* tld_list: List of available top domain. Default: com,edu,org,net
+* char_list_edge: First and last char. Default: abcdefghijklmnoprstuvwxyz0123456789
+* char_list: Available characters (except first and last one). Default is 
+char_list_edge chars and a hyphen char ("-").
+* skip_www: Skip www part of domain. Can be 0 or 1. Default 0
+
+**Initialization string examples**
+
+```
+domain:skip_www=1
+domain:tld_list=org,net;char_list_edge=01;char_list=abcdef0123456789
+```
+
+### Email
+
+**ID**
+
+> email
+
+**Params**
+
+* domain_list: Generate mail only in this domains
+
+**Initialization string example**
+
+```
+email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
+```
+
 ## DataSet (ru_RU)
 
 ### Person
@@ -444,8 +485,8 @@ ru_person:sex=m
 * (+) Datetime
 * (+) Phone
 * (+) Person
-* (-) Domain
-* (-) Email
+* (+) Domain
+* (+) Email
 * (-) Address
 
 **And also**
@@ -458,5 +499,5 @@ ru_person:sex=m
 * (-) Generating datasets from database tables
 * (-) Graphic interface
 * (-) API documentation
-* (-) Class members checking
+* (-) Class members checking (input values)
 * (-) CI
