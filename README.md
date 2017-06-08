@@ -524,8 +524,8 @@ ru_person:sex=m
 **And also**
 
 * (+) Object fabric
-* (-) Required or NULL
-* (-) Possibility of value
+* (+) Required or NULL
+* (-) Possibility of value from the list
 * (-) Data dependency (subobjects, date difference and so on)
 * (+) Output formats (csv, sql, json)
 * (-) Generating datasets from database tables
