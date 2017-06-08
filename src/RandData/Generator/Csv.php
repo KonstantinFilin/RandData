@@ -22,13 +22,13 @@ abstract class Csv extends \RandData\Generator
     {
         $headers = $this->getHeaders();
         return $headers 
-            ? implode($this->columnDelim, $headers) 
+            ? "#" . $this->columnDelim . implode($this->columnDelim, $headers) 
             : "";
     }
 
     protected function runOne()
     {
-        $arr = $this->tuple->get();
+        $arr = parent::runOne();
         return $this->counter . $this->columnDelim . implode($this->columnDelim, $arr);
     }
     

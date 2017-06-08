@@ -15,7 +15,7 @@ class Boolean extends \RandData\Set
     
     public function get() 
     {
-        $num = rand(1, 100);
+        $num = mt_rand(1, 100);
         return $num > 50 ? $this->valTrue : $this->valFalse;
     }
     

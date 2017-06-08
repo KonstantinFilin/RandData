@@ -8,7 +8,7 @@ abstract class Generator
     protected $tuple;
     protected $counter;
     protected $result;
-    
+
     function __construct(Tuple $tuple = null) {
         $this->counter = 0;
         $this->amount = 10;
@@ -20,7 +20,7 @@ abstract class Generator
     function setAmount($amount) {
         $this->amount = $amount;
     }
-    
+
     function getAmount() {
         return $this->amount;
     }
@@ -28,29 +28,27 @@ abstract class Generator
     function getTuple() {
         return $this->tuple;
     }
-    
+
     function setTuple($tuple) {
         $this->tuple = $tuple;
     }
 
-    public function run()
-    {
+    public function run() {
         $this->result = [];
         $amount = $this->getAmount();
-        
+
         for ($this->counter = 1; $this->counter <= $amount; $this->counter++) {
             $this->result[] = $this->runOne();
         }
-        
+
         $this->counter = 0;
-        
+
         return $this->result;
     }
-    
-    protected function buildTuple()
-    {
+
+    protected function buildTuple() {
         $datasets = $this->getDataSets();
-        
+
         foreach ($datasets as $ds) {
             if ($ds instanceof Set) {
                 $this->tuple->addDataset($ds);
@@ -59,10 +57,32 @@ abstract class Generator
             }
         }
     }
-    
-    protected function runOne()
+
+    protected function getNullProbability()
     {
-        return $this->tuple->get();
+        return [];
+    }
+    
+    protected function runOne() {
+        $nullProbability = $this->getNullProbability();
+        $dataArr = $this->tuple->get();
+
+        if ($nullProbability) {
+            foreach ($nullProbability as $idx => $probability) {
+                $value = mt_rand(1, 100);
+                
+                if ($probability > 0 && $value <= $probability) {
+                    $dataArr[$idx] = $this->getNullAs();
+                }
+            }
+        }
+        
+        return $dataArr;
+    }
+
+    protected function getNullAs()
+    {
+        return null;
     }
     
     abstract function getDataSets();

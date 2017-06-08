@@ -58,7 +58,7 @@ class Date extends \RandData\Set
             $this->max = $m;
         }
         
-        $ts = rand($this->min, $this->max+3600*24-1);
+        $ts = mt_rand($this->min, $this->max+3600*24-1);
         return date($this->format, $ts);
     }
 

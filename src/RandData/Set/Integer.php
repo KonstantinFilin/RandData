@@ -74,7 +74,7 @@ class Integer extends \RandData\Set
             $this->max = $min;
         }
 
-        return rand($this->min, $this->max);
+        return mt_rand($this->min, $this->max);
     }    
 
     /**

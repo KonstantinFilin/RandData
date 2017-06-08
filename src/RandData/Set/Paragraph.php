@@ -64,7 +64,7 @@ class Paragraph extends \RandData\Set\String
             $wordsMax = 500;
         }
          
-        return rand($wordsMin, $wordsMax);
+        return mt_rand($wordsMin, $wordsMax);
     }
     
     public function init($params = []) {

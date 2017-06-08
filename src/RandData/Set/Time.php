@@ -56,10 +56,10 @@ class Time extends \RandData\Set
             $max = $m;
         }
         
-        $value = $this->fromMin(rand($min, $max));
+        $value = $this->fromMin(mt_rand($min, $max));
         
         if ($this->getSeconds()) {
-            $value .= ":" . sprintf("%02u", rand(0, 59));
+            $value .= ":" . sprintf("%02u", mt_rand(0, 59));
         }
         
         return $value;

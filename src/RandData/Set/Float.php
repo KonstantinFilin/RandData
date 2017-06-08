@@ -23,10 +23,10 @@ class Float extends \RandData\Set\Integer
         }
         
         $fraction = "";
-        $times = rand($this->minFractionDigits, $this->maxFractionDigits);
+        $times = mt_rand($this->minFractionDigits, $this->maxFractionDigits);
         
         for ($i = 1; $i <= $times; $i++) {
-            $fraction .= rand($i == $times ? 1 : 0, 9);
+            $fraction .= mt_rand($i == $times ? 1 : 0, 9);
         }
         
         return floatval(parent::get() . "." . ( $fraction ? $fraction : 0 ));

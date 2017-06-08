@@ -85,7 +85,6 @@ class PersonCsv extends \RandData\Generator\Csv
 {
     public function getHeaders() {
         return [
-            "#",
             "Name",
             "Birth",
             "Phone",
@@ -116,6 +115,39 @@ echo implode(PHP_EOL, $result);
 3;Peter Smith;1955-08-29;+7 (903) 322-18-14;7004
 ...
 */
+```
+
+You can also create random null in any column:
+```
+class PersonCsv extends \RandData\Generator\Csv
+{
+    public function getDataSets() 
+    {
+        return [
+            "ru_person",
+            "date:min=1900-01-01;max=2005-12-31",
+            "phone:country_list=7;region_list=495,499,915,919,905,903", // Phone
+            "integer:min=100;max=10000" // Sum
+        ];
+    }
+
+    protected function getNullProbability() {
+        return [
+            0,
+            0,
+            20, // null approximately 20% (every fifth) for Phone field
+            50 // null approximately 50% (every second) for Sum field
+        ];
+    }
+    
+    /**
+    * Overriding default null value    
+    */
+    protected function getNullAs()
+    {
+        return "NA";
+    }
+}
 ```
 
 ### Generators. Filling database and more

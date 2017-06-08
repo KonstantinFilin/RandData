@@ -34,7 +34,7 @@ class Person extends \RandData\Set
         $sex = $this->sex;
         
         if (!$this->sex) {
-            $sexGenerator = rand(1, 100);
+            $sexGenerator = mt_rand(1, 100);
             $sex = $sexGenerator > 50 ? self::SEX_FEMALE : self::SEX_MALE;
         }
         

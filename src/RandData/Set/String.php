@@ -58,7 +58,7 @@ class String extends \RandData\Set
         $length = $this->generateLength();
         
         for ($i = 1; $i <= $length; $i++) {
-            $ret .= mb_substr($variant, rand(0, $variantLen - 1), 1);
+            $ret .= mb_substr($variant, mt_rand(0, $variantLen - 1), 1);
         }
         
         return $ret;
@@ -83,7 +83,7 @@ class String extends \RandData\Set
             $lengthMax = 100;
         }
          
-        return rand($lengthMin, $lengthMax);
+        return mt_rand($lengthMin, $lengthMax);
     }
 
     public function init($params = []) 
