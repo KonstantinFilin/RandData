@@ -350,11 +350,18 @@ String from the list
 **Params**
 
 * values: Comma seperated list of available values
+* possibility: The possibility of values (in percents). Must be equal 
+to the values count and its sum must be 100. If missing, then all values has
+the same possibility. 
 
 **Initialization string examples**
 
 ```
 string_list:values=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday
+string_list:values=aaa,bbb,ccc;possibility=50,20,30
+// aaa will be choosen approximately 50 times from 100
+// bbb will be choosen approximately 20 times from 100
+// ccc will be choosen approximately 30 times from 100
 ```
 
 ### Time
@@ -519,13 +526,15 @@ ru_person:sex=m
 * (+) Person
 * (+) Domain
 * (+) Email
-* (-) Address
+* (-) Address (ru_RU)
+* (-) Person (en_GB)
+* (-) Address (en_GB)
 
 **And also**
 
 * (+) Object fabric
 * (+) Required or NULL
-* (-) Possibility of value from the list
+* (+) Possibility of value from the list
 * (-) Data dependency (subobjects, date difference and so on)
 * (+) Output formats (csv, sql, json)
 * (-) Generating datasets from database tables
