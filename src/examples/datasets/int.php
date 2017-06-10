@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+require '../init.php';
 
 $fabric = new RandData\Fabric();
 $dataSetInteger = $fabric->createObjectFromString("integer");

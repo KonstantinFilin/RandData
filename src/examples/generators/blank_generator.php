@@ -1,6 +1,6 @@
 <?php
 
-require "init.php";
+require "../init.php";
 
 class BlankGeneratorImplementation extends \RandData\BlankGenerator
 {

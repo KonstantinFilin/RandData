@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+require '../init.php';
 
 $fabric = new RandData\Fabric();
 $dataSetFloat1 = $fabric->createObjectFromString("float:min=8;max=13");
