@@ -6,7 +6,15 @@ class GeneratorImplementation extends Generator
 {
     public function getDataSets() 
     {
-        return [ "boolean", "integer:min=3;max=8" ];
+        return [ "boolean", "integer:min=3;max=8", "time" ];
+    }
+}
+
+class GeneratorImplementation2 extends Generator
+{
+    public function getDataSets() 
+    {
+        return [ "field1" => "boolean", "field2" => "integer:min=3;max=8", "field3" => "time" ];
     }
 }
 
@@ -82,7 +90,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
         foreach ([ $result1, $result2 ] as $result) {
             foreach ($result as $row) {
                 $this->assertTrue(is_array($row));
-                $this->assertCount(2, $row);
+                $this->assertCount(3, $row);
                 $this->assertRegExp("/^[NY]$/", $row[0]);
                 $this->assertTrue(is_integer($row[1]));
                 $this->assertTrue($row[1] >= 3 && $row[1] <= 8);
@@ -90,4 +98,17 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
         }        
     }
 
+    /**
+     * @covers RandData\Generator::getHeaders
+     */
+    public function testGetHeaders()
+    {
+        $obj1 = new GeneratorImplementation();
+        $expected1 = [ 1, 2, 3 ];
+        $this->assertEquals($expected1, $obj1->getHeaders());
+        
+        $obj2 = new GeneratorImplementation2();
+        $expected2 = [ "field1", "field2", "field3" ];
+        $this->assertEquals($expected2, $obj2->getHeaders());
+    }
 }

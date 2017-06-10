@@ -4,20 +4,12 @@ namespace RandData\Generator;
 
 class SqlImplementation extends Sql
 {
-    public function getHeaders() {
-        return [
-            "header1",
-            "Field 2",
-            "Something else"
-        ];
-    }
-
     public function getDataSets() 
     {
         return [
-            new \RandData\Set\Boolean("m", "f"),
-            new \RandData\Set\Integer(6, 9),
-            new \RandData\Set\StringList([ "ddd", "eee", "fff", "ggg" ])
+            "header1" => new \RandData\Set\Boolean("m", "f"),
+            "Field 2" => new \RandData\Set\Integer(6, 9),
+            "Something else" => new \RandData\Set\StringList([ "ddd", "eee", "fff", "ggg" ])
         ];
     }
 }

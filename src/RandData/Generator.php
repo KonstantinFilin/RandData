@@ -5,16 +5,29 @@ namespace RandData;
 abstract class Generator 
 {
     protected $amount;
-    protected $tuple;
     protected $counter;
     protected $result;
 
-    function __construct(Tuple $tuple = null) {
+    /**
+     *
+     * @var Tuple
+     */
+    protected $tuple;
+    
+    /**
+     *
+     * @var Formatter
+     */
+    protected $formatter;
+
+    function __construct(Formatter $formatter = null, Tuple $tuple = null) {
         $this->counter = 0;
         $this->amount = 10;
         $this->tuple = $tuple ? $tuple : new Tuple();
+        $this->formatter = $formatter ? $formatter : new Formatter();
         $this->result = [];
         $this->buildTuple();
+        $this->buildFormatter();
     }
 
     function setAmount($amount) {
@@ -43,9 +56,13 @@ abstract class Generator
 
         $this->counter = 0;
 
-        return $this->result;
+        return $this->formatter->build($this->result);
     }
 
+    protected function buildFormatter() {
+        $this->formatter->setHeaders($this->getHeaders());
+    }
+    
     protected function buildTuple() {
         $datasets = $this->getDataSets();
 
@@ -72,18 +89,24 @@ abstract class Generator
                 $value = mt_rand(1, 100);
                 
                 if ($probability > 0 && $value <= $probability) {
-                    $dataArr[$idx] = $this->getNullAs();
+                    $dataArr[$idx] = null;
                 }
             }
         }
         
-        return $dataArr;
+        return $this->formatter->buildOne($this->counter, $dataArr);
     }
 
-    protected function getNullAs()
-    {
-        return null;
-    }
-    
     abstract function getDataSets();
+    
+    public function getHeaders()
+    {
+        $headers = array_keys($this->getDataSets());
+        
+        if ($headers == range(0, count($headers) - 1)) {
+            return range(1, count($headers));
+        }
+        
+        return $headers;
+    }
 }

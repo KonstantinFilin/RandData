@@ -4,20 +4,12 @@ namespace RandData\Generator;
 
 class JsonImplementation extends Json
 {
-    public function getHeaders() {
-        return [
-            "Sex",
-            "Level",
-            "Exit"
-        ];
-    }
-
     public function getDataSets() 
     {
         return [
-            new \RandData\Set\Boolean("m", "f"),
-            new \RandData\Set\Integer(6, 9),
-            new \RandData\Set\StringList([ "ddd", "eee", "fff", "ggg" ])
+            "Sex" => new \RandData\Set\Boolean("m", "f"),
+            "Level" => new \RandData\Set\Integer(6, 9),
+            "Exit" => new \RandData\Set\StringList([ "ddd", "eee", "fff", "ggg" ])
         ];
     }
 }
