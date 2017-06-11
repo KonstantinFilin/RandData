@@ -79,35 +79,26 @@ echo $generator->run() . PHP_EOL;
 ### Generators. Creating csv
 
 ```
-<?php
-
-class PersonCsv extends \RandData\Generator\Csv
+class PersonGenerator extends \RandData\Generator
 {
-    public function getHeaders() {
+    public function getDataSets() {
         return [
-            "Name",
-            "Birth",
-            "Phone",
-            "Sum"
-        ];
-    }
-    
-    public function getDataSets() 
-    {
-        return [
-            "ru_person",
-            "date:min=1900-01-01;max=2005-12-31",
-            "phone:country_list=7;region_list=495,499,915,919,905,903",
-            "integer:min=100;max=10000"
+            "Name" => "ru_person",
+            "Birth" => "date:min=1900-01-01;max=2005-12-31",
+            "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
+            "Sum" => "integer:min=100;max=10000",
+            "Class" => "string_list:values=aaa,bbb,ccc;possibility=50,20,30"
         ];
     }
 }
 
-$generator = new PersonCsv(new RandData\Tuple());
-$generator->setAmount(100);
-$result = $generator->run();
+$formatter = new RandData\Formatter\Csv();
+$formatter->setShowHeaders(true);
+$formatter->setShowCounter(true);
+$generator = new PersonGenerator($formatter);
+$generator->setAmount(20);
 
-echo implode(PHP_EOL, $result);
+echo $generator->run() . PHP_EOL;
 /*
 #;Name;Birth;Phone;Sum
 1;John Doe;1904-04-26;+7 (919) 265-86-65;8248
@@ -117,32 +108,28 @@ echo implode(PHP_EOL, $result);
 */
 ```
 
-You can also create random null in any column:
+You can also create random null in any column (default is no NULL anywhere):
 ```
-class PersonCsv extends \RandData\Generator\Csv
+class PersonGenerator extends \RandData\Generator
 {
-    public function getDataSets() 
-    {
+    public function getDataSets() {
         return [
-            "ru_person",
-            "date:min=1900-01-01;max=2005-12-31",
-            "phone:country_list=7;region_list=495,499,915,919,905,903", // Phone
-            "integer:min=100;max=10000" // Sum
-        ];
-    }
-
-    protected function getNullProbability() {
-        return [
-            0,
-            0,
-            20, // null approximately 20% (every fifth) for Phone field
-            50 // null approximately 50% (every second) for Sum field
+            "Name" => "ru_person",
+            "Birth" => "date:min=1900-01-01;max=2005-12-31",
+            "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
+            "Sum" => "integer:min=100;max=10000",
+            "Class" => "string_list:values=aaa,bbb,ccc;possibility=50,20,30"
         ];
     }
     
-    /**
-    * Overriding default null value    
-    */
+    protected function getNullProbability() {
+        return [
+            "Phone" => 20, // null approximately 20% (every fifth)
+            "Sum" => 50, // null approximately 50% (every second) 
+        ];
+    }
+    
+    // How to show null values
     protected function getNullAs()
     {
         return "NA";
@@ -153,41 +140,32 @@ class PersonCsv extends \RandData\Generator\Csv
 ### Generators. Filling database and more
 
 ```
-
-class PersonSql extends \RandData\Generator\Sql
+class PersonGenerator extends \RandData\Generator
 {
-    protected function getHeaders() {
+    public function getDataSets() {
         return [
-            "Name",
-            "Birth",
-            "Phone",
-            "Sum"
-        ];
-    }
-    
-    public function getDataSets() 
-    {
-        return [
-            "ru_person",
-            "date:min=1900-01-01;max=2005-12-31",
-            "phone:country_list=7;region_list=495,499,915,919,905,903",
-            "integer:min=100;max=10000"
+            "Name" => "ru_person",
+            "Birth" => "date:min=1900-01-01;max=2005-12-31",
+            "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
+            "Sum" => "integer:min=100;max=10000",
+            "Class" => "string_list:values=aaa,bbb,ccc;possibility=50,20,30"
         ];
     }
 }
+$tableName = "clients";
+$formatter = new \RandData\Formatter\Sql($tableName);
+$formatter->setIncrementField("id");
+$formatter->setIncrementStart(15);
+$generator = new PersonGenerator($formatter);
+$generator->setAmount(20);
 
-$generator = new PersonSql(new RandData\Tuple(), "clients");
-$generator->setAmount(100);
-$result = $generator->run();
-
-foreach ($result as $r) {
-    echo $r . PHP_EOL;
-}
+echo $generator->run() . PHP_EOL;
 
 /*
-INSERT INTO `clients` (Name,Birth,Phone,Sum) VALUES ('John Doe','1981-10-01','+7 (919) 010-87-43','5901');
-INSERT INTO `clients` (Name,Birth,Phone,Sum) VALUES ('Mary Smith','1953-04-28','+7 (495) 263-14-69','5419');
-INSERT INTO `clients` (Name,Birth,Phone,Sum) VALUES ('Peter Smith','1977-12-03','+7 (919) 257-55-17','3948');
+INSERT INTO `clients` (id,Name,Birth,Phone,Sum) VALUES (15,'John Doe','1981-10-01','+7 (919) 010-87-43','5901');
+INSERT INTO `clients` (id,Name,Birth,Phone,Sum) VALUES (16,'Mary Smith','1953-04-28','+7 (495) 263-14-69','5419');
+INSERT INTO `clients` (id,Name,Birth,Phone,Sum) VALUES (17,'Peter Smith','1977-12-03','+7 (919) 257-55-17','3948');
+...
 */
 ```
 
@@ -219,7 +197,11 @@ array of random values
 
 Manages generation process. Produces amount of random datasets 
 (array of arrays of random values). 
-Currently has csv, json and sql children.
+
+### RandData Formatter
+
+Buids data stream into something useful. Now it can be csv file, 
+sql INSERT commands or JSON array. 
 
 ## DataSet options
 

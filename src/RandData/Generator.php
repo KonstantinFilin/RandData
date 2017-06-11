@@ -80,19 +80,32 @@ abstract class Generator
         return [];
     }
     
-    protected function runOne() {
+    private function processNullProbability(&$dataArr)
+    {
+        $headersFlipped = array_flip($this->getHeaders());
         $nullProbability = $this->getNullProbability();
-        $dataArr = $this->tuple->get();
 
-        if ($nullProbability) {
-            foreach ($nullProbability as $idx => $probability) {
-                $value = mt_rand(1, 100);
-                
-                if ($probability > 0 && $value <= $probability) {
-                    $dataArr[$idx] = null;
-                }
+        if (!$nullProbability) {
+            return;
+        }
+        
+        foreach ($nullProbability as $fldName => $fldProbability) {
+            if (!array_key_exists($fldName, $headersFlipped)) {
+                continue;
+            }
+
+            $idx = $headersFlipped[$fldName];
+            $value = mt_rand(1, 100);
+
+            if ($fldProbability > 0 && $value <= $fldProbability) {
+                $dataArr[$idx] = null;
             }
         }
+    }
+    
+    protected function runOne() {
+        $dataArr = $this->tuple->get();
+        $this->processNullProbability($dataArr);
         
         return $this->formatter->buildOne($this->counter, $dataArr);
     }

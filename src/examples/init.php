@@ -49,11 +49,8 @@ class PersonGenerator extends \RandData\Generator
     
     protected function getNullProbability() {
         return [
-            0,
-            0,
-            20, // null approximately 20% (every fifth) for Phone field
-            50, // null approximately 50% (every second) for Sum field,
-            0
+            "Phone" => 20, // null approximately 20% (every fifth)
+            "Sum" => 50, // null approximately 50% (every second) 
         ];
     }
 }
