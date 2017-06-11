@@ -53,7 +53,7 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 
 ### Filling string by template
 
-```
+```php
 class BlankGeneratorImplementation extends \RandData\BlankGenerator
 {
     public function getDataSets() 
@@ -78,7 +78,7 @@ echo $generator->run() . PHP_EOL;
 
 ### Generators. Creating csv
 
-```
+```php
 class PersonGenerator extends \RandData\Generator
 {
     public function getDataSets() {
@@ -109,7 +109,7 @@ echo $generator->run() . PHP_EOL;
 ```
 
 You can also create random null in any column (default is no NULL anywhere):
-```
+```php
 class PersonGenerator extends \RandData\Generator
 {
     public function getDataSets() {
@@ -139,7 +139,7 @@ class PersonGenerator extends \RandData\Generator
 
 ### Generators. Filling database and more
 
-```
+```php
 class PersonGenerator extends \RandData\Generator
 {
     public function getDataSets() {
