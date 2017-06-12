@@ -52,7 +52,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Generator::setTuple
      */
     public function testTuple() {
-        $obj = new GeneratorImplementation(new MyTuple1());
+        $obj = new GeneratorImplementation(null, new MyTuple1());
         $this->assertInstanceOf(MyTuple1::class, $obj->getTuple());
         $this->assertNotInstanceOf(MyTuple2::class, $obj->getTuple());
         $obj->setTuple(new MyTuple2());

@@ -517,6 +517,8 @@ ru_person:sex=m
 * (+) Object fabric
 * (+) Required or NULL
 * (+) Possibility of value from the list
+* (-) Tests for generators and formatters
+* (-) getNullAs() function move to formatter
 * (-) Data dependency (subobjects, date difference and so on)
 * (+) Output formats (csv, sql, json)
 * (-) Generating datasets from database tables
