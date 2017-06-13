@@ -2,14 +2,14 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for /var/www/github/RandData/src/RandData/Set/ru_RU</title>
+  <title>Dashboard for /var/www/github/RandData/src/RandData/Formatter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../../css/bootstrap.min.css" rel="stylesheet">
-  <link href="../../css/nv.d3.min.css" rel="stylesheet">
-  <link href="../../css/style.css" rel="stylesheet">
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/nv.d3.min.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
   <!--[if lt IE 9]>
-  <script src="../../js/html5shiv.min.js"></script>
-  <script src="../../js/respond.min.js"></script>
+  <script src="../js/html5shiv.min.js"></script>
+  <script src="../js/respond.min.js"></script>
   <![endif]-->
  </head>
  <body>
@@ -18,9 +18,8 @@
     <div class="row">
      <div class="col-md-12">
       <ol class="breadcrumb">
-        <li><a href="../../index.html">/var/www/github/RandData/src/RandData</a></li>
-        <li><a href="../index.html">Set</a></li>
-        <li><a href="index.html">ru_RU</a></li>
+        <li><a href="../index.html">/var/www/github/RandData/src/RandData</a></li>
+        <li><a href="index.html">Formatter</a></li>
         <li class="active">(Dashboard)</li>
 
       </ol>
@@ -60,6 +59,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="Csv.php.html#5">Csv</a></td><td class="text-right">60%</td></tr>
+       <tr><td><a href="Sql.php.html#5">Sql</a></td><td class="text-right">76%</td></tr>
 
        </tbody>
       </table>
@@ -76,6 +77,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="Csv.php.html#5">Csv</a></td><td class="text-right">28</td></tr>
+       <tr><td><a href="Sql.php.html#5">Sql</a></td><td class="text-right">12</td></tr>
 
        </tbody>
       </table>
@@ -113,8 +116,13 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Person.php.html#13"><abbr title="Person::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
-       <tr><td><a href="Person.php.html#24"><abbr title="Person::setSex">setSex</abbr></a></td><td class="text-right">80%</td></tr>
+       <tr><td><a href="Sql.php.html#53"><abbr title="Sql::getPattern">getPattern</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Sql.php.html#58"><abbr title="Sql::getNullAs">getNullAs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Sql.php.html#11"><abbr title="Sql::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Csv.php.html#63"><abbr title="Csv::getNullAs">getNullAs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Csv.php.html#13"><abbr title="Csv::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Csv.php.html#36"><abbr title="Csv::buildHeaders">buildHeaders</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Csv.php.html#43"><abbr title="Csv::buildOne">buildOne</abbr></a></td><td class="text-right">71%</td></tr>
 
        </tbody>
       </table>
@@ -131,7 +139,8 @@
         </tr>
        </thead>
        <tbody>
-       <tr><td><a href="Person.php.html#24"><abbr title="Person::setSex">setSex</abbr></a></td><td class="text-right">2</td></tr>
+       <tr><td><a href="Csv.php.html#36"><abbr title="Csv::buildHeaders">buildHeaders</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Csv.php.html#43"><abbr title="Csv::buildOne">buildOne</abbr></a></td><td class="text-right">4</td></tr>
 
        </tbody>
       </table>
@@ -145,11 +154,11 @@
     </p>
    </footer>
   </div>
-  <script src="../../js/jquery.min.js" type="text/javascript"></script>
-  <script src="../../js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="../../js/holder.min.js" type="text/javascript"></script>
-  <script src="../../js/d3.min.js" type="text/javascript"></script>
-  <script src="../../js/nv.d3.min.js" type="text/javascript"></script>
+  <script src="../js/jquery.min.js" type="text/javascript"></script>
+  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../js/holder.min.js" type="text/javascript"></script>
+  <script src="../js/d3.min.js" type="text/javascript"></script>
+  <script src="../js/nv.d3.min.js" type="text/javascript"></script>
   <script type="text/javascript">
 $(document).ready(function() {
   nv.addGraph(function() {
@@ -162,7 +171,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,1,0], "Class Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,1,1,0,0,1], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -180,7 +189,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([1,0,0,0,0,0,0,0,0,1,0,14], "Method Coverage"))
+      .datum(getCoverageDistributionData([6,0,0,0,0,0,0,0,1,0,0,11], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -230,7 +239,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[97.989949748744,24,"<a href=\"Person.php.html#5\">Person<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[60.714285714286,15,"<a href=\"Csv.php.html#5\">Csv<\/a>"],[100,2,"<a href=\"Json.php.html#5\">Json<\/a>"],[76.923076923077,11,"<a href=\"Sql.php.html#5\">Sql<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -254,7 +263,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[0,1,"<a href=\"Person.php.html#13\">Person::__construct<\/a>"],[100,1,"<a href=\"Person.php.html#20\">Person::getSex<\/a>"],[80,2,"<a href=\"Person.php.html#24\">Person::setSex<\/a>"],[100,3,"<a href=\"Person.php.html#32\">Person::get<\/a>"],[100,3,"<a href=\"Person.php.html#56\">Person::init<\/a>"],[100,2,"<a href=\"Person.php.html#67\">Person::getLastName<\/a>"],[100,2,"<a href=\"Person.php.html#73\">Person::getFirstName<\/a>"],[100,2,"<a href=\"Person.php.html#79\">Person::getMiddleName<\/a>"],[100,1,"<a href=\"Person.php.html#85\">Person::getFormat<\/a>"],[100,1,"<a href=\"Person.php.html#89\">Person::setFormat<\/a>"],[100,1,"<a href=\"Person.php.html#93\">Person::getLastNameFemale<\/a>"],[100,1,"<a href=\"Person.php.html#150\">Person::getFirstNameFemale<\/a>"],[100,1,"<a href=\"Person.php.html#178\">Person::getFirstNameMale<\/a>"],[100,1,"<a href=\"Person.php.html#203\">Person::getMiddleNameFemale<\/a>"],[100,1,"<a href=\"Person.php.html#213\">Person::getMiddleNameMale<\/a>"],[100,1,"<a href=\"Person.php.html#226\">Person::getLastNameMale<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[0,1,"<a href=\"Csv.php.html#13\">Csv::__construct<\/a>"],[100,1,"<a href=\"Csv.php.html#20\">Csv::setShowCounter<\/a>"],[100,1,"<a href=\"Csv.php.html#24\">Csv::setShowHeaders<\/a>"],[100,1,"<a href=\"Csv.php.html#28\">Csv::setLineDelim<\/a>"],[100,1,"<a href=\"Csv.php.html#32\">Csv::setColumnDelim<\/a>"],[0,3,"<a href=\"Csv.php.html#36\">Csv::buildHeaders<\/a>"],[71.428571428571,4,"<a href=\"Csv.php.html#43\">Csv::buildOne<\/a>"],[100,2,"<a href=\"Csv.php.html#55\">Csv::build<\/a>"],[0,1,"<a href=\"Csv.php.html#63\">Csv::getNullAs<\/a>"],[100,1,"<a href=\"Json.php.html#7\">Json::build<\/a>"],[100,1,"<a href=\"Json.php.html#12\">Json::buildOne<\/a>"],[0,1,"<a href=\"Sql.php.html#11\">Sql::__construct<\/a>"],[100,1,"<a href=\"Sql.php.html#17\">Sql::build<\/a>"],[100,5,"<a href=\"Sql.php.html#22\">Sql::buildOne<\/a>"],[100,1,"<a href=\"Sql.php.html#44\">Sql::setIncrementField<\/a>"],[100,1,"<a href=\"Sql.php.html#49\">Sql::setIncrementStart<\/a>"],[0,1,"<a href=\"Sql.php.html#53\">Sql::getPattern<\/a>"],[0,1,"<a href=\"Sql.php.html#58\">Sql::getNullAs<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);

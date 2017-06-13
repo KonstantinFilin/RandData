@@ -19,4 +19,8 @@ class Formatter
     {
         return $data;
     }
+    
+    public function getNullAs() {
+        return null;
+    }
 }

@@ -11,7 +11,7 @@ class Sql extends \RandData\Formatter
     function __construct($tableName) {
         $this->tableName = $tableName;
         $this->incrementField = null;
-        $this->incrementStart = 1;
+        $this->incrementStart = 0;
     }
 
     public function build($data)
@@ -26,11 +26,11 @@ class Sql extends \RandData\Formatter
         }
 
         $headers = $this->incrementField 
-            ? [ $this->incrementField ] + $this->headers 
+            ? array_merge([ $this->incrementField ], $this->headers) 
             : $this->headers;
         
         $values = $this->incrementField 
-            ? [ $counter + $this->incrementStart - 1 ] + $data 
+            ? array_merge([ $counter + $this->incrementStart ], $data) 
             : $data;
         
         return sprintf(
@@ -53,9 +53,5 @@ class Sql extends \RandData\Formatter
     protected function getPattern()
     {
         return "INSERT INTO `%s` (%s) VALUES (%s)";
-    }
-    
-    public function getNullAs() {
-        return "NULL";
     }
 }

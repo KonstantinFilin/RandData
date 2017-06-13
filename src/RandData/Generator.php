@@ -98,7 +98,7 @@ abstract class Generator
             $value = mt_rand(1, 100);
 
             if ($fldProbability > 0 && $value <= $fldProbability) {
-                $dataArr[$idx] = null;
+                $dataArr[$idx] = $this->formatter->getNullAs();
             }
         }
     }
