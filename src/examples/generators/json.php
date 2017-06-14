@@ -2,6 +2,9 @@
 
 require "../init.php";
 
-$generator = new PersonGenerator(new \RandData\Formatter\Json());
+$generator = new PersonGenerator();
 $generator->setAmount(10);
-echo $generator->run();
+
+$formatter = new \RandData\Formatter\Json($generator);
+
+echo $formatter->build();

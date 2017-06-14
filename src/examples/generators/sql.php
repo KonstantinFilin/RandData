@@ -2,10 +2,12 @@
 
 require "../init.php";
 
-$formatter = new \RandData\Formatter\Sql("clients");
-$formatter->setIncrementField("id");
-$formatter->setIncrementStart(15);
-$generator = new PersonGenerator($formatter);
+$generator = new PersonGenerator();
 $generator->setAmount(20);
 
-echo $generator->run() . PHP_EOL;
+$tableName = "clients";
+$formatter = new \RandData\Formatter\Sql($generator, $tableName);
+$formatter->setIncrementField("id");
+$formatter->setIncrementStart(15);
+
+echo $formatter->build() . PHP_EOL;

@@ -2,12 +2,13 @@
 
 require "../init.php";
 
-$formatter = new RandData\Formatter\Csv();
-$formatter->setShowHeaders(true);
-$formatter->setShowCounter(false);
-$generator = new PersonGenerator($formatter);
+$generator = new PersonGenerator();
 $generator->setAmount(20);
 
-echo $generator->run();
+$formatter = new RandData\Formatter\Csv($generator);
+$formatter->setShowHeaders(false);
+$formatter->setShowCounter(false);
+
+echo $formatter->build();
 echo PHP_EOL;
 

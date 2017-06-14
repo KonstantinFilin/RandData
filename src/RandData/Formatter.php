@@ -4,23 +4,35 @@ namespace RandData;
 
 class Formatter 
 {
-    protected $headers;
+    /**
+     *
+     * @var Generator
+     */
+    protected $generator;
 
-    function setHeaders($headers) {
-        $this->headers = $headers;
+    function __construct(Generator $generator) {
+        $this->generator = $generator;
     }
+
+    protected function buildOne($counter, $dataRaw)
+    {
+        return $dataRaw;
+    }
+    
+    public function build()
+    {
+        $data = [];
+        $dataRaw = $this->generator->run();
+        $cnt = 0;
         
-    public function buildOne($counter, $data)
-    {
+        foreach ($dataRaw as $dataRow) {
+            $data[] = $this->buildOne(++$cnt, $dataRow);
+        }
+        
         return $data;
     }
     
-    public function build($data)
-    {
-        return $data;
-    }
-    
-    public function getNullAs() {
+    protected function getNullAs() {
         return null;
     }
 }

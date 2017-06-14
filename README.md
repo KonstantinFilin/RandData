@@ -526,4 +526,5 @@ ru_person:sex=m
 
 * (-) Generating datasets from database tables
 * (-) Graphic interface
+* (-) Code style, mess detector, code metrics
 * (-) CI

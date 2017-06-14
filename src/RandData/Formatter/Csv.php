@@ -10,7 +10,9 @@ class Csv extends \RandData\Formatter
     protected $columnDelim;
     protected $lineDelim;
     
-    function __construct($columnDelim = ";") {
+    function __construct(\RandData\Generator $generator, $columnDelim = ";") {
+        parent::__construct($generator);
+        
         $this->columnDelim = $columnDelim;
         $this->showCounter = true;
         $this->showHeaders = true;
@@ -35,8 +37,10 @@ class Csv extends \RandData\Formatter
 
     protected function buildHeaders()
     {
-        return $this->headers
-            ? ($this->showCounter ? "#" . $this->columnDelim : "") . implode($this->columnDelim, $this->headers) 
+        $headers = $this->generator->getHeaders();
+        
+        return $headers
+            ? ($this->showCounter ? "#" . $this->columnDelim : "") . implode($this->columnDelim, $headers) 
             : "";
     }
 
@@ -52,9 +56,9 @@ class Csv extends \RandData\Formatter
             . implode($this->columnDelim, $data);
     }
     
-    public function build($data)
+    public function build()
     {
-        $dataStr = implode($this->lineDelim, $data);
+        $dataStr = implode($this->lineDelim, parent::build());
         return $this->showHeaders
             ? $this->buildHeaders() . $this->lineDelim . $dataStr
             : $dataStr;

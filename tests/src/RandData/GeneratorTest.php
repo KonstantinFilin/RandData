@@ -2,7 +2,7 @@
 
 namespace RandData;
 
-class GeneratorImplementation extends Generator
+class GeneratorImplementation1 extends Generator
 {
     public function getDataSets() 
     {
@@ -36,7 +36,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new GeneratorImplementation();
+        $this->object = new GeneratorImplementation1();
     }
 
     /**
@@ -52,7 +52,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Generator::setTuple
      */
     public function testTuple() {
-        $obj = new GeneratorImplementation(null, new MyTuple1());
+        $obj = new GeneratorImplementation(new MyTuple1());
         $this->assertInstanceOf(MyTuple1::class, $obj->getTuple());
         $this->assertNotInstanceOf(MyTuple2::class, $obj->getTuple());
         $obj->setTuple(new MyTuple2());
@@ -91,6 +91,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
             foreach ($result as $row) {
                 $this->assertTrue(is_array($row));
                 $this->assertCount(3, $row);
+
                 $this->assertRegExp("/^[NY]$/", $row[0]);
                 $this->assertTrue(is_integer($row[1]));
                 $this->assertTrue($row[1] >= 3 && $row[1] <= 8);
@@ -104,7 +105,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
     public function testGetHeaders()
     {
         $obj1 = new GeneratorImplementation();
-        $expected1 = [ 1, 2, 3 ];
+        $expected1 = [ 1 ];
         $this->assertEquals($expected1, $obj1->getHeaders());
         
         $obj2 = new GeneratorImplementation2();

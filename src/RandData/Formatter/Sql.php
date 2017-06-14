@@ -8,35 +8,38 @@ class Sql extends \RandData\Formatter
     protected $incrementField;
     protected $incrementStart;
     
-    function __construct($tableName) {
+    function __construct(\RandData\Generator $generator, $tableName) {
+        parent::__construct($generator);
+        
         $this->tableName = $tableName;
         $this->incrementField = null;
-        $this->incrementStart = 0;
+        $this->incrementStart = 1;
     }
 
-    public function build($data)
+    public function build()
     {
+        $data = parent::build();
         return implode(";". PHP_EOL, $data);
     }
     
-    public function buildOne($counter, $data)
+    protected function buildOne($counter, $data)
     {
         foreach ($data as $idx => $value) {
             $data[$idx] = is_null($value) ? "NULL" : "'" . $value . "'";
         }
 
         $headers = $this->incrementField 
-            ? array_merge([ $this->incrementField ], $this->headers) 
-            : $this->headers;
+            ? array_merge([ $this->incrementField ], $this->generator->getHeaders()) 
+            : $this->generator->getHeaders();
         
         $values = $this->incrementField 
-            ? array_merge([ $counter + $this->incrementStart ], $data) 
+            ? array_merge([ $counter + $this->incrementStart - 1 ], $data) 
             : $data;
         
         return sprintf(
             $this->getPattern(),
             $this->tableName,
-            implode(",", $headers),
+            implode("`,`", $headers),
             implode(",", $values)
         );
     }
@@ -52,6 +55,6 @@ class Sql extends \RandData\Formatter
 
     protected function getPattern()
     {
-        return "INSERT INTO `%s` (%s) VALUES (%s)";
+        return "INSERT INTO `%s` (`%s`) VALUES (%s)";
     }
 }
