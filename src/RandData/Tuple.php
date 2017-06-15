@@ -24,12 +24,14 @@ class Tuple
         return $this->dataSets;
     }
 
-    public function get()
+    public function get($cnt = 0)
     {
         $ret = [];
         
         foreach ($this->dataSets as $set) {
-            if ($set instanceof Set) {
+            if ($set instanceof Set\Counter) {
+                $ret[] = $set->get($cnt);
+            } elseif ($set instanceof Set) {
                 $ret[] = $set->get();
             }
         }

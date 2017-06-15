@@ -6,6 +6,7 @@ abstract class Generator
 {
     protected $amount;
     protected $result;
+    protected $counter;
 
     /**
      *
@@ -21,6 +22,7 @@ abstract class Generator
 
     function __construct(Tuple $tuple = null) {
         $this->amount = 10;
+        $this->counter = 0;
         $this->tuple = $tuple ? $tuple : new Tuple();
         $this->result = [];
         $this->buildTuple();
@@ -86,15 +88,17 @@ abstract class Generator
         $this->result = [];
         $amount = $this->getAmount();
 
-        for ($i = 1; $i <= $amount; $i++) {
+        for ($this->counter = 1; $this->counter <= $amount; $this->counter++) {
             $this->result[] = $this->runOne();
         }
+        
+        $this->counter = 0;
 
         return $this->result;
     }
     
     protected function runOne() {
-        $dataArr = $this->tuple->get();
+        $dataArr = $this->tuple->get($this->counter);
         $this->processNullProbability($dataArr);
         
         return $dataArr;

@@ -39,6 +39,8 @@ class PersonGenerator extends \RandData\Generator
 {
     public function getDataSets() {
         return [
+            "Id" => "counter",
+            "Login" => "counter:template=user_#;start=100",
             "Name" => "ru_person",
             "Birth" => "date:min=1900-01-01;max=2005-12-31",
             "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",

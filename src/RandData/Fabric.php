@@ -18,7 +18,9 @@ class Fabric
         $setInfo = $this->parse($string);
         $setObj = new Set\NullValue();
 
-        if ($setInfo->getName() == "integer") {
+        if (in_array($setInfo->getName(), [ "counter", "cnt" ])) {
+            $setObj = new Set\Counter();
+        } elseif (in_array($setInfo->getName(), [ "int", "integer" ])) {
             $setObj = new Set\Integer;
         } elseif ($setInfo->getName() == "float") {
             $setObj = new Set\Float();

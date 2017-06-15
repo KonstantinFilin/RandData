@@ -14,6 +14,7 @@ Data generator with support for complex data and dependency realization
     * [Tuple](https://github.com/KonstantinFilin/RandData#tuple)
     * [RandData Generator](https://github.com/KonstantinFilin/RandData#randdata-generator)
 * [DataSet](https://github.com/KonstantinFilin/RandData#dataset-options)
+    * [Counter](https://github.com/KonstantinFilin/RandData#counter)
     * [Boolean](https://github.com/KonstantinFilin/RandData#boolean)
     * [Integer](https://github.com/KonstantinFilin/RandData#integer)
     * [Float](https://github.com/KonstantinFilin/RandData#float)
@@ -92,13 +93,15 @@ class PersonGenerator extends \RandData\Generator
     }
 }
 
-$formatter = new RandData\Formatter\Csv();
-$formatter->setShowHeaders(true);
-$formatter->setShowCounter(true);
-$generator = new PersonGenerator($formatter);
+$generator = new PersonGenerator();
 $generator->setAmount(20);
 
-echo $generator->run() . PHP_EOL;
+$formatter = new RandData\Formatter\Csv($generator);
+$formatter->setShowHeaders(true);
+$formatter->setShowCounter(true);
+
+echo $formatter->build();
+echo PHP_EOL;
 /*
 #;Name;Birth;Phone;Sum
 1;John Doe;1904-04-26;+7 (919) 265-86-65;8248
@@ -128,12 +131,6 @@ class PersonGenerator extends \RandData\Generator
             "Sum" => 50, // null approximately 50% (every second) 
         ];
     }
-    
-    // How to show null values
-    protected function getNullAs()
-    {
-        return "NA";
-    }
 }
 ```
 
@@ -144,6 +141,8 @@ class PersonGenerator extends \RandData\Generator
 {
     public function getDataSets() {
         return [
+            "Id" => "counter",
+            "Login" => "counter:template=user_#;start=101",
             "Name" => "ru_person",
             "Birth" => "date:min=1900-01-01;max=2005-12-31",
             "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
@@ -152,19 +151,19 @@ class PersonGenerator extends \RandData\Generator
         ];
     }
 }
-$tableName = "clients";
-$formatter = new \RandData\Formatter\Sql($tableName);
-$formatter->setIncrementField("id");
-$formatter->setIncrementStart(15);
-$generator = new PersonGenerator($formatter);
+
+$generator = new PersonGenerator();
 $generator->setAmount(20);
 
-echo $generator->run() . PHP_EOL;
+$tableName = "clients";
+$formatter = new \RandData\Formatter\Sql($generator, $tableName);
+
+echo $formatter->build() . PHP_EOL;
 
 /*
-INSERT INTO `clients` (id,Name,Birth,Phone,Sum) VALUES (15,'John Doe','1981-10-01','+7 (919) 010-87-43','5901');
-INSERT INTO `clients` (id,Name,Birth,Phone,Sum) VALUES (16,'Mary Smith','1953-04-28','+7 (495) 263-14-69','5419');
-INSERT INTO `clients` (id,Name,Birth,Phone,Sum) VALUES (17,'Peter Smith','1977-12-03','+7 (919) 257-55-17','3948');
+INSERT INTO `clients` (id,Login,Name,Birth,Phone,Sum) VALUES (15,'user_101','John Doe','1981-10-01','+7 (919) 010-87-43','5901');
+INSERT INTO `clients` (id,Login,Name,Birth,Phone,Sum) VALUES (16,'user_102','Mary Smith','1953-04-28','+7 (495) 263-14-69','5419');
+INSERT INTO `clients` (id,Login,Name,Birth,Phone,Sum) VALUES (17,'user_103','Peter Smith','1977-12-03','+7 (919) 257-55-17','3948');
 ...
 */
 ```
@@ -222,6 +221,30 @@ Value may be an array item, its item seperated by comma:
 ID:letters:a,b,c;persons:John,Mary,Jane
 ```
 
+### Counter
+
+Simple counter. Generates number sequence inside string or as number. When 
+calling by Generator object, it is incremented automatically. When calling 
+direct or by Tuple object, you need to set counter value manually
+
+**ID**
+
+> counter, cnt
+
+**Params**
+
+* tpl, template: When setted, it generates string with counter (for example,
+template "user_#" turns to { user_1, user_2, user_3, ... }. When missed, then 
+usual unsigned integer will be returned { 1, 2, 3, ... }
+* start: Default start value. For example, you set generator's amount property 
+to 20, and start counter property setted to 100, then you get values 
+{ 100, 101, 102, ..., 119 }
+
+**Initialization string example**
+
+```
+counter:template=user_#;start=100
+```
 ### Boolean
 
 **ID**
@@ -244,7 +267,7 @@ boolean:valTrue=true;valFalse=false
 
 **ID**
 
-> integer
+> int, integer
 
 **Params**
 

@@ -5,15 +5,11 @@ namespace RandData\Formatter;
 class Sql extends \RandData\Formatter
 {
     protected $tableName;
-    protected $incrementField;
-    protected $incrementStart;
     
     function __construct(\RandData\Generator $generator, $tableName) {
         parent::__construct($generator);
         
         $this->tableName = $tableName;
-        $this->incrementField = null;
-        $this->incrementStart = 1;
     }
 
     public function build()
@@ -28,29 +24,12 @@ class Sql extends \RandData\Formatter
             $data[$idx] = is_null($value) ? "NULL" : "'" . $value . "'";
         }
 
-        $headers = $this->incrementField 
-            ? array_merge([ $this->incrementField ], $this->generator->getHeaders()) 
-            : $this->generator->getHeaders();
-        
-        $values = $this->incrementField 
-            ? array_merge([ $counter + $this->incrementStart - 1 ], $data) 
-            : $data;
-        
         return sprintf(
             $this->getPattern(),
             $this->tableName,
-            implode("`,`", $headers),
-            implode(",", $values)
+            implode("`,`", $this->generator->getHeaders()),
+            implode(",", $data)
         );
-    }
-    
-    public function setIncrementField($name)
-    {
-        $this->incrementField = $name;
-    }
-
-    function setIncrementStart($incrementStart) {
-        $this->incrementStart = $incrementStart;
     }
 
     protected function getPattern()

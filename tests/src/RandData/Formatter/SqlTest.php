@@ -60,18 +60,5 @@ class SqlTest extends \PHPUnit_Framework_TestCase {
 INSERT INTO `tblName` (`fld1`,`fld2`,`fld3`) VALUES ('val21','val22','val23');
 INSERT INTO `tblName` (`fld1`,`fld2`,`fld3`) VALUES ('val31','val32','val33')";
         $this->assertEquals($expected, $formatter->build());
-        
-        $formatter->setIncrementField("id");
-        $expected2 = "INSERT INTO `tblName` (`id`,`fld1`,`fld2`,`fld3`) VALUES (1,'val11','val12','val13');
-INSERT INTO `tblName` (`id`,`fld1`,`fld2`,`fld3`) VALUES (2,'val21','val22','val23');
-INSERT INTO `tblName` (`id`,`fld1`,`fld2`,`fld3`) VALUES (3,'val31','val32','val33')";
-        $this->assertEquals($expected2, $formatter->build());
-        
-        $formatter->setIncrementField("id123");
-        $formatter->setIncrementStart(4);
-        $expected3 = "INSERT INTO `tblName` (`id123`,`fld1`,`fld2`,`fld3`) VALUES (4,'val11','val12','val13');
-INSERT INTO `tblName` (`id123`,`fld1`,`fld2`,`fld3`) VALUES (5,'val21','val22','val23');
-INSERT INTO `tblName` (`id123`,`fld1`,`fld2`,`fld3`) VALUES (6,'val31','val32','val33')";
-        $this->assertEquals($expected3, $formatter->build());
     }
 }
