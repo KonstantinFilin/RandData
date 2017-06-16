@@ -5,8 +5,6 @@ namespace RandData;
 abstract class Generator 
 {
     protected $amount;
-    protected $result;
-    protected $counter;
 
     /**
      *
@@ -20,12 +18,9 @@ abstract class Generator
      */
     protected $formatter;
 
-    function __construct(Tuple $tuple = null) {
-        $this->amount = 10;
-        $this->counter = 0;
-        $this->tuple = $tuple ? $tuple : new Tuple();
-        $this->result = [];
-        $this->buildTuple();
+    function __construct(Tuple $tuple, $amount = 10) {
+        $this->amount = $amount;
+        $this->tuple = $tuple;
     }
 
     function setAmount($amount) {
@@ -40,80 +35,14 @@ abstract class Generator
         return $this->tuple;
     }
 
-    function setTuple($tuple) {
-        $this->tuple = $tuple;
-    }
-    
-    protected function buildTuple() {
-        $datasets = $this->getDataSets();
-
-        foreach ($datasets as $ds) {
-            if ($ds instanceof Set) {
-                $this->tuple->addDataset($ds);
-            } elseif (is_string($ds)) {
-                $this->tuple->addDatasetFromStr($ds);
-            }
-        }
-    }
-
-    protected function getNullProbability()
-    {
-        return [];
-    }
-    
-    public function processNullProbability(&$dataArr, $nullValue = null)
-    {
-        $headersFlipped = array_flip($this->getHeaders());
-        $nullProbability = $this->getNullProbability();
-
-        if (!$nullProbability) {
-            return;
-        }
-        
-        foreach ($nullProbability as $fldName => $fldProbability) {
-            if (!array_key_exists($fldName, $headersFlipped)) {
-                continue;
-            }
-
-            $idx = $headersFlipped[$fldName];
-            $value = mt_rand(1, 100);
-
-            if ($fldProbability > 0 && $value <= $fldProbability) {
-                $dataArr[$idx] = $nullValue;
-            }
-        }
-    }
-
     public function run() {
-        $this->result = [];
+        $result = [];
         $amount = $this->getAmount();
 
-        for ($this->counter = 1; $this->counter <= $amount; $this->counter++) {
-            $this->result[] = $this->runOne();
+        for ($i = 1; $i <= $amount; $i++) {
+            $result[] = $this->tuple->get($i);
         }
         
-        $this->counter = 0;
-
-        return $this->result;
-    }
-    
-    protected function runOne() {
-        $dataArr = $this->tuple->get($this->counter);
-        $this->processNullProbability($dataArr);
-        
-        return $dataArr;
-    }
-    
-    abstract function getDataSets();
-    
-    public function getHeaders()
-    {
-        $headers = array_keys($this->getDataSets());
-        
-        if ($headers == range(0, count($headers) - 1)) {
-            return range(1, count($headers));
-        }
-        
-        return $headers;
+        return $result;
     }
 }
