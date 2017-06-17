@@ -37,7 +37,7 @@ class Csv extends \RandData\Formatter
 
     protected function buildHeaders()
     {
-        $headers = $this->generator->getHeaders();
+        $headers = $this->generator->getTuple()->getHeaders();
         
         return $headers
             ? ($this->showCounter ? "#" . $this->columnDelim : "") . implode($this->columnDelim, $headers) 

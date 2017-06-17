@@ -35,7 +35,7 @@ function printData($desc, RandData\Set $dataset)
     }
 }
 
-class PersonGenerator extends \RandData\Generator
+class PersonTuple extends \RandData\Tuple
 {
     public function getDataSets() {
         return [

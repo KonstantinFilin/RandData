@@ -24,7 +24,7 @@ class Formatter
         $data = [];
         $dataRaw = $this->generator->run();
         $cnt = 0;
-        
+
         foreach ($dataRaw as $dataRow) {
             $data[] = $this->buildOne(++$cnt, $dataRow);
         }

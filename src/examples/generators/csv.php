@@ -2,10 +2,7 @@
 
 require "../init.php";
 
-$generator = new PersonGenerator();
-$generator->setAmount(20);
-
-$formatter = new RandData\Formatter\Csv($generator);
+$formatter = new RandData\Formatter\Csv(new \RandData\Generator(new PersonTuple(), 20));
 $formatter->setShowHeaders(false);
 $formatter->setShowCounter(false);
 

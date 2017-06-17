@@ -2,7 +2,7 @@
 
 namespace RandData;
 
-abstract class Generator 
+class Generator 
 {
     protected $amount;
 

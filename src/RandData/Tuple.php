@@ -5,17 +5,23 @@ namespace RandData;
 abstract class Tuple 
 {
     protected $result;
+    protected $datasets;
     
     function __construct() 
     {
         $this->result = [];
+        $this->datasets = [];
     }
 
     public function get($cnt = 0)
     {
-        $dataSets = $this->getDataSets();
-                
-        foreach ($dataSets as $fldName => $set) {
+        $this->result = [];
+        $this->datasets = $this->getDataSets();
+        $fldNames = array_keys($this->datasets);
+        
+        foreach ($fldNames as $fldName) {
+            $set = $this->datasets[$fldName];
+            
             if (is_string($set)) {
                 $fabric = new Fabric();
                 $set = $fabric->createObjectFromString($set);
@@ -27,7 +33,7 @@ abstract class Tuple
                 $this->result[] = $this->getValue($set, $fldName);
             }
         }
-        
+
         return $this->result;
     }
     
@@ -35,7 +41,7 @@ abstract class Tuple
     {
         $value = mt_rand(1, 100);
         $fldProbability = $this->getValueNullProbability($fldName);
-
+        
         if ($fldProbability > 0 && $value <= $fldProbability) {
             return null;
         }
