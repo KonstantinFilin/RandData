@@ -11,12 +11,6 @@ class Generator
      * @var Tuple
      */
     protected $tuple;
-    
-    /**
-     *
-     * @var Formatter
-     */
-    protected $formatter;
 
     function __construct(Tuple $tuple, $amount = 10) {
         $this->amount = $amount;

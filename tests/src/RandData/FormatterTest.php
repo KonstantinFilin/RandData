@@ -2,7 +2,7 @@
 
 namespace RandData;
 
-class GeneratorImplementation extends Generator
+class TupleImplementation4 extends Tuple
 {
     public function getDataSets() {
         return [
@@ -26,7 +26,7 @@ class FormatterTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new Formatter(new GeneratorImplementation());
+        $this->object = new Formatter(new Generator(new TupleImplementation4()));
     }
 
     /**

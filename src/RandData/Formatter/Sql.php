@@ -20,14 +20,14 @@ class Sql extends \RandData\Formatter
     
     protected function buildOne($counter, $data)
     {
-        foreach ($data as $idx => $value) {
-            $data[$idx] = is_null($value) ? "NULL" : "'" . $value . "'";
+        foreach ($data as $fldName => $fldValue) {
+            $data[$fldName] = is_null($fldValue) ? "NULL" : "'" . $fldValue . "'";
         }
 
         return sprintf(
             $this->getPattern(),
             $this->tableName,
-            implode("`,`", $this->generator->getTuple()->getHeaders()),
+            implode("`,`", array_keys($data)),
             implode(",", $data)
         );
     }

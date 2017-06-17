@@ -2,7 +2,7 @@
 
 namespace RandData\Formatter;
 
-class GeneratorImplementationSql extends \RandData\Generator
+class TupleImplementationSql extends \RandData\Tuple
 {
     public function getDataSets() {
         return [
@@ -29,7 +29,7 @@ class SqlTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $generator = new GeneratorImplementationSql();
+        $generator = new \RandData\Generator(new TupleImplementationSql());
         $this->formatter = new Sql($generator, "table1");
     }
 
@@ -46,14 +46,13 @@ class SqlTest extends \PHPUnit_Framework_TestCase {
      */
     public function testBuild() {
         $data = [ 
-            [ "val11", "val12", "val13" ], 
-            [ "val21", "val22", "val23" ], 
-            [ "val31", "val32", "val33" ], 
+            [ "fld1" => "val11", "fld2" => "val12", "fld3" => "val13" ], 
+            [ "fld1" => "val21", "fld2" => "val22", "fld3" => "val23" ], 
+            [ "fld1" => "val31", "fld2" => "val32", "fld3" => "val33" ], 
         ];
         
-        $generator = $this->createMock(GeneratorImplementationSql::class);
+        $generator = $this->createMock(\RandData\Generator::class);
         $generator->method("run")->willReturn($data);
-        $generator->method("getHeaders")->willReturn([ "fld1", "fld2", "fld3" ]);
         $formatter = new \RandData\Formatter\Sql($generator, "tblName");
         
         $expected = "INSERT INTO `tblName` (`fld1`,`fld2`,`fld3`) VALUES ('val11','val12','val13');

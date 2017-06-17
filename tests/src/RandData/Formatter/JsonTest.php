@@ -1,8 +1,8 @@
 <?php
 
-namespace RandData\Generator;
+namespace RandData\Formatter;
 
-class GeneratorImplementationJson extends \RandData\Generator
+class TupleImplementationJson extends \RandData\Tuple
 {
     public function getDataSets() {
         return [
@@ -29,7 +29,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->formatter = new \RandData\Formatter\Json(new GeneratorImplementationJson);
+        $this->formatter = new \RandData\Formatter\Json(new \RandData\Generator(new TupleImplementationJson()));
     }
 
     /**
@@ -45,16 +45,15 @@ class JsonTest extends \PHPUnit_Framework_TestCase {
      */
     public function testBuild() {
         $headers = [ "f1", "f2", "f3", "f4" ];
-        $data1 = [ "aaa", "bbb", "ccc", "ddd" ];
-        $data2 = [ "ee", "ff", "gg", "hh" ];
+        $data1 = [ "f1" => "aaa", "f2" => "bbb", "f3" => "ccc", "f4" => "ddd" ];
+        $data2 = [ "f1" => "ee", "f2" => "ff", "f3" => "gg", "f4" => "hh" ];
         $data = [ 
-            array_combine($headers, $data1), 
-            array_combine($headers, $data2) 
+            $data1, 
+            $data2 
         ];
 
-        $generator = $this->createMock(GeneratorImplementationJson::class);
+        $generator = $this->createMock(\RandData\Generator::class);
         $generator->method("run")->willReturn($data);
-        $generator->method("getHeaders")->willReturn($headers);
         $formatter = new \RandData\Formatter\Json($generator);
         
         $this->assertEquals(json_encode($data, JSON_PRETTY_PRINT), $formatter->build());        

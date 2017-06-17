@@ -2,7 +2,7 @@
 
 namespace RandData;
 
-class BlankGeneratorImplementation extends BlankGenerator
+class TupleBLankImplementation extends Tuple
 {
     public function getDataSets() 
     {
@@ -30,7 +30,7 @@ class BlankGeneratorTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new BlankGeneratorImplementation();
+        $this->object = new BlankGenerator(new TupleBLankImplementation());
         $tpl = "Hello, I'm {name}, my age {age} and today is {dt}. Created at {dt} by {name}";
         $this->object->init($tpl);
     }

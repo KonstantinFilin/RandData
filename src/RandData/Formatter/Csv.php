@@ -46,9 +46,9 @@ class Csv extends \RandData\Formatter
 
     public function buildOne($counter, $data)
     {
-        foreach ($data as $idx => $value) {
-            if (is_null($value)) {
-                $data[$idx] = $this->getNullAs();
+        foreach ($data as $fldName => $fldValue) {
+            if (is_null($fldValue)) {
+                $data[$fldName] = $this->getNullAs();
             }
         }
 

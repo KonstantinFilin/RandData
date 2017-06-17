@@ -17,7 +17,7 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new Tuple;
+        $this->object = new TupleImplementation1();
     }
 
     /**
@@ -29,60 +29,38 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Tuple::addDatasetFromStr
-     * @covers RandData\Tuple::getDataSets
-     */
-    public function testAddDatasetFromStr() {
-        $arr = $this->object->getDataSets();
-        $this->assertEmpty($arr);
-        $this->assertTrue(is_array($arr));
-        $this->assertEquals([], $arr);
-        $this->object->addDatasetFromStr("boolean");
-        $arr2 = $this->object->getDataSets();
-        $this->assertNotEmpty($arr2);
-        $this->assertTrue(count($arr2) == 1);
-        $this->assertNotEmpty($arr2[0]);
-        $this->assertInstanceOf(Set\Boolean::class, $arr2[0]);
-    }
-
-    /**
-     * @covers RandData\Tuple::addDataset
-     * @covers RandData\Tuple::getDataSets
-     */
-    public function testAddDataset() {
-        $arr = $this->object->getDataSets();
-        $this->assertEmpty($arr);
-        $this->assertTrue(is_array($arr));
-        $this->object->addDataset(new Set\Boolean());
-        $arr2 = $this->object->getDataSets();
-        $this->assertNotEmpty($arr2);
-        $this->assertTrue(count($arr2) == 1);
-        $this->assertNotEmpty($arr2[0]);
-        $this->assertInstanceOf(Set\Boolean::class, $arr2[0]);
-    }
-
-    /**
      * @covers RandData\Tuple::get
      */
     public function testGet() 
     {
-        $strList = [ "aaa", "bbb", "ccc" ];
-        $this->object->addDataset(new Set\Boolean());
-        $this->object->addDataset(new Set\Integer(3, 5));
-        $this->object->addDataset(new Set\StringList($strList));
+        $t2 = new TupleImplementation2();
         
-        $randValArr = $this->object->get();
+        $randValArr = $t2->get();
         $this->assertNotEmpty($randValArr);
-        $this->assertNotEmpty($randValArr[0]);
-        $this->assertNotEmpty($randValArr[1]);
-        $this->assertNotEmpty($randValArr[2]);
         $this->assertTrue(is_array($randValArr));
-        $this->assertTrue(count($randValArr) == 3);
-        $this->assertTrue($randValArr[0] == "Y" || $randValArr[0] == "N");
-        $this->assertTrue(is_integer($randValArr[1]));
-        $this->assertTrue($randValArr[1] >= 3 || $randValArr[1] <= 5);
-        $this->assertTrue(is_string($randValArr[2]));
-        $this->assertRegExp("/^" . implode("|", $strList) . "$/", $randValArr[2]);
+        $this->assertNotEmpty($randValArr["field1"]);
+        $this->assertNotEmpty($randValArr["field2"]);
+        $this->assertNotEmpty($randValArr["field3"]);
+        
+        $this->assertCount(3, $randValArr);
+        $this->assertTrue(in_array($randValArr["field1"], [ "Y", "N" ]));
+        $this->assertTrue(is_integer($randValArr["field2"]));
+        $this->assertTrue($randValArr["field2"] >= 3 || $randValArr["field2"] <= 5);
+        $this->assertTrue(is_string($randValArr["field3"]));
+        $this->assertRegExp("/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/", $randValArr["field3"]);
     }
 
+    /**
+     * @covers RandData\Generator::getHeaders
+     */
+    public function testGetHeaders()
+    {
+        $obj1 = new TupleImplementation1();
+        $expected1 = [ 1, 2, 3 ];
+        $this->assertEquals($expected1, $obj1->getHeaders());
+        
+        $obj2 = new TupleImplementation2();
+        $expected2 = [ "field1", "field2", "field3" ];
+        $this->assertEquals($expected2, $obj2->getHeaders());
+    }
 }

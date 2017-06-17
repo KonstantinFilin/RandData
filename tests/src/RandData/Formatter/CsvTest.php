@@ -1,8 +1,8 @@
 <?php
 
-namespace RandData\Generator;
+namespace RandData\Formatter;
 
-class GeneratorImplementation extends \RandData\Generator
+class TupleImplementationCsv extends \RandData\Tuple
 {
     public function getDataSets() {
         return [
@@ -29,7 +29,7 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->formatter = new \RandData\Formatter\Csv(new GeneratorImplementation());
+        $this->formatter = new \RandData\Formatter\Csv(new \RandData\Generator(new TupleImplementationCsv()));
     }
 
     /**
@@ -48,11 +48,11 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
     public function testShowCounter() 
     {
         $columnDelim = ";";
-        $data1 = [ "aaa", "bbb", "ccc", "ddd" ];
-        $data2 = [ "ee", "ff", "gg", "hh" ];
+        $data1 = [ "f1" => "aaa", "f2" => "bbb", "f3" => "ccc", "f4" => "ddd" ];
+        $data2 = [ "f1" => "ee", "f2" => "ff", "f3" => "gg", "f4" => "hh" ];
 
-        $generator = $this->createMock(GeneratorImplementation::class);
-        $generator->method("getHeaders")->willReturn([ "f1", "f2", "f3", "f4" ]);
+        $generator = $this->createMock(\RandData\Generator::class);
+        $generator->method("getTuple")->willReturn(new TupleImplementationCsv());
         $generator->method("run")->willReturn([ $data1, $data2 ]);
         $formatter = new \RandData\Formatter\Csv($generator);
         $formatter->setShowCounter(true);
@@ -80,8 +80,8 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
             implode($columnDelim, $data2)
         ];
         
-        $generator = $this->createMock(GeneratorImplementation::class);
-        $generator->method("getHeaders")->willReturn([ "f1", "f2", "f3", "f4" ]);
+        $generator = $this->createMock(\RandData\Generator::class);
+        $generator->method("getTuple")->willReturn(new TupleImplementationCsv());
         $generator->method("run")->willReturn([ $data1, $data2 ]);
         $formatter = new \RandData\Formatter\Csv($generator);
 
@@ -112,8 +112,8 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
             implode($columnDelim, $data2) 
         ];
         
-        $generator = $this->createMock(GeneratorImplementation::class);
-        $generator->method("getHeaders")->willReturn([ "f1", "f2", "f3", "f4" ]);
+        $generator = $this->createMock(\RandData\Generator::class);
+        $generator->method("getTuple")->willReturn(new TupleImplementationCsv());
         $generator->method("run")->willReturn([ $data1, $data2 ]);
         $formatter = new \RandData\Formatter\Csv($generator);
         
