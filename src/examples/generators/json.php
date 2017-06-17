@@ -2,9 +2,7 @@
 
 require "../init.php";
 
-$generator = new PersonGenerator();
-$generator->setAmount(10);
-
+$generator = new \RandData\Generator(new PersonTuple(), 20);
 $formatter = new \RandData\Formatter\Json($generator);
 
 echo $formatter->build();

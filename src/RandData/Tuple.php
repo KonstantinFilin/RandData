@@ -28,9 +28,9 @@ abstract class Tuple
             }
             
             if ($set instanceof Set\Counter) {
-                $this->result[] = $set->get($cnt);
+                $this->result[$fldName] = $set->get($cnt);
             } elseif ($set instanceof Set) {
-                $this->result[] = $this->getValue($set, $fldName);
+                $this->result[$fldName] = $this->getValue($set, $fldName);
             }
         }
 

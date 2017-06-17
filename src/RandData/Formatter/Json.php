@@ -12,6 +12,6 @@ class Json extends \RandData\Formatter
     
     public function buildOne($counter, $data)
     {
-        return array_combine($this->generator->getHeaders(), $data);
+        return array_combine($this->generator->getTuple()->getHeaders(), $data);
     }
 }

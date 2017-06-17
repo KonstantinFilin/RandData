@@ -20,14 +20,23 @@ class EmployeeTuple extends \RandData\Tuple {
         ];
     }
     
+    protected function getNullProbability() {
+        return [
+            "fired" => 30
+        ];
+    }
+    
     protected function getValue(RandData\Set $set, $fldName)
     {
         $value = parent::getValue($set, $fldName);
         
+        // Override dependent datasets
         if ($fldName == "sex") {
             $this->getValueSex($value);
         } elseif ($fldName == "birth") {
             $this->getValueBirth($value);
+        } elseif ($fldName == "hired") {
+            $this->getValueHired($value);
         }
         
         return $value;
@@ -39,7 +48,9 @@ class EmployeeTuple extends \RandData\Tuple {
     }
     
     private function getValueHired($value) {
-        $hiredTs = date("U", $value);
+        // Fired date must be later than hired date, 
+        // but earlier than today
+        $hiredTs = date("U", strtotime($value));
         $firedDtMin = date("Y-m-d", $hiredTs + 1*24*3600);
         $firedDtMax = date("Y-m-d", date("U") - 3*24*3600);
         $this->datasets["fired"] = "date:min=" . $firedDtMin . ";max=" .$firedDtMax ;
@@ -49,12 +60,15 @@ class EmployeeTuple extends \RandData\Tuple {
         $birthTs = date("U", strtotime($value));
         $nowTs = date("U");
 
+        // Let's some dummy score will be dependant on age
         if (self::LEVEL_1 < $nowTs - $birthTs) {
             $this->datasets["score"] = "int:min=20;max=25";
         } elseif (self::LEVEL_2 < $nowTs - $birthTs) {
             $this->datasets["score"] = "int:min=10;max=13";
         }
         
+        // Hired date must be later than birth date
+        // Let's we can hire somebody in the ages from 20 to 50
         $hiredTsMin = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MIN, date("U") ])));
         $hiredTsMax = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MAX, date("U") ])));
         $this->datasets["hired"] = "date:min=" . $hiredTsMin . ";max=" . $hiredTsMax;

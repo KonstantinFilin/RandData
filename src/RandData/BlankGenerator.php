@@ -2,13 +2,13 @@
 
 namespace RandData;
 
-abstract class BlankGenerator extends Generator
+class BlankGenerator extends Generator
 {
     protected $delimStart = "{";
     protected $delimFinish = "}";
     protected $template;
     
-    function __construct(Tuple $tuple = null) {
+    function __construct(Tuple $tuple) {
         parent::__construct($tuple);
         $this->template = "";
         $this->amount = 1;
@@ -16,12 +16,12 @@ abstract class BlankGenerator extends Generator
 
     public function run() {
         $data = $this->tuple->get();
-        $fields = array_keys($this->getDataSets());
+        $fields = array_keys($this->tuple->getDataSets());
         $ret = $this->template;
         
-        foreach ($fields as $idx => $field) {
-            $search = $this->getDelimStart() . $field . $this->getDelimFinish();
-            $ret = str_replace($search, $data[$idx], $ret);
+        foreach ($data as $fldName => $fldValue) {
+            $search = $this->getDelimStart() . $fldName . $this->getDelimFinish();
+            $ret = str_replace($search, $fldValue, $ret);
         }
         
         return $ret;

@@ -27,7 +27,7 @@ class Sql extends \RandData\Formatter
         return sprintf(
             $this->getPattern(),
             $this->tableName,
-            implode("`,`", $this->generator->getHeaders()),
+            implode("`,`", $this->generator->getTuple()->getHeaders()),
             implode(",", $data)
         );
     }
