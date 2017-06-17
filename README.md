@@ -55,68 +55,67 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 ### Filling string by template
 
 ```php
-class BlankGeneratorImplementation extends \RandData\BlankGenerator
+
+class BlankTuple extends \RandData\Tuple
 {
     public function getDataSets() 
     {
         return [
             "name" => "string_list:values=John,Paul,George,Ringo",
-            "age" => "integer:min=19;max=30",
-            "dt" => "date:min=1962-10-05;max=1970-05-08"
+            "dt" => "date:min=1962-10-05;max=1970-05-08",
+            "age" => "integer:min=19;max=30"
         ];
     }
+    
+    // Age field is dependant from dt field. See Data dependency
+    protected function getValue(\RandData\Set $set, $fldName) {
+        $birthDtList = [
+            "John" => "1940-10-09",
+            "Paul" => "1942-06-18",
+            "George" => "1943-02-25",
+            "Ringo" => "1940-07-07"
+        ];
+
+        if ($fldName == "age") {            
+            $name = $this->result["name"];
+            $dt = new \DateTime($this->result["dt"]);
+            $birth = !empty($birthDtList[$name]) 
+                ? new \Datetime($birthDtList[$name])
+                : null;
+            
+            if ($dt && $birth) {
+                $interval = $birth->diff($dt);
+                return $interval->format("%y");
+            }
+            
+            return 0;
+        }
+        
+        return $set->get();
+    }
+
 }
 
-$generator = new BlankGeneratorImplementation();
-$tpl = "Hello, I'm {name}, my age {age} and today is {dt}. Created at {dt} by {name}";
+$generator = new RandData\BlankGenerator(new BlankTuple);
+$tpl = "Hello, I'm {name}, my age {age} and today is {dt}. {name} at {dt}";
 $generator->init($tpl);
 echo $generator->run() . PHP_EOL;
-
-// Hello, I'm Ringo, my age 21 and today is 1965-05-16. Created at 1965-05-16 by Ringo
-// Hello, I'm George, my age 24 and today is 1965-02-28. Created at 1965-02-28 by George
+// Hello, I'm John, my age 27 and today is 1968-07-08. John at 1968-07-08
+// Hello, I'm Paul, my age 21 and today is 1963-11-14. Paul at 1963-11-14
+// Hello, I'm George, my age 24 and today is 1967-08-14. George at 1967-08-14
+// Hello, I'm Ringo, my age 28 and today is 1969-07-05. Ringo at 1969-07-05
 // ...
 ```
 
 ### Generators. Creating csv
 
 ```php
-class PersonGenerator extends \RandData\Generator
+class PersonTuple extends \RandData\Tuple
 {
     public function getDataSets() {
         return [
-            "Name" => "ru_person",
-            "Birth" => "date:min=1900-01-01;max=2005-12-31",
-            "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
-            "Sum" => "integer:min=100;max=10000",
-            "Class" => "string_list:values=aaa,bbb,ccc;possibility=50,20,30"
-        ];
-    }
-}
-
-$generator = new PersonGenerator();
-$generator->setAmount(20);
-
-$formatter = new RandData\Formatter\Csv($generator);
-$formatter->setShowHeaders(true);
-$formatter->setShowCounter(true);
-
-echo $formatter->build();
-echo PHP_EOL;
-/*
-#;Name;Birth;Phone;Sum
-1;John Doe;1904-04-26;+7 (919) 265-86-65;8248
-2;Mary Smith;1978-08-12;+7 (905) 952-62-31;8751
-3;Peter Smith;1955-08-29;+7 (903) 322-18-14;7004
-...
-*/
-```
-
-You can also create random null in any column (default is no NULL anywhere):
-```php
-class PersonGenerator extends \RandData\Generator
-{
-    public function getDataSets() {
-        return [
+            "Id" => "counter",
+            "Login" => "counter:template=user_#;start=100",
             "Name" => "ru_person",
             "Birth" => "date:min=1900-01-01;max=2005-12-31",
             "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
@@ -132,17 +131,33 @@ class PersonGenerator extends \RandData\Generator
         ];
     }
 }
+
+$formatter = new RandData\Formatter\Csv(new \RandData\Generator(new PersonTuple(), 20));
+$formatter->setShowHeaders(false);
+$formatter->setShowCounter(false);
+
+echo $formatter->build();
+echo PHP_EOL;
+
+
+/*
+#;Name;Birth;Phone;Sum
+1;user_100;Ефремова Лика Александровна;1949-09-27;NA;NA;aaa
+2;user_101;Соболева Лолита Евгеньевна;2005-04-07;+7 (903) 194-44-11;NA;aaa
+3;user_102;Лаврова Стелла Виталиевна;1921-04-23;+7 (495) 621-76-94;9735;aaa
+...
+*/
 ```
 
 ### Generators. Filling database and more
 
 ```php
-class PersonGenerator extends \RandData\Generator
+class PersonTuple extends \RandData\Tuple
 {
     public function getDataSets() {
         return [
             "Id" => "counter",
-            "Login" => "counter:template=user_#;start=101",
+            "Login" => "counter:template=user_#;start=100",
             "Name" => "ru_person",
             "Birth" => "date:min=1900-01-01;max=2005-12-31",
             "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
@@ -150,22 +165,22 @@ class PersonGenerator extends \RandData\Generator
             "Class" => "string_list:values=aaa,bbb,ccc;possibility=50,20,30"
         ];
     }
+    
+    protected function getNullProbability() {
+        return [
+            "Phone" => 20, // null approximately 20% (every fifth)
+            "Sum" => 50, // null approximately 50% (every second) 
+        ];
+    }
 }
 
-$generator = new PersonGenerator();
-$generator->setAmount(20);
-
-$tableName = "clients";
-$formatter = new \RandData\Formatter\Sql($generator, $tableName);
-
-echo $formatter->build() . PHP_EOL;
-
 /*
-INSERT INTO `clients` (id,Login,Name,Birth,Phone,Sum) VALUES (15,'user_101','John Doe','1981-10-01','+7 (919) 010-87-43','5901');
-INSERT INTO `clients` (id,Login,Name,Birth,Phone,Sum) VALUES (16,'user_102','Mary Smith','1953-04-28','+7 (495) 263-14-69','5419');
-INSERT INTO `clients` (id,Login,Name,Birth,Phone,Sum) VALUES (17,'user_103','Peter Smith','1977-12-03','+7 (919) 257-55-17','3948');
+INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('1','user_100','Кочетова Дина Михайловна','1937-01-26',NULL,NULL,'aaa');
+INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('2','user_101','Гаврилов Спартак Филиппович','2004-11-17','+7 (915) 907-88-62','9936','ccc');
+INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('3','user_102','Карасев Аксён Николаевич','1912-02-06',NULL,NULL,'aaa');
 ...
 */
+
 ```
 
 ### Filling forms
@@ -543,7 +558,7 @@ ru_person:sex=m
 * (+) Possibility of value from the list
 * (+) Output formats (csv, sql, json)
 
-* (-) Data dependency (subobjects, date difference and so on)
+* (+) Data dependency (subobjects, date difference and so on)
 * (-) API documentation
 * (-) Class members checking (input values)
 
