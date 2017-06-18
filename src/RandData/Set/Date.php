@@ -2,26 +2,60 @@
 
 namespace RandData\Set;
 
+/**
+ * Date random dataset
+ */
 class Date extends \RandData\Set 
 {
+    /**
+     * Minimum date
+     * @var string 
+     */
     protected $min;
+    
+    /**
+     * Maximum date
+     * @var string
+     */
     protected $max;
+    
+    /**
+     * Output date format
+     * @var string
+     */
     protected $format;
     
+    /**
+     * Class constructor
+     * @param string $min Minimum date in format Y-m-d
+     * @param string $max Maximum date in format Y-m-d
+     */
     function __construct($min="", $max="") {
         $this->setMin($min);
         $this->setMax($max);
         $this->format = "Y-m-d";
     }
     
+    /**
+     * Returns minimum date
+     * @return string Minimum date
+     */
     function getMin() {
         return $this->min;
     }
 
+    /**
+     * Returns maximum date
+     * @return string maximum date
+     */
     function getMax() {
         return $this->max;
     }
 
+    /**
+     * Sets minimum date
+     * @param string $min Minimum date in format Y-m-d
+     */
     function setMin($min) {
         $dt =  new \DateTime($min);
         
@@ -33,6 +67,10 @@ class Date extends \RandData\Set
         $this->min = $dt->format("U");
     }
 
+    /**
+     * Sets maximum date
+     * @param string $max Maximum date in format Y-m-d
+     */
     function setMax($max) {
         $dt =  new \DateTime($max);
         
@@ -43,14 +81,25 @@ class Date extends \RandData\Set
         $this->max = $dt->format("U");
     }
     
+    /**
+     * Returns output date format
+     * @return string
+     */
     function getFormat() {
         return $this->format;
     }
 
+    /**
+     * Sets output date format
+     * @param string $format Output date format
+     */
     function setFormat($format) {
         $this->format = $format;
     }
 
+    /**
+     * @inherit
+     */
     public function get() {
         if ($this->min > $this->max) {
             $m = $this->min;
@@ -62,6 +111,9 @@ class Date extends \RandData\Set
         return date($this->format, $ts);
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = []) {
         if (!empty($params["min"])) {
             $this->setMin($params["min"]);

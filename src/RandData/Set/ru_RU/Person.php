@@ -2,25 +2,44 @@
 
 namespace RandData\Set\ru_RU;
 
+/**
+ * Russian name dataset
+ */
 class Person extends \RandData\Set
 {
+    // Male constant
     const SEX_MALE = "m";
+    
+    // Female constant
     const SEX_FEMALE = "f";
     
+    // Sex to generate. If missed, will be random generated
     protected $sex;
+    
+    // Output format
     protected $format;
     
+    /**
+     * Class constructor
+     */
     function __construct() 
     {
         $this->sex = null;
         $this->format = "l f m";
     }
 
-    
+    /**
+     * Return person sex
+     * @return string m - Male, f - Female
+     */
     public function getSex() {
         return $this->sex;
     }
 
+    /**
+     * Sets person sex
+     * @param string $sex m - Male, f - Female
+     */
     public function setSex($sex) {
         if (in_array($sex, [ self::SEX_MALE, self::SEX_FEMALE ])) {
             $this->sex = $sex;
@@ -29,6 +48,9 @@ class Person extends \RandData\Set
         }
     }
 
+    /**
+     * @inherit
+     */
     public function get() 
     {
         $sex = $this->sex;
@@ -53,6 +75,9 @@ class Person extends \RandData\Set
         return str_replace(array_keys($subst), array_values($subst), $this->format);
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = []) 
     {
         if (!empty($params["sex"])) {
@@ -64,32 +89,63 @@ class Person extends \RandData\Set
         }
     }
     
+    /**
+     * Returns person's last name
+     * @param string $sex Sex of the last name. m - Male, f - female
+     * @return string Random last name
+     */
     public function getLastName($sex) 
     {
         $arr = $sex == self::SEX_MALE ? $this->getLastNameMale() : $this->getLastNameFemale();
         return $arr[array_rand($arr)];
     }
 
+    /**
+     * Returns person's first name
+     * @param string $sex Sex of the last name. m - Male, f - female
+     * @return string Random first name
+     */
     public function getFirstName($sex) 
     {
         $arr = $sex == self::SEX_MALE ? $this->getFirstNameMale() : $this->getFirstNameFemale();
         return $arr[array_rand($arr)];
     }
 
+    /**
+     * Returns person's middle name
+     * @param string $sex Sex of the middle name. m - Male, f - female
+     * @return string Random middle name
+     */
     public function getMiddleName($sex) 
     {
         $arr = $sex == self::SEX_MALE ? $this->getMiddleNameMale() : $this->getMiddleNameFemale();
         return $arr[array_rand($arr)];
     }
     
+    /**
+     * Returns format of the name
+     * @return string f - first name, l - last name, 
+     * m - middle name, m1 - first letter of middle name, 
+     * f1 - first letter of first name
+     */
     function getFormat() {
         return $this->format;
     }
 
+    /**
+     * 
+     * @param string $format f - first name, l - last name, 
+     * m - middle name, m1 - first letter of middle name, 
+     * f1 - first letter of first name
+     */
     function setFormat($format) {
         $this->format = $format;
     }
 
+    /**
+     * Returns list of female last name
+     * @return array List of female last name
+     */
     public function getLastNameFemale()
     {
         return [
@@ -147,6 +203,10 @@ class Person extends \RandData\Set
         ];
     }
 
+    /**
+     * Returns list of female first name
+     * @return array List of female first name
+     */
     public function getFirstNameFemale()
     {
         return [
@@ -175,6 +235,10 @@ class Person extends \RandData\Set
         ];
     }
     
+    /**
+     * Returns list of male first name
+     * @return array List of male first name
+     */
     public function getFirstNameMale()
     {
         return [
@@ -200,6 +264,10 @@ class Person extends \RandData\Set
         ];
     }
     
+    /**
+     * Returns list of female middle names
+     * @return array list of female middle names
+     */
     public function getMiddleNameFemale()
     {
         return [
@@ -210,6 +278,10 @@ class Person extends \RandData\Set
         ];
     }
     
+    /**
+     * Returns list of male middle names
+     * @return array List of male middle names
+     */
     public function getMiddleNameMale()
     {
         return [
@@ -223,6 +295,10 @@ class Person extends \RandData\Set
         ];
     }
     
+    /**
+     * Returns list of male last names
+     * @return array List of male last names
+     */
     public function getLastNameMale()
     {
         return [

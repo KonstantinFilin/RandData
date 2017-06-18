@@ -75,6 +75,11 @@ class Fabric
         return new SetInfo($name, $params);
     }
     
+    /**
+     * 
+     * @param string $paramsStr DataSet params as string. Params delimited by ; and name-value pairs delimeted by =
+     * @return array An array of params
+     */
     protected function parseParamStr($paramsStr) {
         $paramPairs = explode(";", $paramsStr);
         $params = [];

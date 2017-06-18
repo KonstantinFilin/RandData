@@ -8,7 +8,7 @@ namespace RandData;
 abstract class Set 
 {
     /**
-     * Returns random piece of data
+     * Returns random data
      */
     abstract function get();
     

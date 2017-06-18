@@ -67,7 +67,7 @@ class BlankTuple extends \RandData\Tuple
         ];
     }
     
-    // Age field is dependant from dt field. See [Data dependency](https://github.com/KonstantinFilin/RandData#data-dependency)
+    // Age field is dependant from dt field. See [Data dependency]
     protected function getValue(\RandData\Set $set, $fldName) {
         $birthDtList = [
             "John" => "1940-10-09",
@@ -650,7 +650,7 @@ ru_person:sex=m
 * (+) Output formats (csv, sql, json)
 
 * (+) Data dependency (subobjects, date difference and so on)
-* (-) API documentation
+* (+) API documentation
 * (-) Class members checking (input values)
 
 * (-) Generating datasets from database tables

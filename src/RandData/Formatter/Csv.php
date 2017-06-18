@@ -2,6 +2,9 @@
 
 namespace RandData\Formatter;
 
+/**
+ * Csv random data formatter
+ */
 class Csv extends \RandData\Formatter
 {
     protected $showCounter;
@@ -10,6 +13,11 @@ class Csv extends \RandData\Formatter
     protected $columnDelim;
     protected $lineDelim;
     
+    /**
+     * Class contructor
+     * @param \RandData\Generator $generator Generator for random data
+     * @param string $columnDelim How to delim columns
+     */
     function __construct(\RandData\Generator $generator, $columnDelim = ";") {
         parent::__construct($generator);
         
@@ -19,22 +27,42 @@ class Csv extends \RandData\Formatter
         $this->lineDelim = PHP_EOL;
     }
 
+    /**
+     * Whether to show counter
+     * @param boolean $showCounter True - show, false - hide
+     */
     function setShowCounter($showCounter) {
         $this->showCounter = $showCounter;
     }
 
+    /**
+     * Whether to show headers
+     * @param boolean $showHeaders True - show, false - hide
+     */
     function setShowHeaders($showHeaders) {
         $this->showHeaders = $showHeaders;
     }
 
+    /**
+     * Sets delimeters between objects
+     * @param string $lineDelim Delimeters between objects
+     */
     function setLineDelim($lineDelim) {
         $this->lineDelim = $lineDelim;
     }
         
+    /**
+     * Sets column delimeter
+     * @param string $columnDelim Column delimeter
+     */
     function setColumnDelim($columnDelim) {
         $this->columnDelim = $columnDelim;
     }
 
+    /**
+     * Builds header lime
+     * @return string Header line
+     */
     protected function buildHeaders()
     {
         $headers = $this->generator->getTuple()->getHeaders();
@@ -44,6 +72,9 @@ class Csv extends \RandData\Formatter
             : "";
     }
 
+    /**
+     * @inherited
+     */
     public function buildOne($counter, $data)
     {
         foreach ($data as $fldName => $fldValue) {
@@ -56,6 +87,9 @@ class Csv extends \RandData\Formatter
             . implode($this->columnDelim, $data);
     }
     
+    /**
+     * @inherited
+     */
     public function build()
     {
         $dataStr = implode($this->lineDelim, parent::build());
@@ -64,6 +98,9 @@ class Csv extends \RandData\Formatter
             : $dataStr;
     }
     
+    /**
+     * @inherited
+     */
     protected function getNullAs()
     {
         return "NA";

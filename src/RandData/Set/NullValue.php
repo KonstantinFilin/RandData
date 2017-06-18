@@ -3,7 +3,7 @@
 namespace RandData\Set;
 
 /**
- * Dataset of null values
+ * Null value generator
  */
 class NullValue extends \RandData\Set {
 

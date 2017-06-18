@@ -2,10 +2,27 @@
 
 namespace RandData\Set;
 
+/**
+ * Random phone generator
+ */
 class Phone extends \RandData\Set 
 {
+    /**
+     * List of available country codes
+     * @var Array
+     */
     protected $countryList;
+    
+    /**
+     * List of available region codes
+     * @var array
+     */
     protected $regionList;
+    
+    /**
+     * Whether to format phone number
+     * @var boolean
+     */
     protected $format;
     
     const COUNTRY_CODE_AMERICA_NORTH = 1;
@@ -18,6 +35,9 @@ class Phone extends \RandData\Set
     const COUNTRY_CODE_ASIA_2 = 8;
     const COUNTRY_CODE_ASIA_3 = 9;
     
+    /**
+     * Class constructor
+     */
     function __construct() {
         $this->countryList = [
             self::COUNTRY_CODE_AMERICA_NORTH,
@@ -41,6 +61,11 @@ class Phone extends \RandData\Set
         $this->format = true;
     }
 
+    /**
+     * Returns local part of the phone
+     * @param integer $length Local part length
+     * @return string Local part of the phone
+     */
     private function getFinish($length) 
     {
         $strGenerator = new String();
@@ -63,6 +88,10 @@ class Phone extends \RandData\Set
         }
     }
     
+    /**
+     * Returns country and region parts of the phone
+     * @return string Country and region part
+     */
     private function getStart() 
     {
         $countryCodes = $this->getCountryList();
@@ -75,6 +104,9 @@ class Phone extends \RandData\Set
             : $part1 . $part2;
     } 
     
+    /**
+     * @inherit
+     */
     public function get() 
     {
         $start = $this->getStart();
@@ -84,6 +116,9 @@ class Phone extends \RandData\Set
         return $start . $finish;
     }
     
+    /**
+     * @inherit
+     */
     public function init($params = []) 
     {
         if (!empty($params["country_list"])) {
@@ -99,14 +134,27 @@ class Phone extends \RandData\Set
         }
     }
     
+    /**
+     * Returns available country codes list
+     * @return array Available country codes list
+     */
     function getCountryList() {
         return $this->countryList;
     }
 
+    /**
+     * Returns available region codes list
+     * @return array Available region codes list
+     */
     function getRegionList() {
         return $this->regionList;
     }
 
+    /**
+     * Sets available country codes list
+     * @param type $countryList Available country codes list
+     * @throws \InvalidArgumentException When wrong country code was passed
+     */
     function setCountryList($countryList) {
         
         if (!is_array($countryList)) {
@@ -126,6 +174,11 @@ class Phone extends \RandData\Set
         $this->countryList = $countryList;
     }
 
+    /**
+     * Sets available region codes list
+     * @param array $regionList Available region codes list
+     * @throws \InvalidArgumentException When wrong region code was passed 
+     */
     function setRegionList($regionList) {
         
         if (!is_array($regionList)) {
@@ -145,10 +198,18 @@ class Phone extends \RandData\Set
         $this->regionList = $regionList;
     }
 
+    /**
+     * Returns whether to format phone number 
+     * @return boolean True - formated, false - non formatted
+     */
     function getFormat() {
         return $this->format;
     }
 
+    /**
+     * Sets whether to format phone number
+     * @param boolean $format True - formatted, false - non formatted
+     */
     function setFormat($format) {
         $this->format = $format;
     }
