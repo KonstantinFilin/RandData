@@ -1,11 +1,11 @@
 <?php
 
-namespace RandData;
+namespace RandData\Fabric\DataSet;
 
 /**
- * DataSet fabric
+ * DataSet string fabric
  */
-class Fabric 
+class String 
 {
     /**
      * Create DataSet from string description
@@ -13,39 +13,39 @@ class Fabric
      * 
      * @return RandData\Set Generated DataSet object
      */
-    public function createObjectFromString($string)
+    public function create($string)
     {
         $setInfo = $this->parse($string);
-        $setObj = new Set\NullValue();
+        $setObj = new \RandData\Set\NullValue();
 
         if (in_array($setInfo->getName(), [ "counter", "cnt" ])) {
-            $setObj = new Set\Counter();
+                $setObj = new \RandData\Set\Counter();
         } elseif (in_array($setInfo->getName(), [ "int", "integer" ])) {
-            $setObj = new Set\Integer;
+            $setObj = new \RandData\Set\Integer;
         } elseif ($setInfo->getName() == "float") {
-            $setObj = new Set\Float();
+            $setObj = new \RandData\Set\Float();
         } elseif ($setInfo->getName() == "boolean") {
-            $setObj = new Set\Boolean();
+            $setObj = new \RandData\Set\Boolean();
         } elseif ($setInfo->getName() == "string_list") {
-            $setObj = new Set\StringList();
+            $setObj = new \RandData\Set\StringList();
         } elseif ($setInfo->getName() == "string") {
-            $setObj = new Set\String();
+            $setObj = new \RandData\Set\String();
         } elseif ($setInfo->getName() == "paragraph") {
-            $setObj = new Set\Paragraph();
+            $setObj = new \RandData\Set\Paragraph();
         } elseif ($setInfo->getName() == "time") {
-            $setObj = new Set\Time();
+            $setObj = new \RandData\Set\Time();
         } elseif ($setInfo->getName() == "date") {
-            $setObj = new Set\Date();
+            $setObj = new \RandData\Set\Date();
         } elseif ($setInfo->getName() == "datetime") {
-            $setObj = new Set\Datetime();
+            $setObj = new \RandData\Set\Datetime();
         } elseif ($setInfo->getName() == "phone") {
-            $setObj = new Set\Phone();
+            $setObj = new \RandData\Set\Phone();
         } elseif ($setInfo->getName() == "domain") {
-            $setObj = new Set\Domain();
+            $setObj = new \RandData\Set\Domain();
         } elseif ($setInfo->getName() == "email") {
-            $setObj = new Set\Email();
+            $setObj = new \RandData\Set\Email();
         } elseif ($setInfo->getName() == "ru_person") {
-            $setObj = new Set\ru_RU\Person();
+            $setObj = new \RandData\Set\ru_RU\Person();
         }
         
         if ($setInfo->getParams()) {
@@ -72,7 +72,7 @@ class Fabric
             $name = $string;
         }
         
-        return new SetInfo($name, $params);
+        return new \RandData\SetInfo($name, $params);
     }
     
     /**

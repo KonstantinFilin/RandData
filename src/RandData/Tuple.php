@@ -34,8 +34,8 @@ abstract class Tuple
             $set = $this->datasets[$fldName];
             
             if (is_string($set)) {
-                $fabric = new Fabric();
-                $set = $fabric->createObjectFromString($set);
+                $fabric = new \RandData\Fabric\DataSet\String();
+                $set = $fabric->create($set);
             }
             
             if ($set instanceof Set\Counter) {

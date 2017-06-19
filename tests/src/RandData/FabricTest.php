@@ -17,7 +17,7 @@ class FabricTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new Fabric;
+        $this->object = new \RandData\Fabric\DataSet\String();
     }
 
     /**
@@ -29,18 +29,18 @@ class FabricTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Fabric::createObjectFromString
+     * @covers RandData\Fabric::create
      * @todo   Implement testCreateObjectFromString().
      */
     public function testCreateObjectFromString() {
         $this->assertInstanceOf(
             \RandData\Set\NullValue::class,
-            $this->object->createObjectFromString(null)
+            $this->object->create(null)
         );
         
         $this->assertInstanceOf(
             \RandData\Set\Integer::class,
-            $this->object->createObjectFromString("integer")
+            $this->object->create("integer")
         );
     }
 
