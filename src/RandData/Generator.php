@@ -7,6 +7,13 @@ namespace RandData;
  */
 class Generator 
 {
+    const AMOUNT_MIN = 1;
+    const AMOUNT_MAX = 10000000;
+    
+    /**
+     * Amount of generated objects
+     * @var integer
+     */
     protected $amount;
 
     /**
@@ -21,7 +28,7 @@ class Generator
      * @param integer $amount Amount of items in list
      */
     function __construct(Tuple $tuple, $amount = 10) {
-        $this->amount = $amount;
+        $this->amount = Checker::int($amount, self::AMOUNT_MIN, self::AMOUNT_MAX, "amount");
         $this->tuple = $tuple;
     }
 
@@ -30,7 +37,7 @@ class Generator
      * @param integer $amount The length of entity list
      */
     function setAmount($amount) {
-        $this->amount = $amount;
+        $this->amount = Checker::int($amount, self::AMOUNT_MIN, self::AMOUNT_MAX, "amount");
     }
 
     /**

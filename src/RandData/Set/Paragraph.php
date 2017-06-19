@@ -7,6 +7,11 @@ namespace RandData\Set;
  */
 class Paragraph extends \RandData\Set\String
 {
+    const WORDS_MIN_MIN = 3;
+    const WORDS_MIN_MAX = 500;
+    const WORDS_MAX_MIN = 5;
+    const WORDS_MAX_MAX = 700;
+    
     /**
      * Minimum words amount
      * @var integer
@@ -26,8 +31,8 @@ class Paragraph extends \RandData\Set\String
      */
     function __construct($wordsMin = 3, $wordsMax = 100) {
         parent::__construct();
-        $this->wordsMin = $wordsMin;
-        $this->wordsMax = $wordsMax;
+        $this->setWordsMin($wordsMin);
+        $this->setWordsMax($wordsMax);
         $this->setChars(self::CHARS_LAT_L);
     }
 
@@ -52,7 +57,12 @@ class Paragraph extends \RandData\Set\String
      * @param integer $wordsMin Minimum words amount
      */
     function setWordsMin($wordsMin) {
-        $this->wordsMin = $wordsMin;
+        $this->wordsMin = \RandData\Checker::int(
+            $wordsMin, 
+            self::WORDS_MIN_MIN, 
+            self::WORDS_MIN_MAX, 
+            "wordsMin"
+        );
     }
 
     /**
@@ -60,7 +70,12 @@ class Paragraph extends \RandData\Set\String
      * @param integer $wordsMax Minimum words amount
      */
     function setWordsMax($wordsMax) {
-        $this->wordsMax = $wordsMax;
+        $this->wordsMax = \RandData\Checker::int(
+            $wordsMax, 
+            self::WORDS_MAX_MIN, 
+            self::WORDS_MAX_MAX, 
+            "wordsMax"
+        );
     }
 
     /**

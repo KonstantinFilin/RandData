@@ -24,7 +24,7 @@ class StringList extends \RandData\Set
      * @param array $values Available values
      */
     function __construct($values = [ "abc", "def", "ghi", "klm", "nop" ]) {
-        $this->values = $values;
+        $this->setValues($values);
     }
     
     /**
@@ -52,6 +52,10 @@ class StringList extends \RandData\Set
      * @inherit
      */
     public function get() {
+        if (!$this->values) {
+            throw new \InvalidArgumentException("Empty string list");
+        }        
+        
         if ($this->possibility 
             && array_keys($this->possibility) == array_keys($this->values)
             && array_sum($this->possibility) == 100
@@ -76,7 +80,7 @@ class StringList extends \RandData\Set
      * @param array $values Available values
      */
     function setValues($values) {
-        $this->values = $values;
+        $this->values = is_array($values) ? $values : explode(",", (string) $values) ;
     }
 
     /**

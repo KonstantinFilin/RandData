@@ -32,7 +32,7 @@ class Csv extends \RandData\Formatter
      * @param boolean $showCounter True - show, false - hide
      */
     function setShowCounter($showCounter) {
-        $this->showCounter = $showCounter;
+        $this->showCounter = boolval($showCounter);
     }
 
     /**
@@ -40,7 +40,7 @@ class Csv extends \RandData\Formatter
      * @param boolean $showHeaders True - show, false - hide
      */
     function setShowHeaders($showHeaders) {
-        $this->showHeaders = $showHeaders;
+        $this->showHeaders = boolval($showHeaders);
     }
 
     /**
@@ -48,7 +48,7 @@ class Csv extends \RandData\Formatter
      * @param string $lineDelim Delimeters between objects
      */
     function setLineDelim($lineDelim) {
-        $this->lineDelim = $lineDelim;
+        $this->lineDelim = (string) $lineDelim;
     }
         
     /**
@@ -56,7 +56,7 @@ class Csv extends \RandData\Formatter
      * @param string $columnDelim Column delimeter
      */
     function setColumnDelim($columnDelim) {
-        $this->columnDelim = $columnDelim;
+        $this->columnDelim = (string) $columnDelim;
     }
 
     /**

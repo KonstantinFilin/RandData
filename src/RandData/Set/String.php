@@ -7,6 +7,11 @@ namespace RandData\Set;
  */
 class String extends \RandData\Set
 {
+    const LENGTH_MIN_MIN = 1;
+    const LENGTH_MIN_MAX = 100;
+    const LENGTH_MAX_MIN = 1;
+    const LENGTH_MAX_MAX = 100;
+    
     const CHARS_LAT_U = "ABCDEFGHIKLMNOPRSTUVWXYZ";
     const CHARS_LAT_L = "abcdefghijklmnoprstuvwxyz";
     const CHARS_DIGITS = "0123456789";
@@ -38,10 +43,9 @@ class String extends \RandData\Set
      */
     function __construct($lengthMin = 1, $lengthMax = 10) 
     {
-        $this->lengthMin = $lengthMin;
-        $this->lengthMax = $lengthMax;
+        $this->setLengthMin($lengthMin);
+        $this->setLengthMax($lengthMax);
         $this->chars = self::CHARS_LAT_U . self::CHARS_LAT_L . self::CHARS_DIGITS;
-
     }
     
     /**
@@ -65,7 +69,17 @@ class String extends \RandData\Set
      * @param integer $length Maximum string length
      */
     function setLengthMax($length) {
-        $this->lengthMax = $length;
+        
+        if (!$length) {
+            $length = self::LENGTH_MAX_MAX;
+        }
+        
+        $this->lengthMax = \RandData\Checker::int(
+            $length, 
+            self::LENGTH_MAX_MIN, 
+            self::LENGTH_MAX_MAX, 
+            "lengthMax"
+        );
     }
 
     /**
@@ -81,7 +95,12 @@ class String extends \RandData\Set
      * @param integer $lengthMin Minimum string length
      */
     function setLengthMin($lengthMin) {
-        $this->lengthMin = $lengthMin;
+        $this->lengthMin = \RandData\Checker::int(
+            $lengthMin, 
+            self::LENGTH_MIN_MIN, 
+            self::LENGTH_MIN_MAX, 
+            "lengthMin"
+        );
     }
 
     /**
@@ -89,7 +108,7 @@ class String extends \RandData\Set
      * @param string $chars Addition to available char list
      */
     function addChars($chars) {
-        $this->chars .= $chars;
+        $this->chars .= (string) $chars;
     }
     
     /**
@@ -97,7 +116,7 @@ class String extends \RandData\Set
      * @param string $chars Available char list
      */
     function setChars($chars) {
-        $this->chars = $chars;
+        $this->chars = (string) $chars;
     }
 
     /**
@@ -126,7 +145,7 @@ class String extends \RandData\Set
     {
         $lengthMin = $this->getLengthMin();
         $lengthMax = $this->getLengthMax();
-        
+
         if ($lengthMin > $lengthMax) {
             $buffer = $lengthMin;
             $lengthMin = $lengthMax;
@@ -140,7 +159,7 @@ class String extends \RandData\Set
         if ($lengthMax > 100) {
             $lengthMax = 100;
         }
-         
+
         return mt_rand($lengthMin, $lengthMax);
     }
 

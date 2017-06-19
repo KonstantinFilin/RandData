@@ -7,6 +7,11 @@ namespace RandData\Set;
  */
 class Integer extends \RandData\Set
 {
+    const MIN_MIN = -10000;
+    const MIN_MAX = 10000000;
+    const MAX_MIN = -10000;
+    const MAX_MAX = 10000000;
+
     /**
      * Minimum range value
      * @var integer
@@ -52,7 +57,7 @@ class Integer extends \RandData\Set
      */
     public function setMin($min = 0)
     {
-        $this->min = $min;
+        $this->min = \RandData\Checker::int($min, self::MIN_MIN, self::MIN_MAX, "min");
     }
     /**
      * Sets maximum range value. 
@@ -60,7 +65,7 @@ class Integer extends \RandData\Set
      */
     public function setMax($max = 0)
     {
-        $this->max = $max != 0 ? $max : getrandmax();
+        $this->max = \RandData\Checker::int($max, self::MAX_MIN, self::MAX_MAX, "max");
     }
     
     /**

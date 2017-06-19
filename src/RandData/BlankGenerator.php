@@ -36,7 +36,7 @@ class BlankGenerator extends Generator
      */
     function __construct(Tuple $tuple, $template = "") {
         parent::__construct($tuple);
-        $this->template = $template;
+        $this->template = (string) $template;
         $this->amount = 1;
     }
 
@@ -85,7 +85,7 @@ class BlankGenerator extends Generator
      * @param string $delimStart
      */
     function setDelimStart($delimStart) {
-        $this->delimStart = $delimStart;
+        $this->delimStart = (string) $delimStart;
     }
 
     /**
@@ -93,7 +93,7 @@ class BlankGenerator extends Generator
      * @param string $delimFinish
      */
     function setDelimFinish($delimFinish) {
-        $this->delimFinish = $delimFinish;
+        $this->delimFinish = (string) $delimFinish;
     }
     
     /**

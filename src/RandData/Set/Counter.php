@@ -40,7 +40,7 @@ class Counter extends \RandData\Set
      * @param string  $template String with incremented value
      */
     function setTemplate($template) {
-        $this->template = $template;
+        $this->template = (string) $template;
     }
     
     /**
@@ -66,6 +66,18 @@ class Counter extends \RandData\Set
      * @param integer Start increment value
      */
     function setStart($start) {
+        $startClean = intval($start);
+        $min = 1;
+        $max = 1000000;
+        if (!$startClean || $startClean < $min || $startClean > $max) {
+            $mes = sprintf(
+                "Invalid argument start: must be integer and between %u and %u",
+                $min,
+                $max
+            );
+            throw new \InvalidArgumentException($mes);
+        }
+        
         $this->start = $start;
     }
 

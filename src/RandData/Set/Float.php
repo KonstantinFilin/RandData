@@ -7,6 +7,13 @@ namespace RandData\Set;
  */
 class Float extends \RandData\Set\Integer
 {
+    const MIN_MIN = -10000000;
+    const MIN_MAX = 10000000;
+    const MAX_MIN = -10000000;
+    const MAX_MAX = 10000000;
+    const FRACTION_MIN = 0;
+    const FRACTION_MAX = 20;
+    
     /**
      * Minimum value
      * @var integer
@@ -37,9 +44,11 @@ class Float extends \RandData\Set\Integer
      * @param integer $max Maximum value
      */
     function __construct($min = 0, $max = 0) {
-        parent::__construct($min, $max);
-        $this->minFractionDigits = 0;
-        $this->maxFractionDigits = 8;
+        $minClean = \RandData\Checker::int($min, self::MIN_MIN, self::MIN_MAX, "min");
+        $maxClean = \RandData\Checker::int($max, self::MAX_MIN, self::MAX_MAX, "max");
+        parent::__construct($minClean, $maxClean);
+        $this->minFractionDigits = self::FRACTION_MIN;
+        $this->maxFractionDigits = self::FRACTION_MAX;
     }
 
     /**
@@ -83,7 +92,12 @@ class Float extends \RandData\Set\Integer
      * @param integer $minFractionDigits Minimum fraction digits
      */
     function setMinFractionDigits($minFractionDigits) {
-        $this->minFractionDigits = abs($minFractionDigits);
+        $this->minFractionDigits = \RandData\Checker::int(
+            $minFractionDigits, 
+            self::FRACTION_MIN, 
+            self::FRACTION_MAX, 
+            "minFractionDigits"
+        );
     }
 
     /**
@@ -91,7 +105,12 @@ class Float extends \RandData\Set\Integer
      * @param integer $maxFractionDigits Maximum fraction digits
      */
     function setMaxFractionDigits($maxFractionDigits) {
-        $this->maxFractionDigits = abs($maxFractionDigits);
+        $this->maxFractionDigits = \RandData\Checker::int(
+            $maxFractionDigits, 
+            self::FRACTION_MIN, 
+            self::FRACTION_MAX, 
+            "maxFractionDigits"
+        );
     }
         
     /**

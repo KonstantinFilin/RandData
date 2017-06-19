@@ -651,9 +651,9 @@ ru_person:sex=m
 
 * (+) Data dependency (subobjects, date difference and so on)
 * (+) API documentation
-* (-) Class members checking (input values)
+* (+) Class members checking (input values)
 
-* (-) Generating datasets from database tables
+* (-) Generating datasets from database tables (v0.9)
 * (-) Graphic interface
-* (-) Code style, mess detector, code metrics
+* (-) Code style, mess detector, code metrics (v1.0)
 * (-) CI

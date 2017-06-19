@@ -33,17 +33,20 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Time::setMin
      */
     public function testGetMin() {
-        $this->assertEquals(0, $this->object->getMin());
+        $this->assertEquals("00:00", $this->object->getMin());
         $min = 351;
         $this->object->setMin($min);
-        $this->assertEquals($min, $this->object->getMin());
+        $this->assertEquals("05:51", $this->object->getMin());
         
         $min2 = 123;
         $obj2 = new Time($min2);
-        $this->assertEquals($min2, $obj2->getMin());
+        $this->assertEquals("02:03", $obj2->getMin());
         $min3 = 456;
         $obj2->setMin($min3);
-        $this->assertEquals($min3, $obj2->getMin());
+        $this->assertEquals("07:36", $obj2->getMin());
+        $min4 = "07:41";
+        $obj2->setMin($min4);
+        $this->assertEquals($min4, $obj2->getMin());
     }
 
     /**
@@ -51,17 +54,20 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Time::setMax
      */
     public function testGetMax() {
-        $this->assertEquals(1439, $this->object->getMax());
+        $this->assertEquals("23:59", $this->object->getMax());
         $max = 211;
         $this->object->setMax($max);
-        $this->assertEquals($max, $this->object->getMax());
+        $this->assertEquals("03:31", $this->object->getMax());
         
         $max2 = 321;
         $obj2 = new Time(1, $max2);
-        $this->assertEquals($max2, $obj2->getMax());
+        $this->assertEquals("05:21", $obj2->getMax());
         $max3 = 654;
         $obj2->setMax($max3);
-        $this->assertEquals($max3, $obj2->getMax());
+        $this->assertEquals("10:54", $obj2->getMax());
+        $max4 = "10:55";
+        $obj2->setMax($max4);
+        $this->assertEquals($max4, $obj2->getMax());
     }
 
     /**
@@ -141,12 +147,12 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
         ];
         
         $this->object->init($params1);
-        $this->assertEquals($min1, $this->object->getMin());
-        $this->assertEquals($max1, $this->object->getMax());
+        $this->assertEquals("00:04", $this->object->getMin());
+        $this->assertEquals("00:29", $this->object->getMax());
         $this->assertEquals($seconds1, $this->object->getSeconds());
         $this->object->init($params2);
-        $this->assertEquals($min2, $this->object->getMin());
-        $this->assertEquals($max2, $this->object->getMax());
+        $this->assertEquals("00:17", $this->object->getMin());
+        $this->assertEquals("00:59", $this->object->getMax());
         $this->assertEquals($seconds2, $this->object->getSeconds());
     }
 

@@ -34,7 +34,9 @@ class Email extends \RandData\Set
      * @param array $domainList Available domain list for email
      */
     function setDomainList($domainList) {
-        $this->domainList = $domainList;
+        $this->domainList = is_array($domainList) 
+            ? $domainList
+            : explode(",", (string) $domainList);
     }
 
     /**
@@ -47,7 +49,7 @@ class Email extends \RandData\Set
         
         if ($domainList) {
             $obj1 = new StringList();
-            $obj1->setValues(is_array($domainList) ? $domainList : explode(",", $domainList));
+            $obj1->setValues(is_array($domainList) ? $domainList : explode(",", (string) $domainList));
             $domain = $obj1->get();
         } else {
             $obj2 = new Domain();

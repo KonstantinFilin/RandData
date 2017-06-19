@@ -34,9 +34,9 @@ class DomainTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGetTldList() {
         $val = "aaa,bbb,ccc";
-        $this->assertEquals("com,edu,org,net", $this->object->getTldList());
+        $this->assertEquals([ "com", "edu", "org", "net" ], $this->object->getTldList());
         $this->object->setTldList($val);
-        $this->assertEquals($val, $this->object->getTldList());
+        $this->assertEquals([ "aaa", "bbb", "ccc" ], $this->object->getTldList());
     }
 
     /**
@@ -99,7 +99,7 @@ class DomainTest extends \PHPUnit_Framework_TestCase {
             "char_list_edge" => $charListEdge
         ]);
         
-        $this->assertEquals($tldList, $this->object->getTldList());
+        $this->assertEquals(explode(",", $tldList), $this->object->getTldList());
         $this->assertEquals($charList, $this->object->getChars());
         $this->assertEquals($charListEdge, $this->object->getCharsEdge());
     }

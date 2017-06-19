@@ -30,9 +30,9 @@ class Time extends \RandData\Set
      * @param string $min Minimum time
      * @param string $max Maximum time
      */
-    function __construct($min = 0, $max = 0) {
-        $this->min = $min;
-        $this->max = $max ?: 60*24 - 1;
+    function __construct($min = "00:00", $max = "23:59") {
+        $this->setMin($min);
+        $this->setMax($max);
         $this->seconds = false;
     }
 
@@ -57,7 +57,7 @@ class Time extends \RandData\Set
      * @param string $min Minimum possible time
      */
     function setMin($min) {
-        $this->min = $min;
+        $this->min = \RandData\Checker::time(preg_match("/^[\d]+$/", $min) ? $this->fromMin($min) : $min, "min");
     }
 
     /**
@@ -65,7 +65,7 @@ class Time extends \RandData\Set
      * @param string $max Maximum possible time
      */
     function setMax($max) {
-        $this->max = $max;
+        $this->max = \RandData\Checker::time(preg_match("/^[\d]+$/", $max) ? $this->fromMin($max) : $max, "max");
     }
     
     /**
@@ -81,7 +81,7 @@ class Time extends \RandData\Set
      * @param boolean $seconds True - show seconds, false - hide seconds
      */
     function setSeconds($seconds) {
-        $this->seconds = $seconds;
+        $this->seconds = boolval($seconds);
     }
     
     /**
@@ -150,13 +150,15 @@ class Time extends \RandData\Set
      */
     public function toMin($time)
     {
-        if (strlen($time) == 5) {
-            list($h, $m) = explode(":", $time);
+        $timeClean = \RandData\Checker::time($time, "time");
+        
+        if (strlen($timeClean) == 5) {
+            list($h, $m) = explode(":", $timeClean);
             return $h * 60 + $m;
         }
 
-        if (strlen($time) == 7) {
-            list($h, $m, ) = explode(":", $time);
+        if (strlen($timeClean) == 7) {
+            list($h, $m, ) = explode(":", $timeClean);
             return $h * 60 + $m;
         }
         

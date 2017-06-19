@@ -7,6 +7,11 @@ namespace RandData\Set;
  */
 class Phone extends \RandData\Set 
 {
+    const COUNTRY_CODE_MIN = 1;
+    const COUNTRY_CODE_MAX = 9;
+    const REGION_CODE_MIN = 100;
+    const REGION_CODE_MAX = 9999;
+    
     /**
      * List of available country codes
      * @var Array
@@ -162,13 +167,12 @@ class Phone extends \RandData\Set
         }
         
         foreach ($countryList as $idx => $code) {
-            $codeInt = intval($code);
-            
-            if ($codeInt < 1 || $codeInt > 9) {
-                throw new \InvalidArgumentException("Country code must be one digit from 1 to 9 [" . $codeInt . "]");
-            }
-            
-            $countryList[$idx] = $codeInt;
+            $countryList[$idx] = \RandData\Checker::int(
+                $code, 
+                self::COUNTRY_CODE_MIN, 
+                self::COUNTRY_CODE_MAX, 
+                "countryCode"
+            );
         }
         
         $this->countryList = $countryList;
@@ -186,13 +190,12 @@ class Phone extends \RandData\Set
         }
         
         foreach ($regionList as $idx => $code) {
-            $codeInt = intval($code);
-            
-            if ($codeInt < 100 || $codeInt > 9999) {
-                throw new \InvalidArgumentException("Country code must be one digit from 1 to 9");
-            }
-            
-            $regionList[$idx] = $code;
+            $regionList[$idx] = \RandData\Checker::int(
+                $code, 
+                self::REGION_CODE_MIN, 
+                self::REGION_CODE_MAX, 
+                "regionCode"
+            );
         }
         
         $this->regionList = $regionList;
@@ -211,6 +214,6 @@ class Phone extends \RandData\Set
      * @param boolean $format True - formatted, false - non formatted
      */
     function setFormat($format) {
-        $this->format = $format;
+        $this->format = boolval($format);
     }
 }

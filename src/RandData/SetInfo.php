@@ -20,7 +20,7 @@ class SetInfo
     protected $params;
     
     function __construct($name, $params = []) {
-        $this->name = $name;
+        $this->name = (string) $name;
         $this->params = $params;
     }
     
@@ -45,7 +45,7 @@ class SetInfo
      * @param string $name DataSet name
      */
     function setName($name) {
-        $this->name = $name;
+        $this->name = (string) $name;
     }
 
     /**
@@ -53,6 +53,10 @@ class SetInfo
      * @param array DataSetParams
      */
     function setParams($params) {
+        if (!is_array($params)) {
+            throw new \InvalidArgumentException("Params argument must be an array");
+        }
+        
         $this->params = $params;
     }
 }

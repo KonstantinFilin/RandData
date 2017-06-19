@@ -80,7 +80,7 @@ class FloatTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->paramFr2, $this->object->getMaxFractionDigits());
         
         $obj2 = new Float();
-        $this->assertEquals(8, $obj2->getMaxFractionDigits());
+        $this->assertEquals(Float::FRACTION_MAX, $obj2->getMaxFractionDigits());
         
         $value2 = 5;
         $obj2->setMaxFractionDigits($value2);
@@ -93,8 +93,8 @@ class FloatTest extends \PHPUnit_Framework_TestCase
      */
     public function testInit()
     {
-        $paramMin = 33;
-        $paramMax = 55;
+        $paramMin = 8;
+        $paramMax = 11;
         
         $this->assertFalse($this->object->getMinFractionDigits() == $paramMin);
         $this->assertFalse($this->object->getMaxFractionDigits() == $paramMax);
