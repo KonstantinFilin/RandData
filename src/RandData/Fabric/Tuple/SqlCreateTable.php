@@ -72,6 +72,50 @@ class SqlCreateTable
             return [ $fieldName, "integer:min=-128;max=127" ];
         }
         
+        if (preg_match("/smallint\([\d]+\) unsigned/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=0;max=65535" ];
+        }
+        
+        if (preg_match("/smallint\([\d]+\)/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=-32768;max=32767" ];
+        }
+        
+        if (preg_match("/mediumint\([\d]+\) unsigned/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=0;max=16777215" ];
+        }
+        
+        if (preg_match("/mediumint\([\d]+\)/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=-8388608;max=8388607" ];
+        }
+        
+        if (preg_match("/int\([\d]+\) unsigned/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=0;max=" . mt_getrandmax() ];
+        }
+        
+        if (preg_match("/int\([\d]+\)/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2) ];
+        }
+        
+        if (preg_match("/bigint\([\d]+\) unsigned/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=0;max=" . mt_getrandmax() ];
+        }
+        
+        if (preg_match("/bigint\([\d]+\)/i", $fieldDefinition)) {
+            return [ $fieldName, "integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2) ];
+        }
+
+        if (preg_match("/datetime/i", $fieldDefinition)) {
+            return [ $fieldName, "datetime:date_min=1900-01-01;date_max=2099-12-31" ];
+        }
+
+        if (preg_match("/time/i", $fieldDefinition)) {
+            return [ $fieldName, "time" ];
+        }
+
+        if (preg_match("/date/i", $fieldDefinition)) {
+            return [ $fieldName, "date:min=1900-01-01;max=2099-12-31" ];
+        }
+        
         return [ $fieldName, "null" ];
     }
 }

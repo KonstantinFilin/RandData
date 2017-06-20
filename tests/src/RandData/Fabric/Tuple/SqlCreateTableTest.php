@@ -44,6 +44,10 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
             "`comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
             "`t` time DEFAULT NULL",
             "`sum` mediumint(8) unsigned DEFAULT NULL",
+            "`sum_ui` int(8) unsigned DEFAULT NULL",
+            "`sum_si` int(8) DEFAULT NULL",
+            "`sum_ubi` bigint(8) unsigned DEFAULT NULL",
+            "`sum_sbi` bigint(8) DEFAULT NULL",
             "`meeting_start` time DEFAULT NULL",
             "`added` datetime NOT NULL",
             "`added_dt` date DEFAULT NULL",
@@ -65,7 +69,23 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotEmpty($lines);
         $this->assertEquals("counter", $lines["id"]);
         $this->assertEquals("integer:min=0;max=255", $lines["report_day"]);
+        $this->assertEquals("integer:min=0;max=255", $lines["amount"]);
         $this->assertEquals("integer:min=-128;max=127", $lines["sum1_withwrawed"]);
+        $this->assertEquals("integer:min=0;max=65535", $lines["operator_id"]);
+        $this->assertEquals("integer:min=-32768;max=32767", $lines["manager_id"]);
+        $this->assertEquals("integer:min=-32768;max=32767", $lines["repair_set_price"]);
+        $this->assertEquals("integer:min=0;max=16777215", $lines["sum"]);
+        $this->assertEquals("integer:min=-8388608;max=8388607", $lines["sum_repair2"]);
+        
+        $this->assertEquals("integer:min=0;max=" . mt_getrandmax(), $lines["sum_ui"]);
+        $this->assertEquals("integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2), $lines["sum_si"]);
+        $this->assertEquals("integer:min=0;max=" . mt_getrandmax(), $lines["sum_ubi"]);
+        $this->assertEquals("integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2), $lines["sum_sbi"]);
+        
+        $this->assertEquals("datetime:date_min=1900-01-01;date_max=2099-12-31", $lines["added"]);
+        $this->assertEquals("date:min=1900-01-01;max=2099-12-31", $lines["added_dt"]);
+        $this->assertEquals("time", $lines["t"]);
+        $this->assertEquals("time", $lines["meeting_start"]);
     }
     
     private function getSql()
@@ -84,6 +104,10 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
             `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
             `t` time DEFAULT NULL,
             `sum` mediumint(8) unsigned DEFAULT NULL,
+            `sum_ui` int(8) unsigned DEFAULT NULL,
+            `sum_si` int(8) DEFAULT NULL,
+            `sum_ubi` bigint(8) unsigned DEFAULT NULL,
+            `sum_sbi` bigint(8) DEFAULT NULL,
             `meeting_start` time DEFAULT NULL,
             `added` datetime NOT NULL,
             `added_dt` date DEFAULT NULL,
