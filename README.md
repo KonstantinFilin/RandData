@@ -217,7 +217,6 @@ echo PHP_EOL;
 /* In output sql insert command: */
 INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_code`,`activate_dt`) VALUES ('1','Xi9ERI','student',NULL,'ZsT1ECLs3BrmgUnWBdjpHpLbHgLExH7sxLFzX5','N','hljwMnafH2pn8tPfwflWSl7MyXtnaMUbehdWvocM5avrFk3e',NULL);
 INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_code`,`activate_dt`) VALUES ('2','hHroxmPFgpDGOMl9yvFDykcAFoZ755P5CGHfZXgA9YNIo','student','Yl3UVeEKxvUysapnddBI9hEr9DeaulWUutMVE0WEdifEoytUdIp2APHPdo6XeWXx3hbfl5ps34sDg4pOto470yzuEXT7fn3VwOZ','BnesLyU43ly6T2bg6KWdii2piBLDhVtcSyie','1','j','2014-07-06');
-
 // ... 
 
 /* And rules for inserting into php class: */
@@ -234,7 +233,7 @@ INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_co
 ```
 
 If you want it VERY fast and you don't care much about plausibility, you can fill
-all database tables (if any field is NOT NULL, it will be NULL with 
+all database tables (if any field is NULL possible, its value will be NULL with 
 about 50% probability):
 
 ```php
