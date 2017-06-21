@@ -151,6 +151,8 @@ echo PHP_EOL;
 
 ### Generators. Filling database and more
 
+First of all, you can define your data manually:
+
 ```php
 class PersonTuple extends \RandData\Tuple
 {
@@ -181,6 +183,109 @@ INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES
 ...
 */
 ```
+
+If your database is too big and you want to get it fast, you can get it from sql
+SHOW CREATE TABLE command:
+
+```php
+
+$sql = "CREATE TABLE `user` (
+ `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+ `login` varchar(100) NOT NULL,
+ `role` enum('admin','student') NOT NULL,
+ `name` varchar(255) DEFAULT NULL,
+ `passhash` varchar(50) NOT NULL,
+ `blocked` tinyint(1) unsigned NOT NULL DEFAULT '0',
+ `activate_code` varchar(100) DEFAULT NULL,
+ `activate_dt` date DEFAULT NULL,
+ PRIMARY KEY (`id`),
+ UNIQUE KEY `login` (`login`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8";
+
+$tableName = "user";
+$tuple = new \RandData\Fabric\Tuple\SqlCreateTable($sql);
+$generator = new \RandData\Generator($tuple, 20);
+$formatter = new \RandData\Formatter\Sql($generator, $tableName);
+
+echo $formatter->build() . PHP_EOL . PHP_EOL;
+foreach ($tuple->getDataSets() as $fldName => $fldDef) {
+    echo "'" . $fldName . "' => '" . $fldDef . "'" . PHP_EOL;
+}
+        
+echo PHP_EOL;
+
+/* In output sql insert command: */
+INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_code`,`activate_dt`) VALUES ('1','Xi9ERI','student',NULL,'ZsT1ECLs3BrmgUnWBdjpHpLbHgLExH7sxLFzX5','N','hljwMnafH2pn8tPfwflWSl7MyXtnaMUbehdWvocM5avrFk3e',NULL);
+INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_code`,`activate_dt`) VALUES ('2','hHroxmPFgpDGOMl9yvFDykcAFoZ755P5CGHfZXgA9YNIo','student','Yl3UVeEKxvUysapnddBI9hEr9DeaulWUutMVE0WEdifEoytUdIp2APHPdo6XeWXx3hbfl5ps34sDg4pOto470yzuEXT7fn3VwOZ','BnesLyU43ly6T2bg6KWdii2piBLDhVtcSyie','1','j','2014-07-06');
+
+// ... 
+
+/* And rules for inserting into php class: */
+
+'id' => 'counter',
+'login' => 'string:length_min=1;length_max=100',
+'role' => 'string_list:values=admin,student',
+'name' => 'string:length_min=1;length_max=255',
+'passhash' => 'string:length_min=1;length_max=50',
+'blocked' => 'boolean:valTrue=1;valFalse=0',
+'activate_code' => 'string:length_min=1;length_max=100',
+'activate_dt' => 'date:min=1900-01-01;max=2099-12-31',
+
+```
+
+If you want it VERY fast and you don't care much about plausibility, you can fill
+all database tables (if any field is NOT NULL, it will be NULL with 
+about 50% probability):
+
+```php
+$dbhost = "localhost";
+$dbname = "test";
+$dbuser = "root";
+$dbpass = "123";
+$dsn = sprintf("mysql:dbname=%s;host=%s", $dbname, $dbhost);
+
+try {
+    $dbh = new PDO($dsn, $dbuser, $dbpass);
+    $rows = $dbh->query("show TABLES", PDO::FETCH_COLUMN, 0);
+
+    foreach ($rows as $tblName) {        
+        $rowCountSql = "SELECT count(*) FROM `" . $tblName . "`";
+        $rowCountRes = $dbh->query($rowCountSql, PDO::FETCH_COLUMN, 0);
+        $rowCount = $rowCountRes->fetch();
+        
+        if ($rowCount > 0) {
+            echo "Non empty table: [" . $tblName . "]. Rows count: " . $rowCount . PHP_EOL;
+            die;
+        }
+
+        $createSqlRow = "SHOW CREATE TABLE `" . $tblName . "`";
+        $createSqlRes = $dbh->query($createSqlRow, PDO::FETCH_COLUMN, 1);
+        $sql = $createSqlRes->fetch();
+        $tuple = new \RandData\Fabric\Tuple\SqlCreateTable($sql);
+        $generator = new \RandData\Generator($tuple, 20);
+        $formatter = new \RandData\Formatter\Sql($generator, $tblName);
+        $sqlIns = $formatter->build();
+        $dbh->exec($sqlIns);
+    }
+    
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+}
+
+echo PHP_EOL;
+```
+
+Currenty only this data types supported (feel free to extand the list 
+or make your own contribution to the project):
+ 
+* (tiny|small|medium|big)int 
+* decimal
+* varchar
+* (tiny|medium|long)text
+* enum
+* set (only one of available values for the row will be generated, 
+    i.e. one OR two OR three, but not one,two or one,three
+* datetime/date/time/year/year(4)/year(2)
 
 ### Data dependency
 
@@ -273,6 +378,30 @@ $formatter = new \RandData\Formatter\Csv($generator);
 
 echo $formatter->build() . PHP_EOL;
 ```
+
+If you have dependencies between different objects (Authors and Books),
+it can be little tricky, but something about this:
+
+```php
+$bookTuple->setAuthorIds($authorsIds)
+// ... and then choose from this list
+```
+
+Or simplier, if you test with 100 authors:
+
+```php
+class PersonTuple extends \RandData\Tuple
+{
+    public function getDataSets() {
+        return [
+            // ...
+            "author_id" => "integer:min=1;max=100",
+            // ...
+        ];
+    }
+}
+```
+
 
 ### Filling forms
 
@@ -653,7 +782,10 @@ ru_person:sex=m
 * (+) API documentation
 * (+) Class members checking (input values)
 
-* (-) Generating datasets from database tables (v0.9)
+* (+) Generating datasets from database tables (v0.9)
 * (-) Graphic interface
+    * (-) Blanks
+    * (-) Data 
+    * (-) Forms
 * (-) Code style, mess detector, code metrics (v1.0)
 * (-) CI

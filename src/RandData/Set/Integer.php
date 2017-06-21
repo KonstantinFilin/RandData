@@ -7,10 +7,10 @@ namespace RandData\Set;
  */
 class Integer extends \RandData\Set
 {
-    const MIN_MIN = -10000;
-    const MIN_MAX = 10000000;
-    const MAX_MIN = -10000;
-    const MAX_MAX = 10000000;
+    const MIN_MIN = -8388607;
+    const MIN_MAX = 16777215;
+    const MAX_MIN = -8388607;
+    const MAX_MAX = 16777215;
 
     /**
      * Minimum range value

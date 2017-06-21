@@ -7,10 +7,10 @@ namespace RandData\Set;
  */
 class String extends \RandData\Set
 {
-    const LENGTH_MIN_MIN = 1;
-    const LENGTH_MIN_MAX = 100;
+    const LENGTH_MIN_MIN = 0;
+    const LENGTH_MIN_MAX = 16777216;
     const LENGTH_MAX_MIN = 1;
-    const LENGTH_MAX_MAX = 100;
+    const LENGTH_MAX_MAX = 16777216;
     
     const CHARS_LAT_U = "ABCDEFGHIKLMNOPRSTUVWXYZ";
     const CHARS_LAT_L = "abcdefghijklmnoprstuvwxyz";

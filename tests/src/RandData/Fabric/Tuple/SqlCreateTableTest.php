@@ -35,13 +35,10 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
             "`operator_id` smallint(5) unsigned DEFAULT NULL",
             "`manager_id` smallint(5) DEFAULT NULL",
             "`phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
-            "`phone_cell` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
             "`name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NOT NULL",
-            "`street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
             "`building` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
-            "`flat` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
+            "`yesno` tinyint(1) unsigned DEFAULT NULL",
             "`amount` tinyint(3) unsigned DEFAULT NULL",
-            "`comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL",
             "`t` time DEFAULT NULL",
             "`sum` mediumint(8) unsigned DEFAULT NULL",
             "`sum_ui` int(8) unsigned DEFAULT NULL",
@@ -51,12 +48,18 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
             "`meeting_start` time DEFAULT NULL",
             "`added` datetime NOT NULL",
             "`added_dt` date DEFAULT NULL",
-            "`cancelled_status` enum('active','cancelled','returned','refused','closed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active'",
+            "`status` enum('active','cancelled','returned','refused','closed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active'",
             "`mes_res` text COLLATE utf8mb4_unicode_ci",
             "`repair_set_price` smallint(5) DEFAULT NULL",
             "`sum_repair2` mediumint(8) DEFAULT NULL",
             "`report_day` tinyint(1) unsigned NOT NULL DEFAULT '0'",
-            "`sum1_withwrawed` tinyint(1) NOT NULL DEFAULT '0'"
+            "`sum1_withwrawed` tinyint(1) NOT NULL DEFAULT '0'",
+            "`salary` decimal(5,2) NULL DEFAULT '0'",
+            "`salary2` decimal(4) NULL DEFAULT '0'",
+            "`salary3` decimal NULL DEFAULT '0'",
+            "`till` year(4) NULL DEFAULT '0'",
+            "`till2` year(2) NULL DEFAULT '0'",
+            "`till3` year NULL DEFAULT '0'",
         ];
         
         $this->assertEquals($expected, $this->object->getFieldsAsSql($this->getSql()));
@@ -68,24 +71,34 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
         $this->assertTrue(is_array($lines));
         $this->assertNotEmpty($lines);
         $this->assertEquals("counter", $lines["id"]);
-        $this->assertEquals("integer:min=0;max=255", $lines["report_day"]);
-        $this->assertEquals("integer:min=0;max=255", $lines["amount"]);
-        $this->assertEquals("integer:min=-128;max=127", $lines["sum1_withwrawed"]);
         $this->assertEquals("integer:min=0;max=65535", $lines["operator_id"]);
         $this->assertEquals("integer:min=-32768;max=32767", $lines["manager_id"]);
-        $this->assertEquals("integer:min=-32768;max=32767", $lines["repair_set_price"]);
+        $this->assertEquals("string:length_min=1;length_max=100", $lines["phone"]);
+        $this->assertEquals("string:length_min=1;length_max=255", $lines["name"]);
+        $this->assertEquals("string:length_min=1;length_max=10", $lines["building"]);
+        $this->assertEquals("boolean:valTrue=1;valFalse=0", $lines["yesno"]);
+        $this->assertEquals("integer:min=0;max=255", $lines["amount"]);
+        $this->assertEquals("time", $lines["t"]);
         $this->assertEquals("integer:min=0;max=16777215", $lines["sum"]);
-        $this->assertEquals("integer:min=-8388608;max=8388607", $lines["sum_repair2"]);
-        
         $this->assertEquals("integer:min=0;max=" . mt_getrandmax(), $lines["sum_ui"]);
         $this->assertEquals("integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2), $lines["sum_si"]);
         $this->assertEquals("integer:min=0;max=" . mt_getrandmax(), $lines["sum_ubi"]);
         $this->assertEquals("integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2), $lines["sum_sbi"]);
-        
+        $this->assertEquals("time", $lines["meeting_start"]);
         $this->assertEquals("datetime:date_min=1900-01-01;date_max=2099-12-31", $lines["added"]);
         $this->assertEquals("date:min=1900-01-01;max=2099-12-31", $lines["added_dt"]);
-        $this->assertEquals("time", $lines["t"]);
-        $this->assertEquals("time", $lines["meeting_start"]);
+        $this->assertEquals("string_list:values=active,cancelled,returned,refused,closed", $lines["status"]);
+        $this->assertEquals("string:length_min=1;length_max=65536", $lines["mes_res"]);
+        $this->assertEquals("integer:min=-32768;max=32767", $lines["repair_set_price"]);
+        $this->assertEquals("integer:min=-8388608;max=8388607", $lines["sum_repair2"]);
+        $this->assertEquals("boolean:valTrue=1;valFalse=0", $lines["report_day"]);
+        $this->assertEquals("integer:min=-128;max=127", $lines["sum1_withwrawed"]);
+        $this->assertEquals("decimal:min=-999;max=999;minFractionDigits=0;maxFractionDigits=2", $lines["salary"]);
+        $this->assertEquals("decimal:min=-9999;max=9999;minFractionDigits=0;maxFractionDigits=0", $lines["salary2"]);
+        $this->assertEquals("decimal:min=-9999999999;max=9999999999;minFractionDigits=0;maxFractionDigits=0", $lines["salary3"]);
+        $this->assertEquals("integer:min=1901;max=2155", $lines["till"]);
+        $this->assertEquals("integer:min=0;max=99", $lines["till2"]);
+        $this->assertEquals("integer:min=1901;max=2155", $lines["till3"]);
     }
     
     private function getSql()
@@ -95,13 +108,10 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
             `operator_id` smallint(5) unsigned DEFAULT NULL,
             `manager_id` smallint(5) DEFAULT NULL,
             `phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `phone_cell` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
             `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NOT NULL,
-            `street` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
             `building` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-            `flat` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+            `yesno` tinyint(1) unsigned DEFAULT NULL,
             `amount` tinyint(3) unsigned DEFAULT NULL,
-            `comment` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
             `t` time DEFAULT NULL,
             `sum` mediumint(8) unsigned DEFAULT NULL,
             `sum_ui` int(8) unsigned DEFAULT NULL,
@@ -111,13 +121,20 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
             `meeting_start` time DEFAULT NULL,
             `added` datetime NOT NULL,
             `added_dt` date DEFAULT NULL,
-            `cancelled_status` enum('active','cancelled','returned','refused','closed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+            `status` enum('active','cancelled','returned','refused','closed') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
             `mes_res` text COLLATE utf8mb4_unicode_ci,
             `repair_set_price` smallint(5) DEFAULT NULL,
             `sum_repair2` mediumint(8) DEFAULT NULL,
             `report_day` tinyint(1) unsigned NOT NULL DEFAULT '0',
             `sum1_withwrawed` tinyint(1) NOT NULL DEFAULT '0',
+            `salary` decimal(5,2) NULL DEFAULT '0',
+            `salary2` decimal(4) NULL DEFAULT '0',
+            `salary3` decimal NULL DEFAULT '0',
+            `till` year(4) NULL DEFAULT '0',
+            `till2` year(2) NULL DEFAULT '0',
+            `till3` year NULL DEFAULT '0',
             PRIMARY KEY (`id`),
+            UNIQUE KEY `name` (`name`),
             KEY `added` (`added`),
             KEY `cancelled_status` (`cancelled_status`),
             KEY `city_id` (`city_id`),
