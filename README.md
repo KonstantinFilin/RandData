@@ -31,7 +31,7 @@ Data generator with support for complex data and dependency realization
 * [DataSet (en_GB)](https://github.com/KonstantinFilin/RandData#dataset-en_gb)
     * [Person](https://github.com/KonstantinFilin/RandData#person)
 * [DataSet (ru_RU)](https://github.com/KonstantinFilin/RandData#dataset-ru_ru)
-    * [Person](https://github.com/KonstantinFilin/RandData#person)
+    * [Person (ru)](https://github.com/KonstantinFilin/RandData#person)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 ## Installation
