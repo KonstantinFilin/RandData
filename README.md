@@ -733,7 +733,7 @@ email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 * sex: List of person's sex. m - Male, f - female. Default to both
 * format: First name (%f), middle name (%m) and last name (%l) order. 
     Default to "%f %m %l". %f1 - first letter of the first name,
-    %m1 - first letter of the middle name
+    %m1 - first letter of the middle name, %l1 - last letter of ther first name
 
 **Initialization string examples**
 
@@ -756,7 +756,7 @@ en_person:sex=m
 * sex: List of person's sex. m - Male, f - female. Default to both
 * format: First name (%f), middle name (%m) and last name (%l) order. 
     Default to "%l %f %m". %f1 - first letter of the first name,
-    %m1 - first letter of the middle name
+    %m1 - first letter of the middle name, %l1 - last letter of ther first name
 
 **Initialization string examples**
 
