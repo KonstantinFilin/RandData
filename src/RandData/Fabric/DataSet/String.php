@@ -44,6 +44,8 @@ class String
             $setObj = new \RandData\Set\Domain();
         } elseif ($setInfo->getName() == "email") {
             $setObj = new \RandData\Set\Email();
+        } elseif ($setInfo->getName() == "en_person") {
+            $setObj = new \RandData\Set\en_GB\Person();
         } elseif ($setInfo->getName() == "ru_person") {
             $setObj = new \RandData\Set\ru_RU\Person();
         }

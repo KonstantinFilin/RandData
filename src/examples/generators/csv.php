@@ -8,4 +8,3 @@ $formatter->setShowCounter(false);
 
 echo $formatter->build();
 echo PHP_EOL;
-

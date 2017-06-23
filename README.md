@@ -32,8 +32,6 @@ Data generator with support for complex data and dependency realization
     * [Person](https://github.com/KonstantinFilin/RandData#person)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
-**Under development**
-
 ## Installation
 
 ## Basic usage
@@ -116,7 +114,7 @@ class PersonTuple extends \RandData\Tuple
         return [
             "Id" => "counter",
             "Login" => "counter:template=user_#;start=100",
-            "Name" => "ru_person",
+            "Name" => "en_person",
             "Birth" => "date:min=1900-01-01;max=2005-12-31",
             "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
             "Sum" => "integer:min=100;max=10000",
@@ -139,12 +137,11 @@ $formatter->setShowCounter(false);
 echo $formatter->build();
 echo PHP_EOL;
 
-
 /*
 #;Name;Birth;Phone;Sum
-1;user_100;Ефремова Лика Александровна;1949-09-27;NA;NA;aaa
-2;user_101;Соболева Лолита Евгеньевна;2005-04-07;+7 (903) 194-44-11;NA;aaa
-3;user_102;Лаврова Стелла Виталиевна;1921-04-23;+7 (495) 621-76-94;9735;aaa
+1;user_100;Jeremy Tyson Newman;1975-05-02;+7 (905) 513-68-76;NA;aaa
+2;user_101;Valerie Camden Murray;1908-05-07;+7 (915) 573-60-43;2101;aaa
+3;user_102;Theodore Kelton Graves;1939-06-26;+7 (903) 647-33-24;NA;bbb
 ...
 */
 ```
@@ -160,7 +157,7 @@ class PersonTuple extends \RandData\Tuple
         return [
             "Id" => "counter",
             "Login" => "counter:template=user_#;start=100",
-            "Name" => "ru_person",
+            "Name" => "en_person",
             "Birth" => "date:min=1900-01-01;max=2005-12-31",
             "Phone" => "phone:country_list=7;region_list=495,499,915,919,905,903",
             "Sum" => "integer:min=100;max=10000",
@@ -177,10 +174,9 @@ class PersonTuple extends \RandData\Tuple
 }
 
 /*
-INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('1','user_100','Кочетова Дина Михайловна','1937-01-26',NULL,NULL,'aaa');
-INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('2','user_101','Гаврилов Спартак Филиппович','2004-11-17','+7 (915) 907-88-62','9936','ccc');
-INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('3','user_102','Карасев Аксён Николаевич','1912-02-06',NULL,NULL,'aaa');
-...
+INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('1','user_100','Thomas Brendon Simmons','1941-09-13','+7 (499) 877-05-17','8005','ccc');
+INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('2','user_101','Audrey Lee Howell','2005-10-16','+7 (499) 888-14-81','9693','aaa');
+INSERT INTO `clients` (`Id`,`Login`,`Name`,`Birth`,`Phone`,`Sum`,`Class`) VALUES ('3','user_102','Penelope Ellen Arnold','1975-04-30','+7 (903) 991-48-86','1986','aaa');...
 */
 ```
 
@@ -188,7 +184,6 @@ If your database is too big and you want to get it fast, you can get it from sql
 SHOW CREATE TABLE command:
 
 ```php
-
 $sql = "CREATE TABLE `user` (
  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
  `login` varchar(100) NOT NULL,
@@ -307,8 +302,8 @@ class EmployeeTuple extends \RandData\Tuple {
     
     public function getDataSets() {
         return [
-            "sex" => "string_list:values=" . RandData\Set\ru_RU\Person::SEX_MALE . "," . RandData\Set\ru_RU\Person::SEX_FEMALE,
-            "name" => "ru_person",
+            "sex" => "string_list:values=" . RandData\Set\en_GB\Person::SEX_MALE . "," . RandData\Set\en_GB\Person::SEX_FEMALE,
+            "name" => "en_person",
             "birth" => "date:min=now -50 year;max=now -20 year",
             "hired" => "date:min=now -3 year;max=now",
             "fired" => "date:min=now -3 year;max=now",
@@ -339,8 +334,8 @@ class EmployeeTuple extends \RandData\Tuple {
     }
     
     private function getValueSex(&$value) {
-        $this->datasets["name"] = "ru_person:sex=" . $value;
-        $value = $value == RandData\Set\ru_RU\Person::SEX_MALE ? "Муж" : "Жен";        
+        $this->datasets["name"] = "en_person:sex=" . $value;
+        $value = $value == RandData\Set\en_GB\Person::SEX_MALE ? "Male" : "Female";        
     }
     
     private function getValueHired($value) {
@@ -723,6 +718,29 @@ domain:tld_list=org,net;char_list_edge=01;char_list=abcdef0123456789
 email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 ```
 
+## DataSet (en_GB)
+
+### Person
+
+**ID**
+
+> en_person
+
+**Params**
+
+* sex: List of person's sex. m - Male, f - female. Default to both
+* format: First name (%f), middle name (%m) and last name (%l) order. 
+    Default to "%f %m %l". %f1 - first letter of the first name,
+    %m1 - first letter of the middle name
+
+**Initialization string examples**
+
+```
+en_person:format=%f %m %l
+en_person:format=%f %m1. %l
+en_person:sex=m
+```
+
 ## DataSet (ru_RU)
 
 ### Person
@@ -734,17 +752,18 @@ email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 **Params**
 
 * sex: List of person's sex. m - Male, f - female. Default to both
-* format: First name (f), middle name (m) and last name (l) order. 
-    Default to "l f m". f1 - first letter of the first name,
-    m1 - first letter of the middle name
+* format: First name (%f), middle name (%m) and last name (%l) order. 
+    Default to "%l %f %m". %f1 - first letter of the first name,
+    %m1 - first letter of the middle name
 
 **Initialization string examples**
 
 ```
-ru_person:format=f m l
-ru_person:format=l f1. m1.
+ru_person:format=%f %m %l
+ru_person:format=%l %f1. %m1.
 ru_person:sex=m
 ```
+
 ## TODO ##
 
 **Simple**
@@ -767,7 +786,7 @@ ru_person:sex=m
 * (+) Email
 
 * (-) Address (ru_RU)
-* (-) Person (en_GB)
+* (+) Person (en_GB)
 * (-) Address (en_GB)
 
 **And also**
@@ -783,7 +802,7 @@ ru_person:sex=m
 
 * (+) Generating datasets from database tables (v0.9)
 * (-) Graphic interface
-    * (-) Blanks
+    * (+) Blanks
     * (-) Data 
     * (-) Forms
 * (-) Code style, mess detector, code metrics (v1.0)

@@ -11,8 +11,8 @@ class EmployeeTuple extends \RandData\Tuple {
     
     public function getDataSets() {
         return [
-            "sex" => "string_list:values=" . RandData\Set\ru_RU\Person::SEX_MALE . "," . RandData\Set\ru_RU\Person::SEX_FEMALE,
-            "name" => "ru_person",
+            "sex" => "string_list:values=" . RandData\Set\en_GB\Person::SEX_MALE . "," . RandData\Set\en_GB\Person::SEX_FEMALE,
+            "name" => "en_person",
             "birth" => "date:min=now -50 year;max=now -20 year",
             "hired" => "date:min=now -3 year;max=now",
             "fired" => "date:min=now -3 year;max=now",
@@ -43,8 +43,8 @@ class EmployeeTuple extends \RandData\Tuple {
     }
     
     private function getValueSex(&$value) {
-        $this->datasets["name"] = "ru_person:sex=" . $value;
-        $value = $value == RandData\Set\ru_RU\Person::SEX_MALE ? "Муж" : "Жен";        
+        $this->datasets["name"] = "en_person:sex=" . $value;
+        $value = $value == RandData\Set\en_GB\Person::SEX_MALE ? "Male" : "Female";
     }
     
     private function getValueHired($value) {
@@ -59,6 +59,12 @@ class EmployeeTuple extends \RandData\Tuple {
     private function getValueBirth($value) {
         $birthTs = date("U", strtotime($value));
         $nowTs = date("U");
+        
+        // Hired date must be later than birth date
+        // Let's we can hire somebody in the ages from 20 to 50
+        $hiredTsMin = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MIN, date("U") ])));
+        $hiredTsMax = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MAX, date("U") ])));
+        $this->datasets["hired"] = "date:min=" . $hiredTsMin . ";max=" . $hiredTsMax;
 
         // Let's some dummy score will be dependant on age
         if (self::LEVEL_1 < $nowTs - $birthTs) {
@@ -66,12 +72,6 @@ class EmployeeTuple extends \RandData\Tuple {
         } elseif (self::LEVEL_2 < $nowTs - $birthTs) {
             $this->datasets["score"] = "int:min=10;max=13";
         }
-        
-        // Hired date must be later than birth date
-        // Let's we can hire somebody in the ages from 20 to 50
-        $hiredTsMin = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MIN, date("U") ])));
-        $hiredTsMax = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MAX, date("U") ])));
-        $this->datasets["hired"] = "date:min=" . $hiredTsMin . ";max=" . $hiredTsMax;
     }
 }
 
