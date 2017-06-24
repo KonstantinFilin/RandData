@@ -55,6 +55,9 @@ $dataSetInteger3 = $fabric->createObjectFromString("integer:min=111;max=222");
 
 ### Filling string by template
 
+Let's we have a string with a pair of variable words in it. We will fill
+this fields with random values:
+
 ```php
 class BlankTuple extends \RandData\Tuple
 {
@@ -71,6 +74,9 @@ $generator = new RandData\BlankGenerator(new BlankTuple);
 $tpl = "Hello, I'm {name} and today is {dt}";
 $generator->init($tpl);
 echo $tpl . " => ". $generator->run() . PHP_EOL;
+// Hello, I'm {name} and today is {dt} 
+// => 
+// Hello, I'm George and today is 1965-12-12
 ```
 
 Let's make it a little more complicated:
