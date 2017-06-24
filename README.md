@@ -62,6 +62,25 @@ class BlankTuple extends \RandData\Tuple
     {
         return [
             "name" => "string_list:values=John,Paul,George,Ringo",
+            "dt" => "date:min=1962-10-05;max=1970-05-08"
+        ];
+    }
+}
+
+$generator = new RandData\BlankGenerator(new BlankTuple);
+$tpl = "Hello, I'm {name} and today is {dt}";
+$generator->init($tpl);
+echo $tpl . " => ". $generator->run() . PHP_EOL;
+```
+
+Let's make it a little more complicated:
+```php
+class BlankTuple extends \RandData\Tuple
+{
+    public function getDataSets() 
+    {
+        return [
+            "name" => "string_list:values=John,Paul,George,Ringo",
             "dt" => "date:min=1962-10-05;max=1970-05-08",
             "age" => "integer:min=19;max=30"
         ];
@@ -805,7 +824,7 @@ ru_person:sex=m
 * (+) Generating datasets from database tables (v0.9)
 * (-) Graphic interface
     * (+) Blanks
-    * (-) Data 
     * (-) Forms
-* (-) Code style, mess detector, code metrics (v1.0)
-* (-) CI
+    * (-) Data 
+* (-) Code style, mess detector, code metrics
+* (-) CI (v1.0)
