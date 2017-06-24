@@ -241,7 +241,7 @@ INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_co
 INSERT INTO `user` (`id`,`login`,`role`,`name`,`passhash`,`blocked`,`activate_code`,`activate_dt`) VALUES ('2','hHroxmPFgpDGOMl9yvFDykcAFoZ755P5CGHfZXgA9YNIo','student','Yl3UVeEKxvUysapnddBI9hEr9DeaulWUutMVE0WEdifEoytUdIp2APHPdo6XeWXx3hbfl5ps34sDg4pOto470yzuEXT7fn3VwOZ','BnesLyU43ly6T2bg6KWdii2piBLDhVtcSyie','1','j','2014-07-06');
 // ... 
 
-/* And rules for inserting into php class: */
+/* And rules for inserting into php class, where you can set more strict rules: */
 
 'id' => 'counter',
 'login' => 'string:length_min=1;length_max=100',
@@ -274,6 +274,7 @@ try {
         $rowCountRes = $dbh->query($rowCountSql, PDO::FETCH_COLUMN, 0);
         $rowCount = $rowCountRes->fetch();
         
+        // Just as a precaution
         if ($rowCount > 0) {
             echo "Non empty table: [" . $tblName . "]. Rows count: " . $rowCount . PHP_EOL;
             die;
@@ -296,7 +297,7 @@ try {
 echo PHP_EOL;
 ```
 
-Currenty only this data types supported (feel free to extand the list 
+Currenty only this data types supported (feel free to ask for extanding the list 
 or make your own contribution to the project):
  
 * (tiny|small|medium|big)int 
@@ -314,9 +315,7 @@ In real life data is dependant. Birth must be before death, sunrise time before 
 salary is calculating from worked hours, hourly rate, fines and so on.
 
 This library can generate data dependant from other object attributes (for 
-example, hired date dependant from birth date). If you
-add little method or two, it can generate data dependant from items of other 
-object types (for example, Order can be assigned to the manager from the list)
+example, hired date dependant from birth date).
 
 ```php
 
@@ -423,11 +422,9 @@ class PersonTuple extends \RandData\Tuple
 }
 ```
 
-
 ### Filling forms
 
 TBA
-
 
 ## Main Objects 
 
