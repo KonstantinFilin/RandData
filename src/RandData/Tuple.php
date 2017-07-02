@@ -94,7 +94,7 @@ abstract class Tuple
      * Returns datasets definition
      * @return array Entity datasets, in format attributeName => datasetDefenition
      */
-    abstract function getDataSets();
+    abstract public function getDataSets();
     
     /**
      * Returns entity attributes names. 

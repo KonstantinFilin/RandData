@@ -18,7 +18,7 @@ Data generator with support for complex data and dependency realization
     * [Counter](https://github.com/KonstantinFilin/RandData#counter)
     * [Boolean](https://github.com/KonstantinFilin/RandData#boolean)
     * [Integer](https://github.com/KonstantinFilin/RandData#integer)
-    * [Float](https://github.com/KonstantinFilin/RandData#float)
+    * [Decimal](https://github.com/KonstantinFilin/RandData#decimal)
     * [String](https://github.com/KonstantinFilin/RandData#string)
     * [String List](https://github.com/KonstantinFilin/RandData#string-list)
     * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
@@ -534,11 +534,11 @@ integer
 integer:min=-5;max=7
 ```
 
-### Float
+### Decimal
 
 **ID**
 
-> float
+> decimal
 
 **Params**
 
@@ -550,8 +550,8 @@ integer:min=-5;max=7
 **Initialization string examples**
 
 ```
-float:min=8;max=13
-float:min=4;max=6;minFractionDigits=2;maxFractionDigits=4
+decimal:min=8;max=13
+decimal:min=4;max=6;minFractionDigits=2;maxFractionDigits=4
 ```
 
 ### String
@@ -794,7 +794,7 @@ ru_person:sex=m
 
 * (+) NULL
 * (+) Integer
-* (+) Float
+* (+) Decimal
 * (+) Boolean
 * (+) StringList
 * (+) String
@@ -812,6 +812,8 @@ ru_person:sex=m
 * (-) Address (ru_RU)
 * (+) Person (en_GB)
 * (-) Address (en_GB)
+* (-) String value 
+* (-) Complex generator
 
 **And also**
 
@@ -825,9 +827,9 @@ ru_person:sex=m
 * (+) Class members checking (input values)
 
 * (+) Generating datasets from database tables (v0.9)
-* (-) Graphic interface
+* (+) Graphic interface
     * (+) Blanks
-    * (-) Forms
-    * (-) Data 
+    * (+) Forms
+    * (+) Data 
 * (-) Code style, mess detector, code metrics
 * (-) CI (v1.0)

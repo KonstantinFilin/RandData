@@ -3,9 +3,9 @@
 namespace RandData\Set;
 
 /**
- * Random float generator
+ * Random decimal generator
  */
-class Float extends \RandData\Set\Integer
+class Decimal extends \RandData\Set\Integer
 {
     const MIN_MIN = -10000000;
     const MIN_MAX = 10000000;

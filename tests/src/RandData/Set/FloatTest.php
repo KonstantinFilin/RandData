@@ -7,7 +7,7 @@ namespace RandData\Set;
 class FloatTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Float
+     * @var Decimal
      */
     protected $object;
     protected $param1;
@@ -26,7 +26,7 @@ class FloatTest extends \PHPUnit_Framework_TestCase
         $this->paramFr1 = 4;
         $this->paramFr2 = 9;
 
-        $this->object = new Float($this->param1, $this->param2);
+        $this->object = new Decimal($this->param1, $this->param2);
         $this->object->setMinFractionDigits($this->paramFr1);
         $this->object->setMaxFractionDigits($this->paramFr2);
     }
@@ -47,7 +47,7 @@ class FloatTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->param1, $this->object->getMin());
         
-        $obj2 = new Float();
+        $obj2 = new Decimal();
         $this->assertEquals(0, $obj2->getMin());
         
         $value2 = 5;
@@ -63,7 +63,7 @@ class FloatTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->paramFr1, $this->object->getMinFractionDigits());
         
-        $obj2 = new Float();
+        $obj2 = new Decimal();
         $this->assertEquals(0, $obj2->getMinFractionDigits());
         
         $value2 = 5;
@@ -79,8 +79,8 @@ class FloatTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals($this->paramFr2, $this->object->getMaxFractionDigits());
         
-        $obj2 = new Float();
-        $this->assertEquals(Float::FRACTION_MAX, $obj2->getMaxFractionDigits());
+        $obj2 = new Decimal();
+        $this->assertEquals(Decimal::FRACTION_MAX, $obj2->getMaxFractionDigits());
         
         $value2 = 5;
         $obj2->setMaxFractionDigits($value2);

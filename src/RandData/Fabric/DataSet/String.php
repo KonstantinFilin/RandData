@@ -22,8 +22,8 @@ class String
                 $setObj = new \RandData\Set\Counter();
         } elseif (in_array($setInfo->getName(), [ "int", "integer" ])) {
             $setObj = new \RandData\Set\Integer;
-        } elseif ($setInfo->getName() == "float") {
-            $setObj = new \RandData\Set\Float();
+        } elseif ($setInfo->getName() == "decimal") {
+            $setObj = new \RandData\Set\Decimal();
         } elseif ($setInfo->getName() == "boolean") {
             $setObj = new \RandData\Set\Boolean();
         } elseif ($setInfo->getName() == "string_list") {
