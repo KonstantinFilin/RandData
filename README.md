@@ -15,19 +15,20 @@ Data generator with support for complex data and dependency realization
     * [Tuple](https://github.com/KonstantinFilin/RandData#tuple)
     * [RandData Generator](https://github.com/KonstantinFilin/RandData#randdata-generator)
 * [DataSet](https://github.com/KonstantinFilin/RandData#dataset-options)
-    * [Counter](https://github.com/KonstantinFilin/RandData#counter)
     * [Boolean](https://github.com/KonstantinFilin/RandData#boolean)
-    * [Integer](https://github.com/KonstantinFilin/RandData#integer)
-    * [Decimal](https://github.com/KonstantinFilin/RandData#decimal)
-    * [String](https://github.com/KonstantinFilin/RandData#string)
-    * [String List](https://github.com/KonstantinFilin/RandData#string-list)
-    * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
-    * [Time](https://github.com/KonstantinFilin/RandData#time)
+    * [Counter](https://github.com/KonstantinFilin/RandData#counter)
     * [Date](https://github.com/KonstantinFilin/RandData#date)
     * [Datetime](https://github.com/KonstantinFilin/RandData#datetime)
-    * [Phone](https://github.com/KonstantinFilin/RandData#phone)
+    * [Decimal](https://github.com/KonstantinFilin/RandData#decimal)
     * [Domain](https://github.com/KonstantinFilin/RandData#domain)
     * [Email](https://github.com/KonstantinFilin/RandData#email)
+    * [Integer](https://github.com/KonstantinFilin/RandData#integer)
+    * [Paragraph](https://github.com/KonstantinFilin/RandData#paragraph)
+    * [Phone](https://github.com/KonstantinFilin/RandData#phone)
+    * [String](https://github.com/KonstantinFilin/RandData#string)
+    * [String List](https://github.com/KonstantinFilin/RandData#string-list)
+    * [Time](https://github.com/KonstantinFilin/RandData#time)
+    * [Value](https://github.com/KonstantinFilin/RandData#value)
 * [DataSet (en_GB)](https://github.com/KonstantinFilin/RandData#dataset-en_gb)
     * [Person](https://github.com/KonstantinFilin/RandData#person)
 * [DataSet (ru_RU)](https://github.com/KonstantinFilin/RandData#dataset-ru_ru)
@@ -742,6 +743,24 @@ domain:tld_list=org,net;char_list_edge=01;char_list=abcdef0123456789
 email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 ```
 
+### Value
+
+Generates single value
+
+**ID**
+
+> value
+
+**Params**
+
+* value: Value to generate
+
+**Initialization string example**
+
+```
+email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
+```
+
 ## DataSet (en_GB)
 
 ### Person
@@ -812,7 +831,7 @@ ru_person:sex=m
 * (-) Address (ru_RU)
 * (+) Person (en_GB)
 * (-) Address (en_GB)
-* (-) String value 
+* (+) String value 
 * (-) Complex generator
 
 **And also**
