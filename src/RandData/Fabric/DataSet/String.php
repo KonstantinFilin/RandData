@@ -48,6 +48,14 @@ class String
             $setObj = new \RandData\Set\Value();
         } elseif ($setInfo->getName() == "en_person") {
             $setObj = new \RandData\Set\en_GB\Person();
+        } elseif ($setInfo->getName() == "en_postcode") {
+            $setObj = new \RandData\Set\en_GB\Postcode();
+        } elseif ($setInfo->getName() == "en_city") {
+            $setObj = new \RandData\Set\en_GB\City();
+        } elseif ($setInfo->getName() == "en_street") {
+            $setObj = new \RandData\Set\en_GB\Street();
+        } elseif ($setInfo->getName() == "en_address") {
+            $setObj = new \RandData\Set\en_GB\Address();
         } elseif ($setInfo->getName() == "ru_person") {
             $setObj = new \RandData\Set\ru_RU\Person();
         }

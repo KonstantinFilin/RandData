@@ -30,7 +30,11 @@ Data generator with support for complex data and dependency realization
     * [Time](https://github.com/KonstantinFilin/RandData#time)
     * [Value](https://github.com/KonstantinFilin/RandData#value)
 * [DataSet (en_GB)](https://github.com/KonstantinFilin/RandData#dataset-en_gb)
+    * [Address](https://github.com/KonstantinFilin/RandData#address)
+    * [City](https://github.com/KonstantinFilin/RandData#city)
     * [Person](https://github.com/KonstantinFilin/RandData#person)
+    * [Postcode](https://github.com/KonstantinFilin/RandData#postcode)
+    * [Street](https://github.com/KonstantinFilin/RandData#street)
 * [DataSet (ru_RU)](https://github.com/KonstantinFilin/RandData#dataset-ru_ru)
     * [Person (ru)](https://github.com/KonstantinFilin/RandData#person-ru)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
@@ -763,6 +767,32 @@ email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 
 ## DataSet (en_GB)
 
+### Address
+
+**ID**
+
+> en_address
+
+**Params**
+
+No params
+
+### City
+
+**ID**
+
+> en_city
+
+**Params**
+
+* postcode: post area to take city from
+
+**Initialization string example**
+
+```php
+en_city:postcode=IP29 8FX
+```
+
 ### Person
 
 **ID**
@@ -778,11 +808,31 @@ email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 
 **Initialization string examples**
 
-```
+```php
 en_person:format=%f %m %l
 en_person:format=%f %m1. %l
 en_person:sex=m
 ```
+
+### Postcode
+
+**ID**
+
+> en_postcode
+
+**Params**
+
+No params
+
+### Street
+
+**ID**
+
+> en_street
+
+**Params**
+
+No params
 
 ## DataSet (ru_RU)
 
@@ -819,6 +869,7 @@ ru_person:sex=m
 * (+) String
 
 **Complex**
+
 * (+) Paragraph
 * (+) Time
 * (+) Date
@@ -827,7 +878,6 @@ ru_person:sex=m
 * (+) Person
 * (+) Domain
 * (+) Email
-
 * (-) Address (ru_RU)
 * (+) Person (en_GB)
 * (-) Address (en_GB)
@@ -840,11 +890,9 @@ ru_person:sex=m
 * (+) Required or NULL
 * (+) Possibility of value from the list
 * (+) Output formats (csv, sql, json)
-
 * (+) Data dependency (subobjects, date difference and so on)
 * (+) API documentation
 * (+) Class members checking (input values)
-
 * (+) Generating datasets from database tables (v0.9)
 * (+) Graphic interface
     * (+) Blanks
