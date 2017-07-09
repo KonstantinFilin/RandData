@@ -29,6 +29,7 @@ Data generator with support for complex data and dependency realization
     * [String List](https://github.com/KonstantinFilin/RandData#string-list)
     * [Time](https://github.com/KonstantinFilin/RandData#time)
     * [Value](https://github.com/KonstantinFilin/RandData#value)
+    * [Complex](https://github.com/KonstantinFilin/RandData#complex)
 * [DataSet (en_GB)](https://github.com/KonstantinFilin/RandData#dataset-en_gb)
     * [Address](https://github.com/KonstantinFilin/RandData#address)
     * [City](https://github.com/KonstantinFilin/RandData#city)
@@ -769,6 +770,32 @@ Generates single value
 email:domain_list=gmail.com,yahoo.com,hotmail.com,fbi.gov
 ```
 
+### Complex
+
+Dataset consists of other datasets
+
+**ID**
+
+> complex
+
+**Params**
+
+* template: initialization string - any string with dataset definitions enclosed with {}. See examples for details
+
+**Initialization string example**
+
+```
+complex:template=Hello, I'm {string_list:values=Peter,James,John}, my age is {integer:min=5;max=30}, I live @ {en_address} and today is {date}
+```
+
+**Examples**
+
+```php
+$tpl = "Hello, I'm {string_list:values=Peter,James,John}, my age is {integer:min=5;max=30}, I live @ {en_address} and today is {date}";
+$generator = new \RandData\Set\Complex($tpl);
+echo $generator->run() . PHP_EOL;
+```
+
 ## DataSet (en_GB)
 
 ### Address
@@ -932,7 +959,7 @@ No params
 * (+) Person (en_GB)
 * (+) Address (en_GB)
 * (+) String value 
-* (-) Complex generator
+* (+) Complex generator
 
 **And also**
 
