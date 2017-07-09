@@ -60,6 +60,8 @@ class String
             $setObj = new \RandData\Set\ru_RU\City();
         } elseif ($setInfo->getName() == "ru_person") {
             $setObj = new \RandData\Set\ru_RU\Person();
+        } elseif ($setInfo->getName() == "ru_postcode") {
+            $setObj = new \RandData\Set\ru_RU\PostCode();
         } elseif ($setInfo->getName() == "ru_street") {
             $setObj = new \RandData\Set\ru_RU\Street();
         } elseif ($setInfo->getName() == "ru_address") {

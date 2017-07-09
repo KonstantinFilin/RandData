@@ -2,7 +2,7 @@
 
 namespace RandData\Set\ru_RU;
 
-class PostalCode extends \RandData\Set
+class Postcode extends \RandData\Set
 {
     protected $cityCodeList;
     
