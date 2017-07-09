@@ -14,6 +14,7 @@ class Complex extends Set
     protected $template;
 
     /**
+     * Class constructor
      */
     function __construct($template = "") {
         $this->template = (string) $template;

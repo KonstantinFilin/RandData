@@ -7,10 +7,34 @@ namespace RandData\Formatter;
  */
 class Csv extends \RandData\Formatter
 {
+    /**
+     * Whether to show counter column
+     * @var boolean
+     */
     protected $showCounter;
+    
+    /**
+     * Headers list
+     * @var array
+     */
     protected $headers;
+    
+    /**
+     * Whether to show table headers
+     * @var boolean
+     */
     protected $showHeaders;
+    
+    /**
+     * Column delimeter
+     * @var string
+     */
     protected $columnDelim;
+    
+    /**
+     * Line delimeter
+     * @var string
+     */
     protected $lineDelim;
     
     /**

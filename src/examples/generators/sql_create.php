@@ -105,7 +105,7 @@ $sql = "CREATE TABLE `user` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8";
 
 $tableName = "user";
-$tuple = new \RandData\Fabric\Tuple\SqlCreateTable($sql);
+$tuple = new \RandData\Fabric\Tuple\SqlCreateTuple($sql);
 $generator = new \RandData\Generator($tuple, 20);
 $formatter = new \RandData\Formatter\Sql($generator, $tableName);
 

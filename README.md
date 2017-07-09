@@ -235,7 +235,7 @@ $sql = "CREATE TABLE `user` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8";
 
 $tableName = "user";
-$tuple = new \RandData\Fabric\Tuple\SqlCreateTable($sql);
+$tuple = new \RandData\Fabric\Tuple\SqlCreateTuple($sql);
 $generator = new \RandData\Generator($tuple, 20);
 $formatter = new \RandData\Formatter\Sql($generator, $tableName);
 
@@ -293,7 +293,7 @@ try {
         $createSqlRow = "SHOW CREATE TABLE `" . $tblName . "`";
         $createSqlRes = $dbh->query($createSqlRow, PDO::FETCH_COLUMN, 1);
         $sql = $createSqlRes->fetch();
-        $tuple = new \RandData\Fabric\Tuple\SqlCreateTable($sql);
+        $tuple = new \RandData\Fabric\Tuple\SqlCreateTuple($sql);
         $generator = new \RandData\Generator($tuple, 20);
         $formatter = new \RandData\Formatter\Sql($generator, $tblName);
         $sqlIns = $formatter->build();
@@ -936,44 +936,5 @@ No params
 
 ## TODO ##
 
-**Simple**
-
-* (+) NULL
-* (+) Integer
-* (+) Decimal
-* (+) Boolean
-* (+) StringList
-* (+) String
-
-**Complex**
-
-* (+) Paragraph
-* (+) Time
-* (+) Date
-* (+) Datetime
-* (+) Phone
-* (+) Person
-* (+) Domain
-* (+) Email
-* (+) Address (ru_RU)
-* (+) Person (en_GB)
-* (+) Address (en_GB)
-* (+) String value 
-* (+) Complex generator
-
-**And also**
-
-* (+) Object fabric
-* (+) Required or NULL
-* (+) Possibility of value from the list
-* (+) Output formats (csv, sql, json)
-* (+) Data dependency (subobjects, date difference and so on)
-* (+) API documentation
-* (+) Class members checking (input values)
-* (+) Generating datasets from database tables (v0.9)
-* (+) Graphic interface
-    * (+) Blanks
-    * (+) Forms
-    * (+) Data 
 * (-) Code style, mess detector, code metrics
 * (-) CI (v1.0)

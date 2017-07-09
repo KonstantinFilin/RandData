@@ -2,23 +2,57 @@
 
 namespace RandData\Fabric\Tuple;
 
-class SqlCreateTable extends \RandData\Tuple
+/**
+ * Tuple that creates datasets from sql CREATE TABLE command
+ */
+class SqlCreateTuple extends \RandData\Tuple
 {
+    /**
+     * CREATE TABLE sql command
+     * @var string
+     */
     protected $sql;
+    
+    /**
+     * SQL definitions of fields
+     * @var array 
+     */
     protected $fieldsAsSql;
+    
+    /**
+     * Datasets array
+     * @var array 
+     */
     protected $datasets;
+    
+    /**
+     * Field NULL probability array
+     * @var array
+     */
     protected $nullProbability;
 
+    /**
+     * Class constructor
+     * @param string $sql SQL CREATE TABLE command
+     */
     public function __construct($sql) {
         $this->sql = "";
         $this->fieldsAsSql = [];
         $this->datasets = $this->getDataSetsDefinitionList($sql);
     }
     
+    /**
+     * @inherit
+     */
     public function getDataSets() {
         return $this->datasets;
     }
 
+    /**
+     * Parses table fields definition
+     * @param string $sql SQL CREATE TABLE command
+     * @return array Array of fields definition
+     */
     public function getFieldsAsSql($sql)
     {
         $brace1pos = strpos($sql, "(");
@@ -36,6 +70,11 @@ class SqlCreateTable extends \RandData\Tuple
         return $ret;
     }
     
+    /**
+     * Parses sql and creates datasets
+     * @param string $sql SQL CREATE TABLE command
+     * @return array Datasets definitions
+     */
     public function getDataSetsDefinitionList($sql)
     {
         $lines = $this->getFieldsAsSql($sql);
@@ -56,15 +95,30 @@ class SqlCreateTable extends \RandData\Tuple
         return $ret;
     }
     
+    /**
+     * Returns fields probability (50% of null for NULL field and 0 for NOT NULL field)
+     * @return array Null probability list
+     */
     protected function getNullProbability() {
         return $this->nullProbability;
     }
     
+    /**
+     * Checks if field can be null
+     * @param string $fieldDefinition Field sql definition
+     * @return boolean True - field can be NULL, False - field cannot be NULL
+     */
     protected function parseSqlCanBeNull($fieldDefinition)
     {
         return !preg_match("/NOT NULL/i", $fieldDefinition);
     }
     
+    /**
+     * Parses sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
     protected function parseSqlFieldDefinition($fieldDefinition)
     {
         $pattern = "/^\s*`([a-z0-9_]+)`.+$/";
@@ -111,6 +165,13 @@ class SqlCreateTable extends \RandData\Tuple
         throw new \InvalidArgumentException("Can't parse the string: " . $fieldDefinition);
     }
     
+    /**
+     * Parses unsigned integer sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
+
     protected function parseSqlFieldDefinitionIntUnsigned($fieldDefinition)
     {
         if (preg_match("/tinyint\(1\) unsigned/i", $fieldDefinition)) {
@@ -139,7 +200,13 @@ class SqlCreateTable extends \RandData\Tuple
 
         return null;
     }
-    
+
+    /**
+     * Parses integer sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
     protected function parseSqlFieldDefinitionInt($fieldDefinition)
     {
         if (preg_match("/tinyint\([\d]+\)/i", $fieldDefinition)) {
@@ -164,7 +231,13 @@ class SqlCreateTable extends \RandData\Tuple
         
         return null;
     }
-    
+
+    /**
+     * Parses decimal sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
     protected function parseSqlFieldDefinitionDecimal($fieldDefinition)
     {
         if (preg_match("/decimal\(([\d]+),([\d]+)\)/i", $fieldDefinition, $matches)) {
@@ -189,7 +262,13 @@ class SqlCreateTable extends \RandData\Tuple
             return "decimal:min=" . $min . ";max=" . $max. ";minFractionDigits=0;maxFractionDigits=0";
         }        
     }
-    
+
+    /**
+     * Parses character sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
     protected function parseSqlFieldDefinitionChar($fieldDefinition)
     {
         if (preg_match("/varchar\(([\d]+)\)/i", $fieldDefinition, $matches)) {
@@ -205,6 +284,12 @@ class SqlCreateTable extends \RandData\Tuple
         }
     }
 
+    /**
+     * Parses text sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
     protected function parseSqlFieldDefinitionString($fieldDefinition)
     {
         if (preg_match("/tinytext/i", $fieldDefinition, $matches)) {
@@ -224,6 +309,12 @@ class SqlCreateTable extends \RandData\Tuple
         }
     }
     
+    /**
+     * Parses datetime sql field definition and returns Dataset
+     * @param string $fieldDefinition Sql field definition
+     * @return array [0] element with field name and [1] element with string dataset definition
+     * @throws \InvalidArgumentException
+     */
     protected function parseSqlFieldDefinitionDt($fieldDefinition)
     {
         if (preg_match("/datetime/i", $fieldDefinition)) {

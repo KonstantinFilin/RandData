@@ -2,19 +2,32 @@
 
 namespace RandData\Set\ru_RU;
 
+/**
+ * Russian city dataset
+ */
 class City extends \RandData\Set
 {
+    /**
+     * @inherit
+     */
     public function get()
     {
         $cityList = $this->getList();
         return $cityList[array_rand($cityList)];
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = [])
     {
         
     }
 
+    /**
+     * Returns city list
+     * @return array City list
+     */
     protected function getList()
     {
         return [

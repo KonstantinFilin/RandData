@@ -90,8 +90,6 @@ class Person extends \RandData\Set
         }
     }
     
-    
-    
     /**
      * Returns person's last name
      * @return string Random last name

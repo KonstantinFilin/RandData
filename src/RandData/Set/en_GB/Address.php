@@ -2,8 +2,14 @@
 
 namespace RandData\Set\en_GB;
 
+/**
+ * UK address dataset
+ */
 class Address extends \RandData\Set
 {
+    /**
+     * @inherit
+     */
     public function get() {
         $flatSuffixList = [ "a", "b", "c", "d", "e", "f" ];
         $randSet1 = new Postcode();
@@ -26,6 +32,9 @@ class Address extends \RandData\Set
         return implode(", ", $ret);
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = []) {
         
     }

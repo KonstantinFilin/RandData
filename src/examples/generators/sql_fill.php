@@ -25,7 +25,7 @@ try {
         $createSqlRow = "SHOW CREATE TABLE `" . $tblName . "`";
         $createSqlRes = $dbh->query($createSqlRow, PDO::FETCH_COLUMN, 1);
         $sql = $createSqlRes->fetch();
-        $tuple = new \RandData\Fabric\Tuple\SqlCreateTable($sql);
+        $tuple = new \RandData\Fabric\Tuple\SqlCreateTuple($sql);
         $generator = new \RandData\Generator($tuple, 20);
         $formatter = new \RandData\Formatter\Sql($generator, $tblName);
         $sqlIns = $formatter->build();

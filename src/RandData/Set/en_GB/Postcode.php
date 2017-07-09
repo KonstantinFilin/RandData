@@ -2,19 +2,33 @@
 
 namespace RandData\Set\en_GB;
 
+/**
+ * UK postcode dataset
+ */
 class Postcode extends \RandData\Set
 {
+    /**
+     * @inherit
+     */
     public function get()
     {
         return $this->getOutwardCode() . ' ' . $this->getInwardCode();
     }
-    
+
+    /**
+     * Returns outward part of postcode
+     * @return string Outward part of postcode
+     */
     protected function getOutwardCode()
     {
         $postcodeDistrictList = $this->getPostcodeDistrictList();
         return $postcodeDistrictList[array_rand($postcodeDistrictList)];
     }
 
+    /**
+     *  Returns inward part of postcode
+     * @return string Inward part of postcode
+     */
     protected function getInwardCode()
     {
         $postcodeSector = mt_rand(0, 9);
@@ -23,6 +37,10 @@ class Postcode extends \RandData\Set
         return $postcodeSector . $stringGenerator->get();
     }
     
+    /**
+     * Returns postcode district list 
+     * @return array Postcode district list 
+     */
     protected function getPostcodeDistrictList()
     {
         return [
@@ -341,6 +359,9 @@ class Postcode extends \RandData\Set
         ];
     }
     
+    /**
+     * @inherit
+     */
     public function init($params = []) {
         
     }

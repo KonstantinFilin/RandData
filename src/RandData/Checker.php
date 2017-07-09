@@ -2,8 +2,18 @@
 
 namespace RandData;
 
+/**
+ * Helper to check and clean dataset values
+ */
 class Checker 
 {
+    /**
+     * Check time value
+     * @param string $value Time value
+     * @param string $attribute Field name
+     * @return string Cleaned time value
+     * @throws \InvalidArgumentException
+     */
     public static function time($value, $attribute)
     {
         $value2 = $value ?: "00:00";
@@ -21,6 +31,15 @@ class Checker
         return $value2;
     }
     
+    /**
+     * Checks integer value
+     * @param integer $value Calue to check
+     * @param integer $min Minimum possible value
+     * @param integer $max Maximum possible value
+     * @param string $attribute Field name
+     * @return integer Cleaned value
+     * @throws \InvalidArgumentException
+     */
     public static function int($value, $min, $max, $attribute)
     {
         $valueClean = intval($value);

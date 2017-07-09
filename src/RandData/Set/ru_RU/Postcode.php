@@ -2,14 +2,27 @@
 
 namespace RandData\Set\ru_RU;
 
+/**
+ * Russian postcode dataset
+ */
 class Postcode extends \RandData\Set
 {
+    /**
+     * City code list
+     * @var integer
+     */
     protected $cityCodeList;
     
+    /**
+     * Class constructor
+     */
     function __construct() {
         $this->cityCodeList = $this->getRussiaCityCodeList();
     }
     
+    /**
+     * @inherit
+     */
     public function get() {
         $cityCodeList = $this->getCityCodeList();
         $part1 = $cityCodeList[array_rand($cityCodeList)];
@@ -17,16 +30,27 @@ class Postcode extends \RandData\Set
         return $part1 . sprintf("%03u", $part2);
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = array()) {
         if (!empty($params["city_code_list"])) {
             $this->cityCodeList = $params["city_code_list"];
         }
     }
     
+    /**
+     * Returns available city codes
+     * @return array Available city codes
+     */
     function getCityCodeList() {
         return $this->cityCodeList;
     }
 
+    /**
+     * Returns full list of city codes
+     * @return array All possible city codes
+     */
     protected function getRussiaCityCodeList()
     {
         return array_merge(

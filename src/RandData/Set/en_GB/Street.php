@@ -2,17 +2,30 @@
 
 namespace RandData\Set\en_GB;
 
+/**
+ * UK street dataset
+ */
 class Street extends \RandData\Set 
 {
+    /**
+     * @inherit
+     */
     public function get() {
         $streetList = $this->getStreetList();
         return $streetList[array_rand($streetList)];
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = []) {
         
     }
     
+    /**
+     * Returns street list
+     * @return array
+     */
     protected function getStreetList()
     {
         return [

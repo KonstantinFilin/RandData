@@ -8,7 +8,7 @@ namespace RandData\Fabric\Tuple;
 class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
 
     /**
-     * @var SqlCreateTable
+     * @var SqlCreateTuple
      */
     protected $object;
 
@@ -17,7 +17,7 @@ class SqlCreateTableTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new SqlCreateTable($this->getSql());
+        $this->object = new SqlCreateTuple($this->getSql());
     }
 
     /**

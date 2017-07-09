@@ -2,18 +2,28 @@
 
 namespace RandData\Set\en_GB;
 
+/**
+ * UK city dataset
+ */
 class City extends \RandData\Set 
 {
+    /**
+     * Postcode to get city from
+     * @var string
+     */
     protected $postcode;
     
+    /**
+     * Class constructor
+     * @param string $postcode Postcode to get city from
+     */
     function __construct($postcode = "") {
         $this->setPostcode($postcode);
     }
     
-    function setPostcode($postcode) {
-        $this->postcode = $postcode;
-    }
-
+    /**
+     * @inherit
+     */
     public function get() {
         $matches = [];
         $cityListByPostcode = $this->getCityList();
@@ -36,12 +46,19 @@ class City extends \RandData\Set
         return trim($city);
     }
 
+    /**
+     * @inherit
+     */
     public function init($params = array()) {
         if (!empty($params["postcode"])) {
             $this->setPostcode($params["postcode"]);
         }
     }
 
+    /**
+     * Returns city list
+     * @return array City list in format postcode => city1, city2, ..., cityN
+     */
     protected function getCityList()
     {
         return [
