@@ -36,7 +36,11 @@ Data generator with support for complex data and dependency realization
     * [Postcode](https://github.com/KonstantinFilin/RandData#postcode)
     * [Street](https://github.com/KonstantinFilin/RandData#street)
 * [DataSet (ru_RU)](https://github.com/KonstantinFilin/RandData#dataset-ru_ru)
+    * [Address (ru)](https://github.com/KonstantinFilin/RandData#address-ru)
+    * [City (ru)](https://github.com/KonstantinFilin/RandData#city-ru)
     * [Person (ru)](https://github.com/KonstantinFilin/RandData#person-ru)
+    * [Postcode (ru)](https://github.com/KonstantinFilin/RandData#postcode-ru)
+    * [Street (ru)](https://github.com/KonstantinFilin/RandData#street-ru)
 * [ToDo](https://github.com/KonstantinFilin/RandData#todo)
 
 ## Installation
@@ -836,6 +840,33 @@ No params
 
 ## DataSet (ru_RU)
 
+
+### Address (ru)
+
+**ID**
+
+> ru_address
+
+**Params**
+
+* show_flat: Whether to show flat number. 1 - show, 0 - hide
+
+**Initialization string examples**
+
+```php
+ru_address:show_flat=0
+```
+
+### City (ru)
+
+**ID**
+
+> ru_city
+
+**Params**
+
+No params
+
 ### Person (ru)
 
 **ID**
@@ -856,6 +887,25 @@ ru_person:format=%f %m %l
 ru_person:format=%l %f1. %m1.
 ru_person:sex=m
 ```
+### Postcode (ru)
+
+**ID**
+
+> ru_postcode
+
+**Params**
+
+No params
+
+### Street (ru)
+
+**ID**
+
+> ru_street
+
+**Params**
+
+No params
 
 ## TODO ##
 
@@ -878,9 +928,9 @@ ru_person:sex=m
 * (+) Person
 * (+) Domain
 * (+) Email
-* (-) Address (ru_RU)
+* (+) Address (ru_RU)
 * (+) Person (en_GB)
-* (-) Address (en_GB)
+* (+) Address (en_GB)
 * (+) String value 
 * (-) Complex generator
 
