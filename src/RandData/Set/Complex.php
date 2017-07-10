@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Complex dataset
  */
-class Complex extends Set
+class Complex extends \RandData\Set 
 {
     /**
      * Template string
@@ -43,7 +43,7 @@ class Complex extends Set
     /**
      * @inherit
      */
-    public function init($params)
+    public function init($params = [])
     {
         if (!empty($params["template"])) {
             $this->template = $params["template"];

@@ -7,8 +7,10 @@ namespace RandData\Set\en_GB;
  */
 class City extends \RandData\Set 
 {
+    const VALIDATE_PATTERN = "[\w\d\s\(\)\'-]+";
+    
     /**
-     * Postcode to get city from
+     * Postcode of the city
      * @var string
      */
     protected $postcode;
@@ -20,6 +22,14 @@ class City extends \RandData\Set
     function __construct($postcode = "") {
         $this->setPostcode($postcode);
     }
+
+    /**
+     * Sets the postcode of the city
+     * @param type $postcode The postcode of the city 
+     */
+    function setPostcode($postcode) {
+        $this->postcode = $postcode;
+    }
     
     /**
      * @inherit
@@ -30,7 +40,7 @@ class City extends \RandData\Set
         $cityListStr = "";
         
         if ($this->postcode) {
-            preg_match("/^([A-Za-z]{1,2})/", $this->postcode, $matches);
+            preg_match("/^([A-Za-z]{1,2})\d?/", $this->postcode, $matches);
             
             if (!empty($matches[1])) {
                 $cityListStr = $cityListByPostcode[$matches[1]];

@@ -936,5 +936,8 @@ No params
 
 ## TODO ##
 
+* (-) Subdata types
+* (-) Demo site
 * (-) Code style, mess detector, code metrics
-* (-) CI (v1.0)
+* (-) CI 
+* (-) v1.0

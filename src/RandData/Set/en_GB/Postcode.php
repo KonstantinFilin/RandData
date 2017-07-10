@@ -7,6 +7,8 @@ namespace RandData\Set\en_GB;
  */
 class Postcode extends \RandData\Set
 {
+    const VALIDATE_PATTERN = "(\w\w\d\w|\w\d\w|\w\d|\w\d\d|\w\w\d|\w\w\d\d)\s\d\w\w";
+    
     /**
      * @inherit
      */

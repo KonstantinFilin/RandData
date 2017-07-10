@@ -7,6 +7,8 @@ namespace RandData\Set\en_GB;
  */
 class Street extends \RandData\Set 
 {
+    const VALIDATE_PATTERN = "[\w\s'\.]+";
+    
     /**
      * @inherit
      */
