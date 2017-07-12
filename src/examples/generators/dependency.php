@@ -26,9 +26,9 @@ class EmployeeTuple extends \RandData\Tuple {
         ];
     }
     
-    protected function getValue(RandData\Set $set, $fldName)
+    protected function getSetValueOrNull(RandData\Set $set, $fldName)
     {
-        $value = parent::getValue($set, $fldName);
+        $value = parent::getSetValueOrNull($set, $fldName);
         
         // Override dependent datasets
         if ($fldName == "sex") {

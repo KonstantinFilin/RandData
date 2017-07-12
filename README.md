@@ -353,9 +353,9 @@ class EmployeeTuple extends \RandData\Tuple {
         ];
     }
     
-    protected function getValue(RandData\Set $set, $fldName)
+    protected function getSetValueOrNull(RandData\Set $set, $fldName)
     {
-        $value = parent::getValue($set, $fldName);
+        $value = parent::getSetValueOrNull($set, $fldName);
         
         // Override dependent datasets
         if ($fldName == "sex") {
@@ -371,7 +371,7 @@ class EmployeeTuple extends \RandData\Tuple {
     
     private function getValueSex(&$value) {
         $this->datasets["name"] = "en_person:sex=" . $value;
-        $value = $value == RandData\Set\en_GB\Person::SEX_MALE ? "Male" : "Female";        
+        $value = $value == RandData\Set\en_GB\Person::SEX_MALE ? "Male" : "Female";
     }
     
     private function getValueHired($value) {
@@ -386,6 +386,12 @@ class EmployeeTuple extends \RandData\Tuple {
     private function getValueBirth($value) {
         $birthTs = date("U", strtotime($value));
         $nowTs = date("U");
+        
+        // Hired date must be later than birth date
+        // Let's we can hire somebody in the ages from 20 to 50
+        $hiredTsMin = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MIN, date("U") ])));
+        $hiredTsMax = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MAX, date("U") ])));
+        $this->datasets["hired"] = "date:min=" . $hiredTsMin . ";max=" . $hiredTsMax;
 
         // Let's some dummy score will be dependant on age
         if (self::LEVEL_1 < $nowTs - $birthTs) {
@@ -393,12 +399,6 @@ class EmployeeTuple extends \RandData\Tuple {
         } elseif (self::LEVEL_2 < $nowTs - $birthTs) {
             $this->datasets["score"] = "int:min=10;max=13";
         }
-        
-        // Hired date must be later than birth date
-        // Let's we can hire somebody in the ages from 20 to 50
-        $hiredTsMin = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MIN, date("U") ])));
-        $hiredTsMax = date("Y-m-d", date("U", min([ $birthTs + self::HIRED_AGE_MAX, date("U") ])));
-        $this->datasets["hired"] = "date:min=" . $hiredTsMin . ";max=" . $hiredTsMax;
     }
 }
 
@@ -431,6 +431,78 @@ class PersonTuple extends \RandData\Tuple
     }
 }
 ```
+
+### Data dependency. Nested datasets
+
+Another way to declare dependency is nested datasets
+
+```php
+class CarTuple extends \RandData\Tuple 
+{
+    public function getDataSets() {
+        return [
+            "mark" => "string_list:values=ford,bmw,audi,vw,skoda,toyota,volvo,mercedez,bently,saab",
+            "color" => "string_list:values=white,black,grey,blue,yellow,green,orange,red",
+            "year" => "integer:min=1950;max=2017"
+        ];
+    }
+}
+
+class PersonTuple extends \RandData\Tuple {
+
+    public function getDataSets() {
+        return [
+            "name" => "en_person",
+            "birth" => "date:min=1920-01-01;max=1999-12-31",
+            "login" => "string:char_list=abcdefghjklmnopqrstuvwxyz0123456789;length_min=2;length_max=8",
+            "car" => new CarTuple()
+        ];
+    }
+    
+    protected function getNullProbability() {
+        return [
+            "car" => 30
+        ];
+    }
+}
+
+class OrderTuple extends \RandData\Tuple {
+    protected $personList;
+    
+    function __construct($personList) {
+        parent::__construct();
+        $this->personList = $personList;
+    }
+    
+    public function getDataSets() {
+        return [
+            "num" => "complex:template=id{string:char_list=abcdef;length_min=2;length_max=2}/" . date("Ymd") . "/{integer:min=1000;max=9999}",
+            "delivery_address" => "en_address",
+            "price" => "integer:min=50;max=1000",
+            "person" => "value:value=person"
+        ];
+    }
+    
+    protected function getSetValueOrNull(RandData\Set $set, $fldName) {
+        if ($fldName == "person") {
+            return $this->personList[array_rand($this->personList)];
+        } 
+        
+        return $set->get();
+    }
+}
+
+$generator = new \RandData\Generator(new PersonTuple(), 3);
+$personList = $generator->run();
+$ot = new OrderTuple($personList);
+
+$generator2 = new \RandData\Generator($ot, 5);
+$orderList = $generator2->run();
+
+var_dump($generator2->run()); 
+echo PHP_EOL;
+```
+
 
 ### Filling forms
 
@@ -937,6 +1009,7 @@ No params
 ## TODO ##
 
 * (-) Subdata types
+* (-) City postcode index problem
 * (-) Demo site
 * (-) Code style, mess detector, code metrics
 * (-) CI 

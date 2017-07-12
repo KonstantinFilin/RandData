@@ -22,6 +22,8 @@ class String
                 $setObj = new \RandData\Set\Counter();
         } elseif (in_array($setInfo->getName(), [ "int", "integer" ])) {
             $setObj = new \RandData\Set\Integer;
+        } elseif ($setInfo->getName() == "complex") {
+            $setObj = new \RandData\Set\Complex();
         } elseif ($setInfo->getName() == "decimal") {
             $setObj = new \RandData\Set\Decimal();
         } elseif ($setInfo->getName() == "boolean") {
@@ -85,9 +87,10 @@ class String
         $name = "";
         $params = [];
         
-        if (strpos($string, ":") !== false) {
-            list($name, $paramsStr) = explode(":", $string, 2);
-            $params = $this->parseParamStr($paramsStr);
+        if (($pos = strpos($string, ":")) !== false) {
+            $name = substr($string, 0, $pos);
+            $paramsStr = substr($string, $pos+1);
+            $params = $name == "complex" ? $paramsStr : $this->parseParamStr($paramsStr);
         } else {
             $name = $string;
         }

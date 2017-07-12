@@ -27,11 +27,11 @@ abstract class Tuple
     public function get($cnt = 0)
     {
         $this->result = [];
-        $this->datasets = $this->getDataSets();
-        $fldNames = array_keys($this->datasets);
+        $datasets = $this->getDataSets();
+        $fldNames = array_keys($datasets);
         
         foreach ($fldNames as $fldName) {
-            $set = $this->datasets[$fldName];
+            $set = $datasets[$fldName];
             
             if (is_string($set)) {
                 $fabric = new \RandData\Fabric\DataSet\String();
@@ -40,12 +40,38 @@ abstract class Tuple
             
             if ($set instanceof Set\Counter) {
                 $this->result[$fldName] = $set->get($cnt);
+            } elseif ($set instanceof Tuple) {
+                $this->result[$fldName] = $this->getTupleValueOrNull($set, $fldName);
             } elseif ($set instanceof Set) {
-                $this->result[$fldName] = $this->getValue($set, $fldName);
+                $this->result[$fldName] = $this->getSetValueOrNull($set, $fldName);
             }
         }
 
         return $this->result;
+    }
+    
+    /**
+     * Returns entity attribute random subentity array
+     * @param \RandData\Tuple $tuple Subentity
+     * @param string $fldName Field name. If not setted, then it's index started from 1
+     * @return array Attrubute values. Can be null sometimes (see getNullProbability() method)
+     */
+    protected function getTupleValueOrNull(Tuple $tuple, $fldName)
+    {
+        return $this->isNull($fldName) ? null : $tuple->get();
+    }
+    
+    /**
+     * Checks if field value is null
+     * @param string $fldName Field name
+     * @return boolean True, if field value is null, false otherwise
+     */
+    protected function isNull($fldName)
+    {
+        $value = mt_rand(1, 100);
+        $fldProbability = $this->getValueNullProbability($fldName);
+
+        return $fldProbability > 0 && $value <= $fldProbability;
     }
     
     /**
@@ -54,16 +80,9 @@ abstract class Tuple
      * @param string $fldName Field name. If not setted, then it's index started from 1
      * @return string|null Attrubute value. Can be null sometimes (see getNullProbability() method)
      */
-    protected function getValue(Set $set, $fldName)
+    protected function getSetValueOrNull(Set $set, $fldName)
     {
-        $value = mt_rand(1, 100);
-        $fldProbability = $this->getValueNullProbability($fldName);
-        
-        if ($fldProbability > 0 && $value <= $fldProbability) {
-            return null;
-        }
-
-        return $set->get();
+        return $this->isNull($fldName) ? null : $set->get();
     }
     
     /**
@@ -73,6 +92,7 @@ abstract class Tuple
      */
     protected function getValueNullProbability($fldName)
     {
+        // $datasets = $this->getDataSets();
         $nullProbabilityList = $this->getNullProbability();
 
         return !empty($nullProbabilityList[$fldName])

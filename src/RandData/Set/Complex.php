@@ -45,8 +45,11 @@ class Complex extends \RandData\Set
      */
     public function init($params = [])
     {
-        if (!empty($params["template"])) {
+        if (is_string($params)) {
+            $this->template = $params;
+        } elseif (!empty($params["template"])) {
             $this->template = $params["template"];
-        }
+        } 
+//        var_dump($this->template); die;
     }
 }
