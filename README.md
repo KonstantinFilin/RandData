@@ -9,6 +9,7 @@ You can check [demo site](http://randdata.kfilin.com/) of the project.
     * [Generators. Creating csv](https://github.com/KonstantinFilin/RandData#generators-creating-csv)
     * [Generators. Filling database and more](https://github.com/KonstantinFilin/RandData#generators-filling-database-and-more)
     * [Data dependency](https://github.com/KonstantinFilin/RandData#data-dependency)
+    * [Data dependency. Nested datasets](https://github.com/KonstantinFilin/RandData#data-dependency-nested-datasets)
     * [Filling forms](https://github.com/KonstantinFilin/RandData#filling-forms)
 * [Main Objects](https://github.com/KonstantinFilin/RandData#main-objects) 
     * [RandData Fabric](https://github.com/KonstantinFilin/RandData#randdata-fabric)
