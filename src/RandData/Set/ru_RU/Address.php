@@ -16,7 +16,8 @@ class Address extends \RandData\Set
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         $obj1 = new Street();
         $ret = [
             $obj1->get(),
@@ -33,7 +34,8 @@ class Address extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = array()) {
+    public function init($params = array())
+    {
         if (!empty($params["show_flat"])) {
             $this->showFlat = $params["show_flat"];
         } else {

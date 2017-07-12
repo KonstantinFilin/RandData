@@ -9,7 +9,7 @@ class Counter extends \RandData\Set
 {
     /**
      * String with incremented value
-     * @var string 
+     * @var string
      */
     protected $template;
     
@@ -22,7 +22,8 @@ class Counter extends \RandData\Set
     /**
      * Class constructor
      */
-    function __construct() {
+    public function __construct()
+    {
         $this->start = 1;
         $this->template = "";
     }
@@ -31,7 +32,8 @@ class Counter extends \RandData\Set
      * Returns string with incremented value
      * @return string String with incremented value
      */
-    function getTemplate() {
+    public function getTemplate()
+    {
         return $this->template;
     }
 
@@ -39,14 +41,16 @@ class Counter extends \RandData\Set
      * Sets string with incremented value
      * @param string  $template String with incremented value
      */
-    function setTemplate($template) {
+    public function setTemplate($template)
+    {
         $this->template = (string) $template;
     }
     
     /**
      * @inherit
      */
-    public function get($cnt = 0) {
+    public function get($cnt = 0)
+    {
         $cnt += $this->start - 1;
         $tpl = $this->getTemplate();
 
@@ -57,7 +61,8 @@ class Counter extends \RandData\Set
      * Returns start increment value
      * @return integer Start increment value
      */
-    function getStart() {
+    public function getStart()
+    {
         return $this->start;
     }
 
@@ -65,7 +70,8 @@ class Counter extends \RandData\Set
      * Sets start increment value
      * @param integer Start increment value
      */
-    function setStart($start) {
+    public function setStart($start)
+    {
         $startClean = intval($start);
         $min = 1;
         $max = 1000000;
@@ -84,7 +90,8 @@ class Counter extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = array()) {
+    public function init($params = array())
+    {
         if (!empty($params["tpl"])) {
             $this->setTemplate($params["tpl"]);
         } elseif (!empty($params["template"])) {

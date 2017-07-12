@@ -2,9 +2,10 @@
 
 require "../init.php";
 
-class CarTuple extends \RandData\Tuple 
+class CarTuple extends \RandData\Tuple
 {
-    public function getDataSets() {
+    public function getDataSets()
+    {
         return [
             "mark" => "string_list:values=ford,bmw,audi,vw,skoda,toyota,volvo,mercedez,bently,saab",
             "color" => "string_list:values=white,black,grey,blue,yellow,green,orange,red",
@@ -13,9 +14,10 @@ class CarTuple extends \RandData\Tuple
     }
 }
 
-class PersonTuple2 extends \RandData\Tuple {
-
-    public function getDataSets() {
+class PersonTuple2 extends \RandData\Tuple
+{
+    public function getDataSets()
+    {
         return [
             "name" => "en_person",
             "birth" => "date:min=1920-01-01;max=1999-12-31",
@@ -24,22 +26,26 @@ class PersonTuple2 extends \RandData\Tuple {
         ];
     }
     
-    protected function getNullProbability() {
+    protected function getNullProbability()
+    {
         return [
             "car" => 30
         ];
     }
 }
 
-class OrderTuple extends \RandData\Tuple {
+class OrderTuple extends \RandData\Tuple
+{
     protected $personList;
     
-    function __construct($personList) {
+    public function __construct($personList)
+    {
         parent::__construct();
         $this->personList = $personList;
     }
     
-    public function getDataSets() {
+    public function getDataSets()
+    {
         return [
             "num" => "complex:template=id{string:char_list=abcdef;length_min=2;length_max=2}/" . date("Ymd") . "/{integer:min=1000;max=9999}",
             "delivery_address" => "en_address",
@@ -48,10 +54,11 @@ class OrderTuple extends \RandData\Tuple {
         ];
     }
     
-    protected function getSetValueOrNull(RandData\Set $set, $fldName) {
+    protected function getSetValueOrNull(RandData\Set $set, $fldName)
+    {
         if ($fldName == "person") {
             return $this->personList[array_rand($this->personList)];
-        } 
+        }
         
         return $set->get();
     }
@@ -64,5 +71,5 @@ $ot = new OrderTuple($personList);
 $generator2 = new \RandData\Generator($ot, 5);
 $orderList = $generator2->run();
 
-var_dump($generator2->run()); 
+var_dump($generator2->run());
 echo PHP_EOL;

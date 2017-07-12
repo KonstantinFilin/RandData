@@ -3,8 +3,8 @@
 namespace RandData;
 
 /**
- * Represents blank/form filling with random values. For example, 
- * input is a template "Person {name} is {age} years old" with fields "name" and "age" 
+ * Represents blank/form filling with random values. For example,
+ * input is a template "Person {name} is {age} years old" with fields "name" and "age"
  * and Tuple that describes datasets. Fields will be filled with random values
  * as described in Tuple object
  */
@@ -31,10 +31,11 @@ class BlankGenerator extends Generator
     /**
      * Class constructor
      * @param \RandData\Tuple $tuple Tuple that describes random datasets
-     * @param string $template Blank string with unmutes parts and fields for 
+     * @param string $template Blank string with unmutes parts and fields for
      * random values
      */
-    function __construct(Tuple $tuple, $template = "") {
+    public function __construct(Tuple $tuple, $template = "")
+    {
         parent::__construct($tuple);
         $this->template = (string) $template;
         $this->amount = 1;
@@ -44,7 +45,8 @@ class BlankGenerator extends Generator
      * Returns filled string
      * @return string String with filled random values
      */
-    public function run() {
+    public function run()
+    {
         $data = $this->tuple->get();
         $ret = $this->template;
         
@@ -60,7 +62,8 @@ class BlankGenerator extends Generator
      * Returns field start delimeter
      * @return string
      */
-    function getDelimStart() {
+    public function getDelimStart()
+    {
         return $this->delimStart;
     }
 
@@ -68,7 +71,8 @@ class BlankGenerator extends Generator
      * Returns field end delimeter
      * @return string
      */
-    function getDelimFinish() {
+    public function getDelimFinish()
+    {
         return $this->delimFinish;
     }
 
@@ -76,7 +80,8 @@ class BlankGenerator extends Generator
      * Returns string template
      * @return string
      */
-    function getTemplate() {
+    public function getTemplate()
+    {
         return $this->template;
     }
 
@@ -84,7 +89,8 @@ class BlankGenerator extends Generator
      * Sets start delimeter
      * @param string $delimStart
      */
-    function setDelimStart($delimStart) {
+    public function setDelimStart($delimStart)
+    {
         $this->delimStart = (string) $delimStart;
     }
 
@@ -92,7 +98,8 @@ class BlankGenerator extends Generator
      * Sets end delimeter
      * @param string $delimFinish
      */
-    function setDelimFinish($delimFinish) {
+    public function setDelimFinish($delimFinish)
+    {
         $this->delimFinish = (string) $delimFinish;
     }
     

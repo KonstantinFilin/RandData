@@ -43,7 +43,8 @@ class Decimal extends \RandData\Set\Integer
      * @param integer $min Minimum value
      * @param integer $max Maximum value
      */
-    function __construct($min = 0, $max = 0) {
+    public function __construct($min = 0, $max = 0)
+    {
         $minClean = \RandData\Checker::int($min, self::MIN_MIN, self::MIN_MAX, "min");
         $maxClean = \RandData\Checker::int($max, self::MAX_MIN, self::MAX_MAX, "max");
         parent::__construct($minClean, $maxClean);
@@ -54,7 +55,8 @@ class Decimal extends \RandData\Set\Integer
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         if ($this->minFractionDigits > $this->maxFractionDigits) {
             $min = $this->minFractionDigits;
             $this->minFractionDigits = $this->maxFractionDigits;
@@ -68,14 +70,15 @@ class Decimal extends \RandData\Set\Integer
             $fraction .= mt_rand($i == $times ? 1 : 0, 9);
         }
         
-        return floatval(parent::get() . "." . ( $fraction ? $fraction : 0 ));
+        return floatval(parent::get() . "." . ($fraction ? $fraction : 0));
     }
 
     /**
      * Returns minimum fraction digits
      * @return integer Minimum fraction digits
      */
-    function getMinFractionDigits() {
+    public function getMinFractionDigits()
+    {
         return $this->minFractionDigits;
     }
 
@@ -83,19 +86,21 @@ class Decimal extends \RandData\Set\Integer
      * Returns maximum fraction digits
      * @return integer Maximum fraction digits
      */
-    function getMaxFractionDigits() {
+    public function getMaxFractionDigits()
+    {
         return $this->maxFractionDigits;
     }
 
     /**
-     * Sets minimum fraction digits 
+     * Sets minimum fraction digits
      * @param integer $minFractionDigits Minimum fraction digits
      */
-    function setMinFractionDigits($minFractionDigits) {
+    public function setMinFractionDigits($minFractionDigits)
+    {
         $this->minFractionDigits = \RandData\Checker::int(
-            $minFractionDigits, 
-            self::FRACTION_MIN, 
-            self::FRACTION_MAX, 
+            $minFractionDigits,
+            self::FRACTION_MIN,
+            self::FRACTION_MAX,
             "minFractionDigits"
         );
     }
@@ -104,11 +109,12 @@ class Decimal extends \RandData\Set\Integer
      * Sets maximum fraction digits
      * @param integer $maxFractionDigits Maximum fraction digits
      */
-    function setMaxFractionDigits($maxFractionDigits) {
+    public function setMaxFractionDigits($maxFractionDigits)
+    {
         $this->maxFractionDigits = \RandData\Checker::int(
-            $maxFractionDigits, 
-            self::FRACTION_MIN, 
-            self::FRACTION_MAX, 
+            $maxFractionDigits,
+            self::FRACTION_MIN,
+            self::FRACTION_MAX,
             "maxFractionDigits"
         );
     }
@@ -116,7 +122,8 @@ class Decimal extends \RandData\Set\Integer
     /**
      * @inherit
      */
-    public function init($params = []) {
+    public function init($params = [])
+    {
         parent::init($params);
         
         if (!empty($params["minFractionDigits"])) {

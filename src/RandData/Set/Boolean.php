@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Boolean random value
  */
-class Boolean extends \RandData\Set 
+class Boolean extends \RandData\Set
 {
     /**
      * How to show true
@@ -24,7 +24,8 @@ class Boolean extends \RandData\Set
      * @param string $valTrue How to show true
      * @param string $valFalse How to show false
      */
-    function __construct($valTrue = "Y", $valFalse = "N") {
+    public function __construct($valTrue = "Y", $valFalse = "N")
+    {
         $this->valTrue = $valTrue;
         $this->valFalse = $valFalse;
     }
@@ -32,7 +33,7 @@ class Boolean extends \RandData\Set
     /**
      * @inherit
      */
-    public function get() 
+    public function get()
     {
         $num = mt_rand(1, 100);
         return $num > 50 ? $this->valTrue : $this->valFalse;
@@ -42,7 +43,8 @@ class Boolean extends \RandData\Set
      * Returns true value representation
      * @return string True value representation
      */
-    function getValTrue() {
+    public function getValTrue()
+    {
         return $this->valTrue;
     }
 
@@ -50,7 +52,8 @@ class Boolean extends \RandData\Set
      * Returns false value representation
      * @return string False value representation
      */
-    function getValFalse() {
+    public function getValFalse()
+    {
         return $this->valFalse;
     }
 
@@ -58,7 +61,8 @@ class Boolean extends \RandData\Set
      * Sets true value representation
      * @param string $valTrue True value representation
      */
-    function setValTrue($valTrue) {
+    public function setValTrue($valTrue)
+    {
         $this->valTrue = $valTrue;
     }
 
@@ -66,14 +70,15 @@ class Boolean extends \RandData\Set
      * Sets false value representation
      * @param string $valFalse False value representation
      */
-    function setValFalse($valFalse) {
+    public function setValFalse($valFalse)
+    {
         $this->valFalse = $valFalse;
     }
 
     /**
      * @inherit
      */
-    public function init($params = []) 
+    public function init($params = [])
     {
         if (!empty($params["valTrue"])) {
             $this->setValTrue($params["valTrue"]);

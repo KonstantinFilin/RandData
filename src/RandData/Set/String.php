@@ -41,7 +41,7 @@ class String extends \RandData\Set
      * @param integer $lengthMin Minimum string length
      * @param integer $lengthMax Maximum string length
      */
-    function __construct($lengthMin = 1, $lengthMax = 10) 
+    public function __construct($lengthMin = 1, $lengthMax = 10)
     {
         $this->setLengthMin($lengthMin);
         $this->setLengthMax($lengthMax);
@@ -52,7 +52,8 @@ class String extends \RandData\Set
      * Returns maximum string length
      * @return integer Maximum string length
      */
-    function getLengthMax() {
+    public function getLengthMax()
+    {
         return $this->lengthMax;
     }
 
@@ -60,7 +61,8 @@ class String extends \RandData\Set
      * Returns available chars
      * @return string Available chars
      */
-    function getChars() {
+    public function getChars()
+    {
         return $this->chars;
     }
 
@@ -68,16 +70,16 @@ class String extends \RandData\Set
      * Sets maximum string length
      * @param integer $length Maximum string length
      */
-    function setLengthMax($length) {
-        
+    public function setLengthMax($length)
+    {
         if (!$length) {
             $length = self::LENGTH_MAX_MAX;
         }
         
         $this->lengthMax = \RandData\Checker::int(
-            $length, 
-            self::LENGTH_MAX_MIN, 
-            self::LENGTH_MAX_MAX, 
+            $length,
+            self::LENGTH_MAX_MIN,
+            self::LENGTH_MAX_MAX,
             "lengthMax"
         );
     }
@@ -86,7 +88,8 @@ class String extends \RandData\Set
      * Returns minimum string length
      * @return string Minimum string length
      */
-    function getLengthMin() {
+    public function getLengthMin()
+    {
         return $this->lengthMin;
     }
 
@@ -94,11 +97,12 @@ class String extends \RandData\Set
      * Sets minimum string length
      * @param integer $lengthMin Minimum string length
      */
-    function setLengthMin($lengthMin) {
+    public function setLengthMin($lengthMin)
+    {
         $this->lengthMin = \RandData\Checker::int(
-            $lengthMin, 
-            self::LENGTH_MIN_MIN, 
-            self::LENGTH_MIN_MAX, 
+            $lengthMin,
+            self::LENGTH_MIN_MIN,
+            self::LENGTH_MIN_MAX,
             "lengthMin"
         );
     }
@@ -107,7 +111,8 @@ class String extends \RandData\Set
      * Add chars to the available char list
      * @param string $chars Addition to available char list
      */
-    function addChars($chars) {
+    public function addChars($chars)
+    {
         $this->chars .= (string) $chars;
     }
     
@@ -115,14 +120,15 @@ class String extends \RandData\Set
      * Sets available char list
      * @param string $chars Available char list
      */
-    function setChars($chars) {
+    public function setChars($chars)
+    {
         $this->chars = (string) $chars;
     }
 
     /**
      * @inherit
      */
-    public function get() 
+    public function get()
     {
         $ret = "";
         $variant = $this->getChars();
@@ -166,7 +172,7 @@ class String extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = []) 
+    public function init($params = [])
     {
         if (!empty($params["length_min"])) {
             $this->setLengthMin($params["length_min"]);

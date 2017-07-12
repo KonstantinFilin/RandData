@@ -9,11 +9,10 @@ function printBlock($desc, RandData\Set $dataset)
     print str_repeat("=", 100) . PHP_EOL;
 
     for ($i = 1; $i <= 10; $i++) {
-        
         printf("%02.0u:" . PHP_EOL, $i);
         echo str_repeat("-", 100) . PHP_EOL;
         printf(
-            "%s" . PHP_EOL, 
+            "%s" . PHP_EOL,
             $dataset->get()
         );
         echo str_repeat("-", 100) . PHP_EOL;
@@ -28,8 +27,8 @@ function printData($desc, RandData\Set $dataset)
 
     for ($i = 1; $i <= 10; $i++) {
         printf(
-            "%02u: %s" . PHP_EOL, 
-            $i, 
+            "%02u: %s" . PHP_EOL,
+            $i,
             $dataset->get()
         );
     }
@@ -37,7 +36,8 @@ function printData($desc, RandData\Set $dataset)
 
 class PersonTuple extends \RandData\Tuple
 {
-    public function getDataSets() {
+    public function getDataSets()
+    {
         return [
             "Id" => "counter",
             "Login" => "counter:template=user_#;start=100",
@@ -49,10 +49,11 @@ class PersonTuple extends \RandData\Tuple
         ];
     }
     
-    protected function getNullProbability() {
+    protected function getNullProbability()
+    {
         return [
             "Phone" => 20, // null approximately 20% (every fifth)
-            "Sum" => 50, // null approximately 50% (every second) 
+            "Sum" => 50, // null approximately 50% (every second)
         ];
     }
 }

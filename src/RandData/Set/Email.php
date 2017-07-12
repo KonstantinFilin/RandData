@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Random email generator
  */
-class Email extends \RandData\Set 
+class Email extends \RandData\Set
 {
     /**
      * Available domain list for emails
@@ -16,7 +16,7 @@ class Email extends \RandData\Set
     /**
      * Class constructor
      */
-    function __construct() 
+    public function __construct()
     {
         $this->domainList = [];
     }
@@ -25,7 +25,8 @@ class Email extends \RandData\Set
      * Returns available domain list for email
      * @return array Available domain list for email
      */
-    function getDomainList() {
+    public function getDomainList()
+    {
         return $this->domainList;
     }
 
@@ -33,8 +34,9 @@ class Email extends \RandData\Set
      * Sets available domain list for email
      * @param array $domainList Available domain list for email
      */
-    function setDomainList($domainList) {
-        $this->domainList = is_array($domainList) 
+    public function setDomainList($domainList)
+    {
+        $this->domainList = is_array($domainList)
             ? $domainList
             : explode(",", (string) $domainList);
     }
@@ -42,7 +44,7 @@ class Email extends \RandData\Set
     /**
      * @inherit
      */
-    public function get() 
+    public function get()
     {
         $domainList = $this->getDomainList();
         $domain = "";
@@ -67,7 +69,7 @@ class Email extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = []) 
+    public function init($params = [])
     {
         if (!empty($params["domain_list"])) {
             $this->setDomainList($params["domain_list"]);

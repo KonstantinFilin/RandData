@@ -16,14 +16,16 @@ class Postcode extends \RandData\Set
     /**
      * Class constructor
      */
-    function __construct() {
+    public function __construct()
+    {
         $this->cityCodeList = $this->getRussiaCityCodeList();
     }
     
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         $cityCodeList = $this->getCityCodeList();
         $part1 = $cityCodeList[array_rand($cityCodeList)];
         $part2 = mt_rand(0, 999);
@@ -33,7 +35,8 @@ class Postcode extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = array()) {
+    public function init($params = array())
+    {
         if (!empty($params["city_code_list"])) {
             $this->cityCodeList = $params["city_code_list"];
         }
@@ -43,7 +46,8 @@ class Postcode extends \RandData\Set
      * Returns available city codes
      * @return array Available city codes
      */
-    function getCityCodeList() {
+    public function getCityCodeList()
+    {
         return $this->cityCodeList;
     }
 

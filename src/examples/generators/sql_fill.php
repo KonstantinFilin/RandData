@@ -12,7 +12,7 @@ try {
     $dbh = new PDO($dsn, $dbuser, $dbpass);
     $rows = $dbh->query("show TABLES", PDO::FETCH_COLUMN, 0);
 
-    foreach ($rows as $tblName) {        
+    foreach ($rows as $tblName) {
         $rowCountSql = "SELECT count(*) FROM `" . $tblName . "`";
         $rowCountRes = $dbh->query($rowCountSql, PDO::FETCH_COLUMN, 0);
         $rowCount = $rowCountRes->fetch();
@@ -31,7 +31,6 @@ try {
         $sqlIns = $formatter->build();
         $dbh->exec($sqlIns);
     }
-    
 } catch (PDOException $e) {
     echo 'Connection failed: ' . $e->getMessage();
 }

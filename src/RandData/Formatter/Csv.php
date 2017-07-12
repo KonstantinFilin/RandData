@@ -42,7 +42,8 @@ class Csv extends \RandData\Formatter
      * @param \RandData\Generator $generator Generator for random data
      * @param string $columnDelim How to delim columns
      */
-    function __construct(\RandData\Generator $generator, $columnDelim = ";") {
+    public function __construct(\RandData\Generator $generator, $columnDelim = ";")
+    {
         parent::__construct($generator);
         
         $this->columnDelim = $columnDelim;
@@ -55,7 +56,8 @@ class Csv extends \RandData\Formatter
      * Whether to show counter
      * @param boolean $showCounter True - show, false - hide
      */
-    function setShowCounter($showCounter) {
+    public function setShowCounter($showCounter)
+    {
         $this->showCounter = boolval($showCounter);
     }
 
@@ -63,7 +65,8 @@ class Csv extends \RandData\Formatter
      * Whether to show headers
      * @param boolean $showHeaders True - show, false - hide
      */
-    function setShowHeaders($showHeaders) {
+    public function setShowHeaders($showHeaders)
+    {
         $this->showHeaders = boolval($showHeaders);
     }
 
@@ -71,7 +74,8 @@ class Csv extends \RandData\Formatter
      * Sets delimeters between objects
      * @param string $lineDelim Delimeters between objects
      */
-    function setLineDelim($lineDelim) {
+    public function setLineDelim($lineDelim)
+    {
         $this->lineDelim = (string) $lineDelim;
     }
         
@@ -79,7 +83,8 @@ class Csv extends \RandData\Formatter
      * Sets column delimeter
      * @param string $columnDelim Column delimeter
      */
-    function setColumnDelim($columnDelim) {
+    public function setColumnDelim($columnDelim)
+    {
         $this->columnDelim = (string) $columnDelim;
     }
 
@@ -92,7 +97,7 @@ class Csv extends \RandData\Formatter
         $headers = $this->generator->getTuple()->getHeaders();
         
         return $headers
-            ? ($this->showCounter ? "#" . $this->columnDelim : "") . implode($this->columnDelim, $headers) 
+            ? ($this->showCounter ? "#" . $this->columnDelim : "") . implode($this->columnDelim, $headers)
             : "";
     }
 
@@ -107,7 +112,7 @@ class Csv extends \RandData\Formatter
             }
         }
 
-        return ($this->showCounter ? $counter . $this->columnDelim : "" )
+        return ($this->showCounter ? $counter . $this->columnDelim : "")
             . implode($this->columnDelim, $data);
     }
     

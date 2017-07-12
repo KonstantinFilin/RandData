@@ -18,7 +18,8 @@ class Sql extends \RandData\Formatter
      * @param \RandData\Generator $generator Random data generator
      * @param string $tableName Database table name
      */
-    function __construct(\RandData\Generator $generator, $tableName) {
+    public function __construct(\RandData\Generator $generator, $tableName)
+    {
         parent::__construct($generator);
         
         $this->tableName = (string) $tableName;

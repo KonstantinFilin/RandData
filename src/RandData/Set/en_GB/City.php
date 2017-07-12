@@ -5,7 +5,7 @@ namespace RandData\Set\en_GB;
 /**
  * UK city dataset
  */
-class City extends \RandData\Set 
+class City extends \RandData\Set
 {
     const VALIDATE_PATTERN = "[\w\d\s\(\)\'-]+";
     
@@ -19,22 +19,25 @@ class City extends \RandData\Set
      * Class constructor
      * @param string $postcode Postcode to get city from
      */
-    function __construct($postcode = "") {
+    public function __construct($postcode = "")
+    {
         $this->setPostcode($postcode);
     }
 
     /**
      * Sets the postcode of the city
-     * @param type $postcode The postcode of the city 
+     * @param type $postcode The postcode of the city
      */
-    function setPostcode($postcode) {
+    public function setPostcode($postcode)
+    {
         $this->postcode = $postcode;
     }
     
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         $cityListByPostcode = $this->getCityList();
         $cityListStr = "";
         
@@ -54,7 +57,8 @@ class City extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = array()) {
+    public function init($params = array())
+    {
         if (!empty($params["postcode"])) {
             $this->setPostcode($params["postcode"]);
         }

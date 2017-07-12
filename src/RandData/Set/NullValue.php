@@ -5,18 +5,21 @@ namespace RandData\Set;
 /**
  * Null value generator
  */
-class NullValue extends \RandData\Set {
+class NullValue extends \RandData\Set
+{
 
     /**
      * @inheritdoc
-     */    
-    public function init($params = []) {
+     */
+    public function init($params = [])
+    {
     }
     
     /**
      * @inheritdoc
-     */    
-    public function get() {
+     */
+    public function get()
+    {
         return null;
     }
 }

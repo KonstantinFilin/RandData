@@ -21,7 +21,6 @@ class Street extends \RandData\Set
      */
     public function init($params = [])
     {
-        
     }
 
     /**

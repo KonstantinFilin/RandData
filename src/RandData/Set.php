@@ -5,15 +5,15 @@ namespace RandData;
 /**
  * Random DataSet
  */
-abstract class Set 
+abstract class Set
 {
     /**
      * Returns random data
      */
-    abstract function get();
+    abstract public function get();
     
     /**
      * Initializes DataSet with params
      */
-    abstract function init($params = []);
+    abstract public function init($params = []);
 }

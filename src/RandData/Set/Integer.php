@@ -52,7 +52,7 @@ class Integer extends \RandData\Set
     }
     
     /**
-     * Sets minimum range value. 
+     * Sets minimum range value.
      * @param integer $min Minimum range value. Default is 0
      */
     public function setMin($min = 0)
@@ -60,7 +60,7 @@ class Integer extends \RandData\Set
         $this->min = \RandData\Checker::int($min, self::MIN_MIN, self::MIN_MAX, "min");
     }
     /**
-     * Sets maximum range value. 
+     * Sets maximum range value.
      * @param integer $max Maximum range value. Default is getrandmax()
      */
     public function setMax($max = 0)
@@ -80,12 +80,13 @@ class Integer extends \RandData\Set
         }
 
         return mt_rand($this->min, $this->max);
-    }    
+    }
 
     /**
      * @inheritdoc
-     */    
-    public function init($params = []) {
+     */
+    public function init($params = [])
+    {
         if (!empty($params["min"])) {
             $this->setMin(intval($params["min"]));
         }

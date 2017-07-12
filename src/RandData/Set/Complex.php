@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Complex dataset
  */
-class Complex extends \RandData\Set 
+class Complex extends \RandData\Set
 {
     /**
      * Template string
@@ -16,14 +16,16 @@ class Complex extends \RandData\Set
     /**
      * Class constructor
      */
-    function __construct($template = "") {
+    public function __construct($template = "")
+    {
         $this->template = (string) $template;
     }
 
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         $matches = [];
         $ret = $this->template;
         $fabric = new \RandData\Fabric\DataSet\String();
@@ -49,7 +51,7 @@ class Complex extends \RandData\Set
             $this->template = $params;
         } elseif (!empty($params["template"])) {
             $this->template = $params["template"];
-        } 
+        }
 //        var_dump($this->template); die;
     }
 }

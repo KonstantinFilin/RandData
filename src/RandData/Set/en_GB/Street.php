@@ -5,14 +5,15 @@ namespace RandData\Set\en_GB;
 /**
  * UK street dataset
  */
-class Street extends \RandData\Set 
+class Street extends \RandData\Set
 {
     const VALIDATE_PATTERN = "[\w\s'’\.]+";
     
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         $streetList = $this->getStreetList();
         return $streetList[array_rand($streetList)];
     }
@@ -20,8 +21,8 @@ class Street extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = []) {
-        
+    public function init($params = [])
+    {
     }
     
     /**

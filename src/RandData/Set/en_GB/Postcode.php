@@ -40,8 +40,8 @@ class Postcode extends \RandData\Set
     }
     
     /**
-     * Returns postcode district list 
-     * @return array Postcode district list 
+     * Returns postcode district list
+     * @return array Postcode district list
      */
     protected function getPostcodeDistrictList()
     {
@@ -364,7 +364,7 @@ class Postcode extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = []) {
-        
+    public function init($params = [])
+    {
     }
 }

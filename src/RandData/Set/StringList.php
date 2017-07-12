@@ -23,7 +23,8 @@ class StringList extends \RandData\Set
      * Class constructor
      * @param array $values Available values
      */
-    function __construct($values = [ "abc", "def", "ghi", "klm", "nop" ]) {
+    public function __construct($values = [ "abc", "def", "ghi", "klm", "nop" ])
+    {
         $this->setValues($values);
     }
     
@@ -31,7 +32,8 @@ class StringList extends \RandData\Set
      * Returns value by its possibility
      * @return string Value from the list
      */
-    public function getPossibility() {
+    public function getPossibility()
+    {
         $flipped = array_flip($this->possibility);
         ksort($flipped);
         $randVal = rand(1, 100);
@@ -51,12 +53,13 @@ class StringList extends \RandData\Set
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         if (!$this->values) {
             throw new \InvalidArgumentException("Empty string list");
-        }        
+        }
         
-        if ($this->possibility 
+        if ($this->possibility
             && array_keys($this->possibility) == array_keys($this->values)
             && array_sum($this->possibility) == 100
         ) {
@@ -71,7 +74,8 @@ class StringList extends \RandData\Set
      * Returns available values
      * @return array Available values
      */
-    function getValues() {
+    public function getValues()
+    {
         return $this->values;
     }
 
@@ -79,23 +83,26 @@ class StringList extends \RandData\Set
      * Sets available values
      * @param array $values Available values
      */
-    function setValues($values) {
+    public function setValues($values)
+    {
         $this->values = is_array($values) ? $values : explode(",", (string) $values) ;
     }
 
     /**
      * Sets available values possibility
-     * @param array $possibility Values possibility in format Field => possibility. 
+     * @param array $possibility Values possibility in format Field => possibility.
      * Sum of all possibility must be 100 equal
      */
-    function setPossibility($possibility) {
+    public function setPossibility($possibility)
+    {
         $this->possibility = $possibility;
     }
         
     /**
      * @inherit
      */
-    public function init($params = []) {
+    public function init($params = [])
+    {
         if (!empty($params["values"])) {
             $this->setValues($params["values"]);
         }

@@ -11,5 +11,3 @@ printData("Other names", $dataSetInteger2);
 
 $dataSetInteger3 = $fabric->create("boolean:valTrue=true;valFalse=false");
 printData("Other names 2", $dataSetInteger3);
-
-

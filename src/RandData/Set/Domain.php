@@ -20,21 +20,22 @@ class Domain extends \RandData\Set
     protected $chars;
     
     /**
-     * Available chars for first and last position in domain 
+     * Available chars for first and last position in domain
      * @var string
      */
     protected $charsEdge;
     
     /**
      * Whether to show www. prefix
-     * @var type 
+     * @var type
      */
     protected $skipWww;
 
     /**
      * Class constructor
      */
-    function __construct() {
+    public function __construct()
+    {
         $this->skipWww = false;
         $this->setTldList("com,edu,org,net");
         $this->setChars(String::CHARS_LAT_L . String::CHARS_DIGITS . "-");
@@ -42,10 +43,11 @@ class Domain extends \RandData\Set
     }
 
     /**
-     * Returns available top level domains list 
+     * Returns available top level domains list
      * @return array Top level domains list
      */
-    function getTldList() {
+    public function getTldList()
+    {
         return $this->tldList;
     }
 
@@ -53,7 +55,8 @@ class Domain extends \RandData\Set
      * Returns available chars for the domain
      * @return string Available chars for the domain
      */
-    function getChars() {
+    public function getChars()
+    {
         return $this->chars;
     }
     
@@ -61,15 +64,17 @@ class Domain extends \RandData\Set
      * Returns available chars for first and last position in the domain
      * @return type
      */
-    function getCharsEdge() {
+    public function getCharsEdge()
+    {
         return $this->charsEdge;
     }
     
     /**
      * Sets available top level domain list
      * @param array $tldList Available top level domain list
-     */    
-    function setTldList($tldList) {
+     */
+    public function setTldList($tldList)
+    {
         if (!is_array($tldList) && !is_string($tldList)) {
             throw new \InvalidArgumentException("Tld list must be array or string");
         }
@@ -78,8 +83,8 @@ class Domain extends \RandData\Set
             throw new \InvalidArgumentException("Empty tld list");
         }
         
-        $this->tldList = is_array($tldList) 
-            ? $tldList 
+        $this->tldList = is_array($tldList)
+            ? $tldList
             : explode(",", (string) $tldList);
     }
 
@@ -87,7 +92,8 @@ class Domain extends \RandData\Set
      * Sets available chars for domain name
      * @param string $chars Available chars for domain name
      */
-    function setChars($chars) {
+    public function setChars($chars)
+    {
         $this->chars = (string) $chars;
     }
     
@@ -103,30 +109,31 @@ class Domain extends \RandData\Set
      * Sets available chars for first and last position of domain
      * @param type $charsFirstAndLast
      */
-    function setCharsEdge($charsFirstAndLast) {
+    public function setCharsEdge($charsFirstAndLast)
+    {
         $this->charsEdge = (string) $charsFirstAndLast;
     }
 
     /**
      * @inherit
      */
-    public function get() 
+    public function get()
     {
         $obj1 = new String(1, 1);
         $obj1->setChars($this->getCharsEdge());
         $obj2 = new String(1, 13);
         $obj2->setChars($this->getChars());
-        $obj3 = new StringList(is_array($this->getTldList()) && $this->getTldList() 
-            ? $this->getTldList() 
+        $obj3 = new StringList(is_array($this->getTldList()) && $this->getTldList()
+            ? $this->getTldList()
             : explode(",", $this->getTldList()));
         
-        return (!$this->skipWww ? "www." : "" ) . $obj1->get() . $obj2->get() . $obj1->get() . "." . $obj3->get();
+        return (!$this->skipWww ? "www." : "") . $obj1->get() . $obj2->get() . $obj1->get() . "." . $obj3->get();
     }
 
     /**
      * @inherit
      */
-    public function init($params = []) 
+    public function init($params = [])
     {
         if (!empty($params["tld_list"])) {
             $this->setTldList($params["tld_list"]);

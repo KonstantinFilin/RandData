@@ -4,7 +4,7 @@ require "../init.php";
 
 class BlankTuple extends \RandData\Tuple
 {
-    public function getDataSets() 
+    public function getDataSets()
     {
         return [
             "name" => "string_list:values=John,Paul,George,Ringo",
@@ -13,7 +13,8 @@ class BlankTuple extends \RandData\Tuple
         ];
     }
     
-    protected function getValue(\RandData\Set $set, $fldName) {
+    protected function getValue(\RandData\Set $set, $fldName)
+    {
         $birthDtList = [
             "John" => "1940-10-09",
             "Paul" => "1942-06-18",
@@ -21,10 +22,10 @@ class BlankTuple extends \RandData\Tuple
             "Ringo" => "1940-07-07"
         ];
 
-        if ($fldName == "age") {            
+        if ($fldName == "age") {
             $name = $this->result["name"];
             $dt = new \DateTime($this->result["dt"]);
-            $birth = !empty($birthDtList[$name]) 
+            $birth = !empty($birthDtList[$name])
                 ? new \Datetime($birthDtList[$name])
                 : null;
             
@@ -38,11 +39,9 @@ class BlankTuple extends \RandData\Tuple
         
         return $set->get();
     }
-
 }
 
 $generator = new RandData\BlankGenerator(new BlankTuple);
 $tpl = "Hello, I'm {name}, my age {age} and today is {dt}. {name} at {dt}";
 $generator->init($tpl);
 echo $generator->run() . PHP_EOL;
-

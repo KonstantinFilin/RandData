@@ -5,11 +5,11 @@ namespace RandData\Set;
 /**
  * Date random dataset
  */
-class Date extends \RandData\Set 
+class Date extends \RandData\Set
 {
     /**
      * Minimum date
-     * @var string 
+     * @var string
      */
     protected $min;
     
@@ -30,7 +30,8 @@ class Date extends \RandData\Set
      * @param string $min Minimum date in format Y-m-d
      * @param string $max Maximum date in format Y-m-d
      */
-    function __construct($min="", $max="") {
+    public function __construct($min="", $max="")
+    {
         $this->setMin($min);
         $this->setMax($max);
         $this->format = "Y-m-d";
@@ -40,7 +41,8 @@ class Date extends \RandData\Set
      * Returns minimum date
      * @return string Minimum date
      */
-    function getMin() {
+    public function getMin()
+    {
         return $this->min;
     }
 
@@ -48,7 +50,8 @@ class Date extends \RandData\Set
      * Returns maximum date
      * @return string maximum date
      */
-    function getMax() {
+    public function getMax()
+    {
         return $this->max;
     }
 
@@ -56,7 +59,8 @@ class Date extends \RandData\Set
      * Sets minimum date
      * @param string $min Minimum date in format Y-m-d
      */
-    function setMin($min) {
+    public function setMin($min)
+    {
         $dt =  new \DateTime($min);
         
         if (!$min || !$dt) {
@@ -71,7 +75,8 @@ class Date extends \RandData\Set
      * Sets maximum date
      * @param string $max Maximum date in format Y-m-d
      */
-    function setMax($max) {
+    public function setMax($max)
+    {
         $dt =  new \DateTime($max);
         
         if (!$max || !$dt) {
@@ -85,7 +90,8 @@ class Date extends \RandData\Set
      * Returns output date format
      * @return string
      */
-    function getFormat() {
+    public function getFormat()
+    {
         return $this->format;
     }
 
@@ -93,14 +99,16 @@ class Date extends \RandData\Set
      * Sets output date format
      * @param string $format Output date format
      */
-    function setFormat($format) {
+    public function setFormat($format)
+    {
         $this->format = $format;
     }
 
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         if ($this->min > $this->max) {
             $m = $this->min;
             $this->min = $this->max;
@@ -114,7 +122,8 @@ class Date extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = []) {
+    public function init($params = [])
+    {
         if (!empty($params["min"])) {
             $this->setMin($params["min"]);
         }

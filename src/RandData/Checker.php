@@ -5,7 +5,7 @@ namespace RandData;
 /**
  * Helper to check and clean dataset values
  */
-class Checker 
+class Checker
 {
     /**
      * Check time value
@@ -23,7 +23,7 @@ class Checker
             $mes = sprintf(
                 "Wrong time value [%s] in the attribute [%s]",
                 (string) $value2,
-                (string) $attribute 
+                (string) $attribute
             );
             throw new \InvalidArgumentException($mes);
         }

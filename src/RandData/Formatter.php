@@ -5,7 +5,7 @@ namespace RandData;
 /**
  * Random data represantation
  */
-class Formatter 
+class Formatter
 {
     /**
      *
@@ -17,7 +17,8 @@ class Formatter
      * Class constructor
      * @param \RandData\Generator $generator Random data generator
      */
-    function __construct(Generator $generator) {
+    public function __construct(Generator $generator)
+    {
         $this->generator = $generator;
     }
 
@@ -53,7 +54,8 @@ class Formatter
      * How to show null values
      * @return mixed Value to show null value ("NA", "-", "NULL", "...", and so on)
      */
-    protected function getNullAs() {
+    protected function getNullAs()
+    {
         return null;
     }
 }

@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Random datetime value
  */
-class Datetime extends \RandData\Set 
+class Datetime extends \RandData\Set
 {
     /**
      * Date part RandDataSet
@@ -22,7 +22,8 @@ class Datetime extends \RandData\Set
     /**
      * Class constructor
      */
-    function __construct() {
+    public function __construct()
+    {
         $this->d = new Date();
         $this->t = new Time();
         $this->t->setSeconds(true);
@@ -30,9 +31,10 @@ class Datetime extends \RandData\Set
     
     /**
      * Returns date part dataset
-     * @return \RandData\Set\Date 
+     * @return \RandData\Set\Date
      */
-    function getD() {
+    public function getD()
+    {
         return $this->d;
     }
 
@@ -40,7 +42,8 @@ class Datetime extends \RandData\Set
      * Returns time part dataset
      * @return \RandData\Set\Time
      */
-    function getT() {
+    public function getT()
+    {
         return $this->t;
     }
 
@@ -48,7 +51,8 @@ class Datetime extends \RandData\Set
      * Sets date part dataset
      * @param \RandData\Set\Date $d
      */
-    function setD(Date $d) {
+    public function setD(Date $d)
+    {
         $this->d = $d;
     }
 
@@ -56,7 +60,8 @@ class Datetime extends \RandData\Set
      * Sets time part dataset
      * @param \RandData\Set\Time $t
      */
-    function setT(Time $t) {
+    public function setT(Time $t)
+    {
         $this->t = $t;
     }
 
@@ -72,14 +77,16 @@ class Datetime extends \RandData\Set
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         return $this->getD()->get() . " " . $this->getT()->get();
     }
 
     /**
      * @inherit
      */
-    public function init($params = []) {
+    public function init($params = [])
+    {
         if (!empty($params["time_min"])) {
             $this->getT()->setMin($params["time_min"]);
         }

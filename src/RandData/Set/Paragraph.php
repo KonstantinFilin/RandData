@@ -29,7 +29,8 @@ class Paragraph extends \RandData\Set\String
      * @param integer $wordsMin Minimum words amount
      * @param integer $wordsMax Maximum words amount
      */
-    function __construct($wordsMin = 3, $wordsMax = 100) {
+    public function __construct($wordsMin = 3, $wordsMax = 100)
+    {
         parent::__construct();
         $this->setWordsMin($wordsMin);
         $this->setWordsMax($wordsMax);
@@ -40,7 +41,8 @@ class Paragraph extends \RandData\Set\String
      * Returns minimum words amount
      * @return integer Minimum words amount
      */
-    function getWordsMin() {
+    public function getWordsMin()
+    {
         return $this->wordsMin;
     }
 
@@ -48,7 +50,8 @@ class Paragraph extends \RandData\Set\String
      * Returns maximum words amount
      * @return integer Maximum words amount
      */
-    function getWordsMax() {
+    public function getWordsMax()
+    {
         return $this->wordsMax;
     }
 
@@ -56,11 +59,12 @@ class Paragraph extends \RandData\Set\String
      * Sets minimum words amount
      * @param integer $wordsMin Minimum words amount
      */
-    function setWordsMin($wordsMin) {
+    public function setWordsMin($wordsMin)
+    {
         $this->wordsMin = \RandData\Checker::int(
-            $wordsMin, 
-            self::WORDS_MIN_MIN, 
-            self::WORDS_MIN_MAX, 
+            $wordsMin,
+            self::WORDS_MIN_MIN,
+            self::WORDS_MIN_MAX,
             "wordsMin"
         );
     }
@@ -69,11 +73,12 @@ class Paragraph extends \RandData\Set\String
      * Sets minimum words amount
      * @param integer $wordsMax Minimum words amount
      */
-    function setWordsMax($wordsMax) {
+    public function setWordsMax($wordsMax)
+    {
         $this->wordsMax = \RandData\Checker::int(
-            $wordsMax, 
-            self::WORDS_MAX_MIN, 
-            self::WORDS_MAX_MAX, 
+            $wordsMax,
+            self::WORDS_MAX_MIN,
+            self::WORDS_MAX_MAX,
             "wordsMax"
         );
     }
@@ -81,7 +86,7 @@ class Paragraph extends \RandData\Set\String
     /**
      * @inherit
      */
-    public function get() 
+    public function get()
     {
         $wordsAmount = $this->generateLength();
         $strRandObj = new String(2, 12);
@@ -125,7 +130,8 @@ class Paragraph extends \RandData\Set\String
     /**
      * @inherit
      */
-    public function init($params = []) {
+    public function init($params = [])
+    {
         if (!empty($params["words_min"])) {
             $this->setWordsMin($params["words_min"]);
         }

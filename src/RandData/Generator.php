@@ -5,7 +5,7 @@ namespace RandData;
 /**
  * Generates a list of random objects
  */
-class Generator 
+class Generator
 {
     const AMOUNT_MIN = 1;
     const AMOUNT_MAX = 10000000;
@@ -27,7 +27,8 @@ class Generator
      * @param \RandData\Tuple $tuple Tuple for entity
      * @param integer $amount Amount of items in list
      */
-    function __construct(Tuple $tuple, $amount = 10) {
+    public function __construct(Tuple $tuple, $amount = 10)
+    {
         $this->amount = Checker::int($amount, self::AMOUNT_MIN, self::AMOUNT_MAX, "amount");
         $this->tuple = $tuple;
     }
@@ -36,7 +37,8 @@ class Generator
      * Sets the length of entity list
      * @param integer $amount The length of entity list
      */
-    function setAmount($amount) {
+    public function setAmount($amount)
+    {
         $this->amount = Checker::int($amount, self::AMOUNT_MIN, self::AMOUNT_MAX, "amount");
     }
 
@@ -44,7 +46,8 @@ class Generator
      * Returns the length of entity list
      * @return integer $amount The length of entity list
      */
-    function getAmount() {
+    public function getAmount()
+    {
         return $this->amount;
     }
 
@@ -52,7 +55,8 @@ class Generator
      * Returns entity Tuple object
      * @return \RandData\Tuple Entity Tuple object
      */
-    function getTuple() {
+    public function getTuple()
+    {
         return $this->tuple;
     }
 
@@ -60,7 +64,8 @@ class Generator
      * Builds an list of random objects
      * @return array Array of random objects, each item is an array of object attributes
      */
-    public function run() {
+    public function run()
+    {
         $result = [];
         $amount = $this->getAmount();
 

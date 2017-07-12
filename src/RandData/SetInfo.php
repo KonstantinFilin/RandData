@@ -5,7 +5,7 @@ namespace RandData;
 /**
  * DataSet meta information
  */
-class SetInfo 
+class SetInfo
 {
     /**
      * Name of the DataSet
@@ -19,7 +19,8 @@ class SetInfo
      */
     protected $params;
     
-    function __construct($name, $params = []) {
+    public function __construct($name, $params = [])
+    {
         $this->name = (string) $name;
         $this->params = $params;
     }
@@ -28,7 +29,8 @@ class SetInfo
      * Return DataSet name
      * @return string
      */
-    function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -36,7 +38,8 @@ class SetInfo
      * Return DataSet params
      * @return array
      */
-    function getParams() {
+    public function getParams()
+    {
         return $this->params;
     }
 
@@ -44,7 +47,8 @@ class SetInfo
      * Sets DataSet name
      * @param string $name DataSet name
      */
-    function setName($name) {
+    public function setName($name)
+    {
         $this->name = (string) $name;
     }
 
@@ -52,7 +56,8 @@ class SetInfo
      * Sets DataSet params
      * @param array DataSetParams
      */
-    function setParams($params) {
+    public function setParams($params)
+    {
         if (!is_array($params)) {
             throw new \InvalidArgumentException("Params argument must be an array");
         }

@@ -15,13 +15,13 @@ class SqlCreateTuple extends \RandData\Tuple
     
     /**
      * SQL definitions of fields
-     * @var array 
+     * @var array
      */
     protected $fieldsAsSql;
     
     /**
      * Datasets array
-     * @var array 
+     * @var array
      */
     protected $datasets;
     
@@ -35,7 +35,8 @@ class SqlCreateTuple extends \RandData\Tuple
      * Class constructor
      * @param string $sql SQL CREATE TABLE command
      */
-    public function __construct($sql) {
+    public function __construct($sql)
+    {
         $this->sql = "";
         $this->fieldsAsSql = [];
         $this->datasets = $this->getDataSetsDefinitionList($sql);
@@ -44,7 +45,8 @@ class SqlCreateTuple extends \RandData\Tuple
     /**
      * @inherit
      */
-    public function getDataSets() {
+    public function getDataSets()
+    {
         return $this->datasets;
     }
 
@@ -99,7 +101,8 @@ class SqlCreateTuple extends \RandData\Tuple
      * Returns fields probability (50% of null for NULL field and 0 for NOT NULL field)
      * @return array Null probability list
      */
-    protected function getNullProbability() {
+    protected function getNullProbability()
+    {
         return $this->nullProbability;
     }
     
@@ -126,8 +129,8 @@ class SqlCreateTuple extends \RandData\Tuple
         
         if (empty($matches[1])) {
             throw new \InvalidArgumentException(
-                "Wrong sql field definition: " 
-                    . $fieldDefinition 
+                "Wrong sql field definition: "
+                    . $fieldDefinition
                     . " (must be field name enclosed with ``)"
             );
         }
@@ -260,7 +263,7 @@ class SqlCreateTuple extends \RandData\Tuple
             $max = pow(10, (10))-1;
             $min = -1*$max;
             return "decimal:min=" . $min . ";max=" . $max. ";minFractionDigits=0;maxFractionDigits=0";
-        }        
+        }
     }
 
     /**

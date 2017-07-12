@@ -2,14 +2,15 @@
 
 require "../init.php";
 
-class EmployeeTuple extends \RandData\Tuple {
-    
+class EmployeeTuple extends \RandData\Tuple
+{
     const LEVEL_1 = 40*365*24*3600;
     const LEVEL_2 = 30*365*24*3600;
     const HIRED_AGE_MIN = 20*365*24*3600;
     const HIRED_AGE_MAX = 50*365*24*3600;
     
-    public function getDataSets() {
+    public function getDataSets()
+    {
         return [
             "sex" => "string_list:values=" . RandData\Set\en_GB\Person::SEX_MALE . "," . RandData\Set\en_GB\Person::SEX_FEMALE,
             "name" => "en_person",
@@ -20,7 +21,8 @@ class EmployeeTuple extends \RandData\Tuple {
         ];
     }
     
-    protected function getNullProbability() {
+    protected function getNullProbability()
+    {
         return [
             "fired" => 30
         ];
@@ -42,13 +44,15 @@ class EmployeeTuple extends \RandData\Tuple {
         return $value;
     }
     
-    private function getValueSex(&$value) {
+    private function getValueSex(&$value)
+    {
         $this->datasets["name"] = "en_person:sex=" . $value;
         $value = $value == RandData\Set\en_GB\Person::SEX_MALE ? "Male" : "Female";
     }
     
-    private function getValueHired($value) {
-        // Fired date must be later than hired date, 
+    private function getValueHired($value)
+    {
+        // Fired date must be later than hired date,
         // but earlier than today
         $hiredTs = date("U", strtotime($value));
         $firedDtMin = date("Y-m-d", $hiredTs + 1*24*3600);
@@ -56,7 +60,8 @@ class EmployeeTuple extends \RandData\Tuple {
         $this->datasets["fired"] = "date:min=" . $firedDtMin . ";max=" .$firedDtMax ;
     }
     
-    private function getValueBirth($value) {
+    private function getValueBirth($value)
+    {
         $birthTs = date("U", strtotime($value));
         $nowTs = date("U");
         

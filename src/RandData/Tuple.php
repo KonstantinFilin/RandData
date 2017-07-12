@@ -5,7 +5,7 @@ namespace RandData;
 /**
  * Represent entity attributes
  */
-abstract class Tuple 
+abstract class Tuple
 {
     protected $result;
     protected $datasets;
@@ -13,7 +13,7 @@ abstract class Tuple
     /**
      * Class constructor
      */
-    function __construct() 
+    public function __construct()
     {
         $this->result = [];
         $this->datasets = [];
@@ -117,8 +117,8 @@ abstract class Tuple
     abstract public function getDataSets();
     
     /**
-     * Returns entity attributes names. 
-     * @return array Attribute names. If not setted, then it's index returned 
+     * Returns entity attributes names.
+     * @return array Attribute names. If not setted, then it's index returned
      * started from 1
      */
     public function getHeaders()

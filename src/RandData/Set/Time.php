@@ -30,7 +30,8 @@ class Time extends \RandData\Set
      * @param string $min Minimum time
      * @param string $max Maximum time
      */
-    function __construct($min = "00:00", $max = "23:59") {
+    public function __construct($min = "00:00", $max = "23:59")
+    {
         $this->setMin($min);
         $this->setMax($max);
         $this->seconds = false;
@@ -40,7 +41,8 @@ class Time extends \RandData\Set
      * Returns minimum possible time
      * @return string Minimum possible time
      */
-    function getMin() {
+    public function getMin()
+    {
         return $this->min;
     }
 
@@ -48,7 +50,8 @@ class Time extends \RandData\Set
      * Return maximum possible time
      * @return string Maximum possible time
      */
-    function getMax() {
+    public function getMax()
+    {
         return $this->max;
     }
 
@@ -56,7 +59,8 @@ class Time extends \RandData\Set
      * Sets minimum possible time
      * @param string $min Minimum possible time
      */
-    function setMin($min) {
+    public function setMin($min)
+    {
         $this->min = \RandData\Checker::time(preg_match("/^[\d]+$/", $min) ? $this->fromMin($min) : $min, "min");
     }
 
@@ -64,7 +68,8 @@ class Time extends \RandData\Set
      * Sets maximum possible time
      * @param string $max Maximum possible time
      */
-    function setMax($max) {
+    public function setMax($max)
+    {
         $this->max = \RandData\Checker::time(preg_match("/^[\d]+$/", $max) ? $this->fromMin($max) : $max, "max");
     }
     
@@ -72,7 +77,8 @@ class Time extends \RandData\Set
      * Whether to show seconds
      * @return boolean True - show seconds, false - hide seconds
      */
-    function getSeconds() {
+    public function getSeconds()
+    {
         return $this->seconds;
     }
 
@@ -80,14 +86,16 @@ class Time extends \RandData\Set
      * Sets whether to show seconds
      * @param boolean $seconds True - show seconds, false - hide seconds
      */
-    function setSeconds($seconds) {
+    public function setSeconds($seconds)
+    {
         $this->seconds = boolval($seconds);
     }
     
     /**
      * @inherit
      */
-    public function get() {
+    public function get()
+    {
         $min = $this->getMin();
         $max = $this->getMax();
         
@@ -117,7 +125,8 @@ class Time extends \RandData\Set
     /**
      * @inherit
      */
-    public function init($params = []) {
+    public function init($params = [])
+    {
         if (!empty($params["min"])) {
             $this->setMin($params["min"]);
         }

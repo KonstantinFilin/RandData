@@ -4,7 +4,7 @@ require "../init.php";
 
 class BlankTuple extends \RandData\Tuple
 {
-    public function getDataSets() 
+    public function getDataSets()
     {
         return [
             "name" => "string_list:values=John,Paul,George,Ringo",
@@ -17,4 +17,3 @@ $generator = new RandData\BlankGenerator(new BlankTuple);
 $tpl = "Hello, I'm {name} and today is {dt}";
 $generator->init($tpl);
 echo $tpl . " => " . $generator->run() . PHP_EOL;
-

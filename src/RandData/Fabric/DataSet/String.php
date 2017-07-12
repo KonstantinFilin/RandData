@@ -5,12 +5,12 @@ namespace RandData\Fabric\DataSet;
 /**
  * DataSet string fabric
  */
-class String 
+class String
 {
     /**
      * Create DataSet from string description
      * @param string $string DataSet string description
-     * 
+     *
      * @return RandData\Set Generated DataSet object
      */
     public function create($string)
@@ -19,7 +19,7 @@ class String
         $setObj = new \RandData\Set\NullValue();
 
         if (in_array($setInfo->getName(), [ "counter", "cnt" ])) {
-                $setObj = new \RandData\Set\Counter();
+            $setObj = new \RandData\Set\Counter();
         } elseif (in_array($setInfo->getName(), [ "int", "integer" ])) {
             $setObj = new \RandData\Set\Integer;
         } elseif ($setInfo->getName() == "complex") {
@@ -82,7 +82,7 @@ class String
      * @param string $string DataSet string description
      * @return SetInfo DataSet meta
      */
-    protected function parse($string) 
+    protected function parse($string)
     {
         $name = "";
         $params = [];
@@ -99,11 +99,12 @@ class String
     }
     
     /**
-     * 
+     *
      * @param string $paramsStr DataSet params as string. Params delimited by ; and name-value pairs delimeted by =
      * @return array An array of params
      */
-    protected function parseParamStr($paramsStr) {
+    protected function parseParamStr($paramsStr)
+    {
         $paramPairs = explode(";", $paramsStr);
         $params = [];
         

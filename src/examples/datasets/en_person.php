@@ -11,4 +11,3 @@ $dataSet3 = $fabric->create("en_person:sex=m");
 printData("Males", $dataSet3);
 $dataSet4 = $fabric->create("en_person:sex=f");
 printData("Females", $dataSet4);
-
