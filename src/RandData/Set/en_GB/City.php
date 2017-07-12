@@ -35,16 +35,11 @@ class City extends \RandData\Set
      * @inherit
      */
     public function get() {
-        $matches = [];
         $cityListByPostcode = $this->getCityList();
         $cityListStr = "";
         
         if ($this->postcode) {
-            preg_match("/^([A-Za-z]{1,2})\d?/", $this->postcode, $matches);
-            
-            if (!empty($matches[1])) {
-                $cityListStr = $cityListByPostcode[$matches[1]];
-            }
+            $cityListStr = $this->parseDistrict($this->postcode);
         }
         
         if (!$cityListStr) {
@@ -65,6 +60,24 @@ class City extends \RandData\Set
         }
     }
 
+    public function parseDistrict($postcode)
+    {
+        $matches = [];
+        $cityListStr = "";
+        $cityListByPostcode = $this->getCityList();
+        
+        preg_match("/^([A-Za-z]{1,2})\d?/", $postcode, $matches);
+
+        if (!empty($matches[1])) {
+            if (empty($cityListByPostcode[$matches[1]])) {
+                die("Doesn't exist: " . $matches[1]);
+            }
+            $cityListStr = $cityListByPostcode[$matches[1]];
+        }
+        
+        return $cityListStr;
+    }
+    
     /**
      * Returns city list
      * @return array City list in format postcode => city1, city2, ..., cityN

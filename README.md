@@ -1,5 +1,6 @@
 # RandData
-Data generator with support for complex data and dependency realization
+Data generator with support for complex data and dependency realization. 
+You can check [demo site](http://randdata.kfilin.com/) of the project.
 
 * [Installation](https://github.com/KonstantinFilin/RandData#installation)
 * [Basic usage](https://github.com/KonstantinFilin/RandData#basic-usage)
@@ -503,10 +504,9 @@ var_dump($generator2->run());
 echo PHP_EOL;
 ```
 
-
 ### Filling forms
 
-TBA
+See [demo site](http://randdata.kfilin.com/forms.php)
 
 ## Main Objects 
 
@@ -1008,9 +1008,6 @@ No params
 
 ## TODO ##
 
-* (-) Subdata types
-* (-) City postcode index problem
-* (-) Demo site
 * (-) Code style, mess detector, code metrics
 * (-) CI 
 * (-) v1.0
