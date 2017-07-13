@@ -109,7 +109,7 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase {
         ];
 
         $this->object->init($params1);
-        $this->assertEquals($seconds1, $this->object->getT()->getSeconds());
+        $this->assertEquals($seconds1, $this->object->getT()->hasSeconds());
         $this->assertEquals($minT1, $this->object->getT()->getMin());
         $this->assertEquals($maxT1, $this->object->getT()->getMax());
         $this->assertEquals($format1, $this->object->getD()->getFormat());
@@ -117,7 +117,7 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals(strtotime($maxD1), $this->object->getD()->getMax());
 
         $this->object->init($params2);
-        $this->assertEquals($seconds2, $this->object->getT()->getSeconds());
+        $this->assertEquals($seconds2, $this->object->getT()->hasSeconds());
         $this->assertEquals($minT2, $this->object->getT()->getMin());
         $this->assertEquals($maxT2, $this->object->getT()->getMax());
         $this->assertEquals($format2, $this->object->getD()->getFormat());

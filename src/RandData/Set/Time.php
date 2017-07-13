@@ -77,7 +77,7 @@ class Time extends \RandData\Set
      * Whether to show seconds
      * @return boolean True - show seconds, false - hide seconds
      */
-    public function getSeconds()
+    public function hasSeconds()
     {
         return $this->seconds;
     }
@@ -108,14 +108,14 @@ class Time extends \RandData\Set
         }
         
         if ($min > $max) {
-            $m = $min;
+            $mTmp = $min;
             $min = $max;
-            $max = $m;
+            $max = $mTmp;
         }
         
         $value = $this->fromMin(mt_rand($min, $max));
         
-        if ($this->getSeconds()) {
+        if ($this->hasSeconds()) {
             $value .= ":" . sprintf("%02u", mt_rand(0, 59));
         }
         
@@ -162,13 +162,13 @@ class Time extends \RandData\Set
         $timeClean = \RandData\Checker::time($time, "time");
         
         if (strlen($timeClean) == 5) {
-            list($h, $m) = explode(":", $timeClean);
-            return $h * 60 + $m;
+            list($hours, $minutes) = explode(":", $timeClean);
+            return $hours * 60 + $minutes;
         }
 
         if (strlen($timeClean) == 7) {
-            list($h, $m, ) = explode(":", $timeClean);
-            return $h * 60 + $m;
+            list($hours, $minutes, ) = explode(":", $timeClean);
+            return $hours * 60 + $minutes;
         }
         
         return 0;

@@ -206,7 +206,7 @@ class Phone extends \RandData\Set
 
     /**
      * Returns whether to format phone number
-     * @return boolean True - formated, false - non formatted
+     * @return string True - formated, false - non formatted
      */
     public function getFormat()
     {

@@ -74,7 +74,7 @@ class City extends \RandData\Set
 
         if (!empty($matches[1])) {
             if (empty($cityListByPostcode[$matches[1]])) {
-                die("Doesn't exist: " . $matches[1]);
+                throw new \InvalidArgumentException("Doesn't exist: " . $matches[1]);
             }
             $cityListStr = $cityListByPostcode[$matches[1]];
         }

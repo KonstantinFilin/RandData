@@ -61,14 +61,14 @@ class Date extends \RandData\Set
      */
     public function setMin($min)
     {
-        $dt =  new \DateTime($min);
+        $dtMin =  new \DateTime($min);
         
-        if (!$min || !$dt) {
-            $dt = new \DateTime();
-            $dt->sub(new \DateInterval("P1M"));
+        if (!$min || !$dtMin) {
+            $dtMin = new \DateTime();
+            $dtMin->sub(new \DateInterval("P1M"));
         }
 
-        $this->min = $dt->format("U");
+        $this->min = $dtMin->format("U");
     }
 
     /**
@@ -77,13 +77,13 @@ class Date extends \RandData\Set
      */
     public function setMax($max)
     {
-        $dt =  new \DateTime($max);
+        $dtMax =  new \DateTime($max);
         
-        if (!$max || !$dt) {
-            $dt = new \DateTime(date("Y-m-d"));
+        if (!$max || !$dtMax) {
+            $dtMax = new \DateTime(date("Y-m-d"));
         }
         
-        $this->max = $dt->format("U");
+        $this->max = $dtMax->format("U");
     }
     
     /**
@@ -110,13 +110,13 @@ class Date extends \RandData\Set
     public function get()
     {
         if ($this->min > $this->max) {
-            $m = $this->min;
+            $min = $this->min;
             $this->min = $this->max;
-            $this->max = $m;
+            $this->max = $min;
         }
         
-        $ts = mt_rand($this->min, $this->max+3600*24-1);
-        return date($this->format, $ts);
+        $timestampRand = mt_rand($this->min, $this->max+3600*24-1);
+        return date($this->format, $timestampRand);
     }
 
     /**

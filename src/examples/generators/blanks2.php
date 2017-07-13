@@ -24,13 +24,13 @@ class BlankTuple extends \RandData\Tuple
 
         if ($fldName == "age") {
             $name = $this->result["name"];
-            $dt = new \DateTime($this->result["dt"]);
+            $dtCreated = new \DateTime($this->result["dt"]);
             $birth = !empty($birthDtList[$name])
                 ? new \Datetime($birthDtList[$name])
                 : null;
             
-            if ($dt && $birth) {
-                $interval = $birth->diff($dt);
+            if ($dtCreated && $birth) {
+                $interval = $birth->diff($dtCreated);
                 return $interval->format("%y");
             }
             

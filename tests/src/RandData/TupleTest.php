@@ -33,9 +33,9 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGet() 
     {
-        $t2 = new TupleImplementation2();
+        $tuple2 = new TupleImplementation2();
         
-        $randValArr = $t2->get();
+        $randValArr = $tuple2->get();
         $this->assertNotEmpty($randValArr);
         $this->assertTrue(is_array($randValArr));
         $this->assertNotEmpty($randValArr["field1"]);

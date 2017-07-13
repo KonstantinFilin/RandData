@@ -75,10 +75,6 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
         $columnDelim = ";";
         $data1 = [ "aaa", "bbb", "ccc", "ddd" ];
         $data2 = [ "ee", "ff", "gg", "hh" ];
-        $data = [ 
-            implode($columnDelim, $data1),
-            implode($columnDelim, $data2)
-        ];
         
         $generator = $this->createMock(\RandData\Generator::class);
         $generator->method("getTuple")->willReturn(new TupleImplementationCsv());
@@ -107,10 +103,6 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
         
         $data1 = [ "aaa", "bbb", "ccc", "ddd" ];
         $data2 = [ "ee", "ff", "gg", "hh" ];
-        $data = [ 
-            implode($columnDelim, $data1), 
-            implode($columnDelim, $data2) 
-        ];
         
         $generator = $this->createMock(\RandData\Generator::class);
         $generator->method("getTuple")->willReturn(new TupleImplementationCsv());

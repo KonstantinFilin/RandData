@@ -33,9 +33,9 @@ class DateTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Date::setMin
      */
     public function testGetMin() {
-        $dt = new \DateTime();
-        $dt->sub(new \DateInterval("P1M"));
-        $this->assertEquals($dt->format("U"), $this->object->getMin());
+        $dtMin = new \DateTime();
+        $dtMin->sub(new \DateInterval("P1M"));
+        $this->assertEquals($dtMin->format("U"), $this->object->getMin());
         
         $dt2 = "2017-02-28";
         $this->object->setMin($dt2);
@@ -47,8 +47,8 @@ class DateTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Date::setMax
      */
     public function testGetMax() {
-        $dt = new \DateTime(date("Y-m-d"));
-        $this->assertEquals($dt->format("U"), $this->object->getMax());
+        $dtMax = new \DateTime(date("Y-m-d"));
+        $this->assertEquals($dtMax->format("U"), $this->object->getMax());
         
         $dt2 = "2017-12-31";
         $this->object->setMax($dt2);

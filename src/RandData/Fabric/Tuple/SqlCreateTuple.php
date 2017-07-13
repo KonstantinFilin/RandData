@@ -244,17 +244,17 @@ class SqlCreateTuple extends \RandData\Tuple
     protected function parseSqlFieldDefinitionDecimal($fieldDefinition)
     {
         if (preg_match("/decimal\(([\d]+),([\d]+)\)/i", $fieldDefinition, $matches)) {
-            $d1 = intval($matches[1]);
-            $d2 = intval($matches[2]);
-            $max = pow(10, ($d1 - $d2))-1;
+            $range1 = intval($matches[1]);
+            $range2 = intval($matches[2]);
+            $max = pow(10, ($range1 - $range2))-1;
             $min = -1*$max;
 
-            return "decimal:min=" . $min . ";max=" . $max . ";minFractionDigits=0;maxFractionDigits=" . $d2;
+            return "decimal:min=" . $min . ";max=" . $max . ";minFractionDigits=0;maxFractionDigits=" . $range2;
         }
         
         if (preg_match("/decimal\(([\d]+)\)/i", $fieldDefinition, $matches)) {
-            $d1 = intval($matches[1]);
-            $max = pow(10, ($d1))-1;
+            $range1 = intval($matches[1]);
+            $max = pow(10, ($range1))-1;
             $min = -1*$max;
             return "decimal:min=" . $min . ";max=" . $max . ";minFractionDigits=0;maxFractionDigits=0";
         }
