@@ -11,22 +11,22 @@ class Datetime extends \RandData\Set
      * Date part RandDataSet
      * @var Date
      */
-    protected $d;
+    protected $datePart;
     
     /**
      * Time part RandDataSet
      * @var Time
      */
-    protected $t;
+    protected $timePart;
     
     /**
      * Class constructor
      */
     public function __construct()
     {
-        $this->d = new Date();
-        $this->t = new Time();
-        $this->t->setSeconds(true);
+        $this->datePart = new Date();
+        $this->timePart = new Time();
+        $this->timePart->setSeconds(true);
     }
     
     /**
@@ -35,7 +35,7 @@ class Datetime extends \RandData\Set
      */
     public function getD()
     {
-        return $this->d;
+        return $this->datePart;
     }
 
     /**
@@ -44,25 +44,25 @@ class Datetime extends \RandData\Set
      */
     public function getT()
     {
-        return $this->t;
+        return $this->timePart;
     }
 
     /**
      * Sets date part dataset
-     * @param \RandData\Set\Date $d
+     * @param \RandData\Set\Date $date
      */
-    public function setD(Date $d)
+    public function setD(Date $date)
     {
-        $this->d = $d;
+        $this->datePart = $date;
     }
 
     /**
      * Sets time part dataset
-     * @param \RandData\Set\Time $t
+     * @param \RandData\Set\Time $time
      */
-    public function setT(Time $t)
+    public function setT(Time $time)
     {
-        $this->t = $t;
+        $this->timePart = $time;
     }
 
     /**
@@ -71,7 +71,7 @@ class Datetime extends \RandData\Set
      */
     public function setDateFormat($format)
     {
-        $this->d->setFormat($format);
+        $this->datePart->setFormat($format);
     }
 
     /**
