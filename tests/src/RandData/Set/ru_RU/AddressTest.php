@@ -66,6 +66,6 @@ class AddressTest extends \PHPUnit_Framework_TestCase {
 
     private function getPatternShort()
     {
-        return "/^([АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя\w\s\.-]+), д. [\d]{1,2}$/";
+        return "/^([АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя\w\s\.-]+), д. [\d]{1,3}$/";
     }
 }
