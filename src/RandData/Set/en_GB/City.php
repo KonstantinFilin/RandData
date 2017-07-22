@@ -7,7 +7,7 @@ namespace RandData\Set\en_GB;
  */
 class City extends \RandData\Set
 {
-    const VALIDATE_PATTERN = "[\w\d\s\(\)\'-]+";
+    const VALIDATE_PATTERN = "[\w\d\s’\.\(\)\'-]+";
     
     /**
      * Postcode of the city
