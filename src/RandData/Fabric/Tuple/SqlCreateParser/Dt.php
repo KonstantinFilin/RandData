@@ -2,8 +2,14 @@
 
 namespace RandData\Fabric\Tuple\SqlCreateParser;
 
+/**
+ * Parser of Sql CREATE TABLE date/time field definition
+ */
 class Dt extends \RandData\Fabric\Tuple\SqlCreateParser 
 {
+    /**
+     * @inherit
+     */
     public function parse($fieldDefinition) {
         if (preg_match("/datetime/i", $fieldDefinition)) {
             return "datetime:date_min=1900-01-01;date_max=2099-12-31";

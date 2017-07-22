@@ -20,12 +20,6 @@ class SqlCreateTuple extends \RandData\Tuple
     protected $fieldsAsSql;
     
     /**
-     * Datasets array
-     * @var array
-     */
-    protected $datasets;
-    
-    /**
      * Field NULL probability array
      * @var array
      */
@@ -37,6 +31,7 @@ class SqlCreateTuple extends \RandData\Tuple
      */
     public function __construct($sql)
     {
+        parent::__construct();
         $this->sql = "";
         $this->fieldsAsSql = [];
         $this->datasets = $this->getDataSetsDefinitionList($sql);

@@ -2,8 +2,14 @@
 
 namespace RandData\Fabric\Tuple\SqlCreateParser;
 
+/**
+ * Parser of Sql CREATE TABLE int field definition
+ */
 class Int extends \RandData\Fabric\Tuple\SqlCreateParser 
 {
+    /**
+     * @inherit
+     */
     public function parse($fieldDefinition) {
         if (preg_match("/tinyint\([\d]+\)/i", $fieldDefinition)) {
             return "integer:min=-128;max=127";

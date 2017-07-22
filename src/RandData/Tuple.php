@@ -7,7 +7,16 @@ namespace RandData;
  */
 abstract class Tuple
 {
+    /**
+     * Rand data result
+     * @var array
+     */
     protected $result;
+    
+    /**
+     * Datasets definitions
+     * @var array 
+     */
     protected $datasets;
     
     /**

@@ -2,8 +2,16 @@
 
 namespace RandData\Fabric\Tuple;
 
+/**
+ * Sql create parser fabric
+ */
 class SqlCreateParserFabric 
 {
+    /**
+     * Parses sql field definition and returns dataset definition
+     * @param string $fieldDefinition Sql field definition (part of CREATE TABLE command)
+     * @return string RandDataSet definition
+     */
     public function create($fieldDefinition)
     {
         $parsers = [
@@ -27,6 +35,12 @@ class SqlCreateParserFabric
         return null;
     }
     
+    /**
+     * Runs parser and returns result
+     * @param \RandData\Fabric\Tuple\SqlCreateParser $parser Parser
+     * @param string $fieldDefinition Sql field definition
+     * @return string Parser result
+     */
     protected function runParser($parser, $fieldDefinition)
     {
         if ($parser instanceof SqlCreateParser) {
