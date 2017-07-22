@@ -20,7 +20,7 @@ class StringSpecial
             return new \RandData\Set\Complex();
         } elseif ($setInfo->getName() == "value") {
             return new \RandData\Set\Value();
-        } 
+        }
             
         return null;
     }

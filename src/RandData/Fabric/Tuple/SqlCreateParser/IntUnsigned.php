@@ -5,12 +5,13 @@ namespace RandData\Fabric\Tuple\SqlCreateParser;
 /**
  * Parser of Sql CREATE TABLE UNSIGNED INT field definition
  */
-class IntUnsigned extends \RandData\Fabric\Tuple\SqlCreateParser 
+class IntUnsigned extends \RandData\Fabric\Tuple\SqlCreateParser
 {
     /**
      * @inherit
      */
-    public function parse($fieldDefinition) {
+    public function parse($fieldDefinition)
+    {
         if (preg_match("/tinyint\(1\) unsigned/i", $fieldDefinition)) {
             return "boolean:valTrue=1;valFalse=0";
         }

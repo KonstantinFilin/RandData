@@ -30,7 +30,7 @@ class Date extends \RandData\Set
      * @param string $min Minimum date in format Y-m-d
      * @param string $max Maximum date in format Y-m-d
      */
-    public function __construct($min="", $max="")
+    public function __construct($min = "", $max = "")
     {
         $this->setMin($min);
         $this->setMax($max);

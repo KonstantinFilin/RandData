@@ -24,9 +24,9 @@ class String
             new StringDatetime(),
             new StringEn(),
             new StringRu()
-        ];        
+        ];
         
-        while(!$setObj && $fabricList) {
+        while (!$setObj && $fabricList) {
             $fabric = array_shift($fabricList);
             $setObj = $fabric->create($setInfo);
         }

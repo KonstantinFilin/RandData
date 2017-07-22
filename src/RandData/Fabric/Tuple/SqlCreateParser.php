@@ -5,7 +5,8 @@ namespace RandData\Fabric\Tuple;
 /**
  * Parser of Sql CREATE TABLE field definition
  */
-abstract class SqlCreateParser {
+abstract class SqlCreateParser
+{
     
     /**
      * Parses sql field definition

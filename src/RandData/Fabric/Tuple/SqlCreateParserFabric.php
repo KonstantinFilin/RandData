@@ -5,7 +5,7 @@ namespace RandData\Fabric\Tuple;
 /**
  * Sql create parser fabric
  */
-class SqlCreateParserFabric 
+class SqlCreateParserFabric
 {
     /**
      * Parses sql field definition and returns dataset definition

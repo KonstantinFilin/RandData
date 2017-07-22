@@ -5,12 +5,13 @@ namespace RandData\Fabric\Tuple\SqlCreateParser;
 /**
  * Parser of Sql CREATE TABLE decimal field definition
  */
-class Decimal extends \RandData\Fabric\Tuple\SqlCreateParser 
+class Decimal extends \RandData\Fabric\Tuple\SqlCreateParser
 {
     /**
      * @inherit
      */
-    public function parse($fieldDefinition) {
+    public function parse($fieldDefinition)
+    {
         if (preg_match("/decimal\(([\d]+),([\d]+)\)/i", $fieldDefinition, $matches)) {
             $range1 = intval($matches[1]);
             $range2 = intval($matches[2]);

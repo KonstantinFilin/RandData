@@ -94,7 +94,7 @@ class City extends \RandData\Set
         
         foreach ($fileContent as $line) {
             $cnt++;
-            $lineTrimmed = trim ($line);
+            $lineTrimmed = trim($line);
             
             if (!$lineTrimmed) {
                 continue;

@@ -20,7 +20,7 @@ class StringOthers
             return new \RandData\Set\Domain();
         } elseif ($setInfo->getName() == "email") {
             return new \RandData\Set\Email();
-        } 
+        }
         
         return null;
     }

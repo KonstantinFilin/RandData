@@ -15,7 +15,7 @@ abstract class Tuple
     
     /**
      * Datasets definitions
-     * @var array 
+     * @var array
      */
     protected $datasets;
     

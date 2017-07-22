@@ -5,7 +5,7 @@ namespace RandData\Fabric\DataSet;
 /**
  * Russian datasets fabric
  */
-class StringRu 
+class StringRu
 {
     /**
      * Returns russian datasets from set info object
@@ -24,7 +24,7 @@ class StringRu
             return new \RandData\Set\ru_RU\Street();
         } elseif ($setInfo->getName() == "ru_address") {
             return new \RandData\Set\ru_RU\Address();
-        } 
+        }
         
         return null;
     }
