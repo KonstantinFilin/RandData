@@ -29,7 +29,7 @@ class PostalCodeTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\ru_RU\PostalCode::get
+     * @covers RandData\Set\ru_RU\PostCode::get
      */
     public function testGet() {
         $res = $this->object->get();

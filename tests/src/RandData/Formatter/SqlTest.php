@@ -42,7 +42,10 @@ class SqlTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Formatter\Sql::__construct
      * @covers RandData\Formatter\Sql::build
+     * @covers RandData\Formatter\Sql::buildOne
+     * @covers RandData\Formatter\Sql::getPattern
      */
     public function testBuild() {
         $data = [ 

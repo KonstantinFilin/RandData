@@ -9,6 +9,12 @@ class TupleImplementation4 extends Tuple
             "integer:min=1;max=100"
         ];
     }
+    
+    protected function getNullProbability() {
+        return [
+            50
+        ];
+    }
 }
 
 /**
@@ -38,7 +44,10 @@ class FormatterTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Formatter::__construct
      * @covers RandData\Formatter::build
+     * @covers RandData\Formatter::buildOne
+     * @covers RandData\Formatter::getNullAs
      */
     public function testBuild() {
         
@@ -49,8 +58,11 @@ class FormatterTest extends \PHPUnit_Framework_TestCase {
         foreach ($data as $row) {
             $this->assertCount(1, $row);
             $this->assertTrue(array_key_exists(0, $row));
-            $this->assertTrue($row[0] >= 1);
-            $this->assertTrue($row[0] <= 100);
+
+            if (!empty($row[0])) {
+                $this->assertTrue($row[0] >= 1);
+                $this->assertTrue($row[0] <= 100);
+            }
         }        
     }
 }

@@ -33,6 +33,7 @@ class SetInfoTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\SetInfo::__construct
      * @covers RandData\SetInfo::getName
      * @covers RandData\SetInfo::setName
      */
@@ -60,5 +61,14 @@ class SetInfoTest extends \PHPUnit_Framework_TestCase {
         $params2 = [ "keyA" => "valueA", "keyB" => "valueB", "keyC" => "valueC" ];
         $this->object->setParams($params2);
         $this->assertEquals($params2, $this->object->getParams());
+    }
+
+    /**
+     * @covers RandData\SetInfo::setParams
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Params argument must be an array
+     */
+    public function testSetParamsException() {
+        $this->object->setParams("abc");
     }
 }

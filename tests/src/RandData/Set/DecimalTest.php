@@ -40,8 +40,8 @@ class DecimalTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers RandData\Set\Float::getMin
-     * @covers RandData\Set\Float::setMin
+     * @covers RandData\Set\Decimal::getMin
+     * @covers RandData\Set\Decimal::setMin
      */
     public function testGet()
     {
@@ -56,8 +56,8 @@ class DecimalTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers RandData\Set\Float::getMinFractionDigits
-     * @covers RandData\Set\Float::setMinFractionDigits
+     * @covers RandData\Set\Decimal::getMinFractionDigits
+     * @covers RandData\Set\Decimal::setMinFractionDigits
      */
     public function testGetMinFractionDigits()
     {
@@ -72,8 +72,8 @@ class DecimalTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers RandData\Set\Float::getMaxFractionDigits
-     * @covers RandData\Set\Float::setMaxFractionDigits
+     * @covers RandData\Set\Decimal::getMaxFractionDigits
+     * @covers RandData\Set\Decimal::setMaxFractionDigits
      */
     public function testGetMaxFractionDigits()
     {
@@ -88,7 +88,7 @@ class DecimalTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers RandData\Set\Float::init
+     * @covers RandData\Set\Decimal::init
      * @todo   Implement testInit().
      */
     public function testInit()

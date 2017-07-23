@@ -71,8 +71,8 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\Time::getSeconds
-     * @covers RandData\Set\Time::setSeconds
+     * @covers RandData\Set\Time::hasSeconds
+     * @covers RandData\Set\Time::hasSeconds
      */
     public function testSeconds()
     {

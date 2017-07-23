@@ -14,7 +14,13 @@ class TupleImplementation2  extends \RandData\Tuple
 {
     public function getDataSets() 
     {
-        return [ "field1" => "boolean", "field2" => "integer:min=3;max=8", "field3" => "time" ];
+        return [ 
+            "field1" => "boolean", 
+            "field2" => "integer:min=3;max=8", 
+            "field3" => "time",
+            "cnt" => "counter",
+            "sub" => new TupleImplementation1()
+        ];
     }
 }
 
@@ -45,16 +51,16 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Generator::__construct
      * @covers RandData\Generator::getTuple
-     * @covers RandData\Generator::setTuple
      */
     public function testTuple() {
         $obj = new Generator(new TupleImplementation1());
         $this->assertInstanceOf(TupleImplementation1::class, $obj->getTuple());
         $this->assertNotInstanceOf(TupleImplementation2::class, $obj->getTuple());
-        $obj = new Generator(new TupleImplementation2());
-        $this->assertInstanceOf(TupleImplementation2::class, $obj->getTuple());
-        $this->assertNotInstanceOf(TupleImplementation1::class, $obj->getTuple());
+        $obj2 = new Generator(new TupleImplementation2());
+        $this->assertInstanceOf(TupleImplementation2::class, $obj2->getTuple());
+        $this->assertNotInstanceOf(TupleImplementation1::class, $obj2->getTuple());
     }
 
     /**

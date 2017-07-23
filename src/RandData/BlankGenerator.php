@@ -77,15 +77,6 @@ class BlankGenerator extends Generator
     }
 
     /**
-     * Returns string template
-     * @return string
-     */
-    public function getTemplate()
-    {
-        return $this->template;
-    }
-
-    /**
      * Sets start delimeter
      * @param string $delimStart
      */

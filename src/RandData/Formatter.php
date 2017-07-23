@@ -30,6 +30,11 @@ class Formatter
      */
     protected function buildOne($counter, $dataRaw)
     {
+        foreach ($dataRaw as $fldName => $fldValue) {
+            if (is_null($fldValue)) {
+                $dataRaw[$fldName] = $this->getNullAs();
+            }
+        }
         return $dataRaw;
     }
     

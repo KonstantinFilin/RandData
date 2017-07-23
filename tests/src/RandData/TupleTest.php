@@ -30,6 +30,11 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Tuple::get
+     * @covers RandData\Tuple::isNull
+     * @covers RandData\Tuple::getSetValueOrNull
+     * @covers RandData\Tuple::getTupleValueOrNull
+     * @covers RandData\Tuple::getNullProbability
+     * @covers RandData\Tuple::getValueNullProbability
      */
     public function testGet() 
     {
@@ -41,17 +46,21 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotEmpty($randValArr["field1"]);
         $this->assertNotEmpty($randValArr["field2"]);
         $this->assertNotEmpty($randValArr["field3"]);
+        $this->assertNotNull($randValArr["cnt"]);
+        $this->assertNotEmpty($randValArr["sub"]);
         
-        $this->assertCount(3, $randValArr);
+        $this->assertCount(5, $randValArr);
         $this->assertTrue(in_array($randValArr["field1"], [ "Y", "N" ]));
         $this->assertTrue(is_integer($randValArr["field2"]));
         $this->assertTrue($randValArr["field2"] >= 3 || $randValArr["field2"] <= 5);
         $this->assertTrue(is_string($randValArr["field3"]));
         $this->assertRegExp("/^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/", $randValArr["field3"]);
+        $this->assertTrue(is_integer($randValArr["cnt"]));
+        $this->assertTrue(is_array($randValArr["sub"]));
     }
 
     /**
-     * @covers RandData\Generator::getHeaders
+     * @covers RandData\Tuple::getHeaders
      */
     public function testGetHeaders()
     {
@@ -60,7 +69,7 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($expected1, $obj1->getHeaders());
         
         $obj2 = new TupleImplementation2();
-        $expected2 = [ "field1", "field2", "field3" ];
+        $expected2 = [ "field1", "field2", "field3", "cnt", "sub" ];
         $this->assertEquals($expected2, $obj2->getHeaders());
     }
 }

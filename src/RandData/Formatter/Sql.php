@@ -39,10 +39,6 @@ class Sql extends \RandData\Formatter
      */
     protected function buildOne($counter, $data)
     {
-        if (!is_array($data)) {
-            return "";
-        }
-        
         foreach ($data as $fldName => $fldValue) {
             $data[$fldName] = is_null($fldValue) ? "NULL" : "'" . $fldValue . "'";
         }

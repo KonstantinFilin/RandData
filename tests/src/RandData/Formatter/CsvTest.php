@@ -41,15 +41,19 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Formatter\Csv::__construct
      * @covers RandData\Formatter\Csv::build
      * @covers RandData\Formatter\Csv::buildOne
+     * @covers RandData\Formatter\Csv::getNullAs
+     * @covers RandData\Formatter\Csv::buildHeaders
      * @covers RandData\Formatter\Csv::setShowCounter
      */
     public function testShowCounter() 
     {
         $columnDelim = ";";
         $data1 = [ "f1" => "aaa", "f2" => "bbb", "f3" => "ccc", "f4" => "ddd" ];
-        $data2 = [ "f1" => "ee", "f2" => "ff", "f3" => "gg", "f4" => "hh" ];
+        $data2 = [ "f1" => "ee", "f2" => "ff", "f3" => null, "f4" => "hh" ];
+        $data2result = [ "f1" => "ee", "f2" => "ff", "f3" => "NA", "f4" => "hh" ];
 
         $generator = $this->createMock(\RandData\Generator::class);
         $generator->method("getTuple")->willReturn(new TupleImplementationCsv());
@@ -58,11 +62,11 @@ class CsvTest extends \PHPUnit_Framework_TestCase {
         $formatter->setShowCounter(true);
         $formatter->setShowHeaders(true);
         
-        $expected2 = "#;f1;f2;f3;f4" . PHP_EOL . "1" . $columnDelim . implode($columnDelim, $data1) . PHP_EOL . "2" . $columnDelim . implode($columnDelim, $data2);
+        $expected2 = "#;f1;f2;f3;f4" . PHP_EOL . "1" . $columnDelim . implode($columnDelim, $data1) . PHP_EOL . "2" . $columnDelim . implode($columnDelim, $data2result);
         $this->assertEquals($expected2, $formatter->build());
         
         $formatter->setShowCounter(false);
-        $expected4 = "f1;f2;f3;f4" . PHP_EOL . implode($columnDelim, $data1) . PHP_EOL . implode($columnDelim, $data2);
+        $expected4 = "f1;f2;f3;f4" . PHP_EOL . implode($columnDelim, $data1) . PHP_EOL . implode($columnDelim, $data2result);
         $this->assertEquals($expected4, $formatter->build());
     }
 

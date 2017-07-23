@@ -19,6 +19,11 @@ class SetInfo
      */
     protected $params;
     
+    /**
+     * Class constructor
+     * @param string $name DataSet name
+     * @param array $params DataSet params
+     */
     public function __construct($name, $params = [])
     {
         $this->name = (string) $name;

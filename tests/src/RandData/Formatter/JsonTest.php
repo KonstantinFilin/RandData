@@ -42,6 +42,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Formatter\Json::build
+     * @covers RandData\Formatter\Json::buildOne
      */
     public function testBuild() {
         $data1 = [ "f1" => "aaa", "f2" => "bbb", "f3" => "ccc", "f4" => "ddd" ];

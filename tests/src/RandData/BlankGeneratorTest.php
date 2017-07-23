@@ -44,14 +44,26 @@ class BlankGeneratorTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\BlankGenerator::__construct
      * @covers RandData\BlankGenerator::run
+     * @covers RandData\BlankGenerator::init
+     * @covers RandData\BlankGenerator::setDelimStart
+     * @covers RandData\BlankGenerator::getDelimStart
+     * @covers RandData\BlankGenerator::setDelimFinish
+     * @covers RandData\BlankGenerator::getDelimFinish
      */
     public function testRun() {
         $expected = "/^Hello, I'm ((John)|(Paul)|(George)|(Ringo)), my age [\d]{2} and today is ([\d]{4}-[\d]{2}-[\d]{2}). Created at \\6 by \\1$/";
         $this->assertRegExp($expected, $this->object->run());
         
-        $this->object->setDelimStart("[");
-        $this->object->setDelimFinish("]");
+        $delimStart = "[";
+        $delimFinish = "]";
+        $this->object->setDelimStart($delimStart);
+        $this->object->setDelimFinish($delimFinish);
+        
+        $this->assertEquals($delimStart, $this->object->getDelimStart());
+        $this->assertEquals($delimFinish, $this->object->getDelimFinish());
+        
         // $this->object->init("Hello, I'm [name], my age [age] and today is [dt]. Created at [dt] by [name]");
         $expected2 = "/^Hello, I'm [name], my age [age] and today is [dt]. Created at [dt] by [name]$/";
         $this->assertNotRegExp($expected2, $this->object->run());
