@@ -53,6 +53,25 @@ class CounterTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Counter::setStart
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Invalid argument start: must be integer and between 1 and 1000000
+     */
+    public function testSetStart() {
+        $this->object->setStart(0);
+    }
+
+    /**
+     * @covers RandData\Set\Counter::setStart
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Invalid argument start: must be integer and between 1 and 1000000
+     */
+    public function testSetStart2() {
+        $this->object->setStart(1000001);
+    }
+
+    /**
+     * @covers RandData\Set\Counter::__construct
      * @covers RandData\Set\Counter::get
      * @todo   Implement testGet().
      */
@@ -86,6 +105,22 @@ class CounterTest extends \PHPUnit_Framework_TestCase {
         $params = [ 
             "start" => $start,
             "template" => $tpl 
+        ];
+        $this->object->init($params);
+        $this->assertEquals($start, $this->object->getStart());
+        $this->assertEquals($tpl, $this->object->getTemplate());
+    }
+
+    /**
+     * @covers RandData\Set\Counter::init
+     */
+    public function testInit2() {
+        $this->assertEquals("", $this->object->getTemplate());
+        $start = 9;
+        $tpl = "user_#";
+        $params = [ 
+            "start" => $start,
+            "tpl" => $tpl 
         ];
         $this->object->init($params);
         $this->assertEquals($start, $this->object->getStart());

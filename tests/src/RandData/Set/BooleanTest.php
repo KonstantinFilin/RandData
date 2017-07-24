@@ -38,7 +38,11 @@ class BooleanTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Boolean::__construct
      * @covers RandData\Set\Boolean::getValTrue
+     * @covers RandData\Set\Boolean::setValTrue
+     * @covers RandData\Set\Boolean::getValFalse
+     * @covers RandData\Set\Boolean::setValFalse
      * @todo   Implement testGetValTrue().
      */
     public function testGetValTrue() {

@@ -29,6 +29,7 @@ class ComplexTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Complex::__construct
      * @covers RandData\Set\Complex::get
      */
     public function testGet() {
@@ -47,6 +48,10 @@ class ComplexTest extends \PHPUnit_Framework_TestCase {
         $obj1 = new Complex();
         $obj1->init($params);
         $this->assertRegExp($this->getPattern(), $obj1->get());
+        
+        $obj2 = new Complex();
+        $obj2->init($this->getTpl());
+        $this->assertRegExp($this->getPattern(), $obj2->get());
     }
     
     private function getPattern()
