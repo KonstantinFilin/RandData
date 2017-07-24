@@ -19,7 +19,7 @@ class StringRu
         } elseif ($setInfo->getName() == "ru_person") {
             return new \RandData\Set\ru_RU\Person();
         } elseif ($setInfo->getName() == "ru_postcode") {
-            return new \RandData\Set\ru_RU\PostCode();
+            return new \RandData\Set\ru_RU\Postcode();
         } elseif ($setInfo->getName() == "ru_street") {
             return new \RandData\Set\ru_RU\Street();
         } elseif ($setInfo->getName() == "ru_address") {

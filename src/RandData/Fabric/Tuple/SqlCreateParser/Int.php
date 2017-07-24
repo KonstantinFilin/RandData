@@ -24,7 +24,7 @@ class Int extends \RandData\Fabric\Tuple\SqlCreateParser
             return "integer:min=-8388608;max=8388607";
         }
         
-        if (preg_match("/int\([\d]+\)/i", $fieldDefinition)) {
+        if (preg_match("/\sint\([\d]+\)/i", $fieldDefinition)) {
             return "integer:min=" . (floor((mt_getrandmax()-1)/2)*-1) . ";max=" . floor(mt_getrandmax()/2);
         }
         

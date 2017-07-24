@@ -30,7 +30,7 @@ class Decimal extends \RandData\Fabric\Tuple\SqlCreateParser
         }
         
         if (preg_match("/decimal/i", $fieldDefinition)) {
-            $max = pow(10, (10))-1;
+            $max = pow(10, 10)-1;
             $min = -1*$max;
             
             return "decimal:min=" . $min . ";max=" . $max. ";minFractionDigits=0;maxFractionDigits=0";

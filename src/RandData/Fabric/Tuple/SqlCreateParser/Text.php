@@ -12,6 +12,8 @@ class Text extends \RandData\Fabric\Tuple\SqlCreateParser
      */
     public function parse($fieldDefinition)
     {
+        $matches = [];
+
         if (preg_match("/tinytext/i", $fieldDefinition, $matches)) {
             return "string:length_min=1;length_max=256";
         }

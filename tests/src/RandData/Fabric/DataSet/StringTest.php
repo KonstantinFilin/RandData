@@ -30,6 +30,8 @@ class FabricTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Fabric\DataSet\String::create
+     * @covers RandData\Fabric\DataSet\String::parse
+     * @covers RandData\Fabric\DataSet\String::parseParamStr
      */
     public function testCreateObjectFromString() {
         $this->assertInstanceOf(
@@ -41,6 +43,18 @@ class FabricTest extends \PHPUnit_Framework_TestCase {
             \RandData\Set\Integer::class,
             $this->object->create("integer")
         );
+        
+        $this->assertInstanceOf(
+            \RandData\Set\Integer::class,
+            $this->object->create("integer:min=3;max=7")
+        );
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Wrong params: must be key=value pairs
+     */
+    public function testCreateObjectFromStringException() {
+        $this->object->create("integer:abc;def");
+    }
 }

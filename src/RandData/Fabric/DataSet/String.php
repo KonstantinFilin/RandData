@@ -70,11 +70,11 @@ class String
         $params = [];
         
         foreach ($paramPairs as $paramPair) {
-            if (strpos($paramPair, "=")) {
+            if (strpos($paramPair, "=") !== false) {
                 list($key, $value) = explode("=", $paramPair);
                 $params[$key] = strpos($value, ",") ? explode(",", $value) : $value;
             } else {
-                new \InvalidArgumentException("Wrong params: must be key=value pairs");
+                throw new \InvalidArgumentException("Wrong params: must be key=value pairs");
             }
         }
         

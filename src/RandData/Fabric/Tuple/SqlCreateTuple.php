@@ -55,7 +55,7 @@ class SqlCreateTuple extends \RandData\Tuple
         $brace1pos = strpos($sql, "(");
         $sql2 = substr($sql, $brace1pos + 1);
         $brace2pos = strrpos($sql2, ")");
-        $sql3 = substr($sql2, 0, $brace2pos - 1);
+        $sql3 = substr($sql2, 0, $brace2pos);
         $lines = explode("," . PHP_EOL, $sql3);
 
         foreach ($lines as $line) {

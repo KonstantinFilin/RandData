@@ -28,7 +28,7 @@ class IntUnsigned extends \RandData\Fabric\Tuple\SqlCreateParser
             return "integer:min=0;max=16777215";
         }
         
-        if (preg_match("/int\([\d]+\) unsigned/i", $fieldDefinition)) {
+        if (preg_match("/\sint\([\d]+\) unsigned/i", $fieldDefinition)) {
             return "integer:min=0;max=" . mt_getrandmax();
         }
         

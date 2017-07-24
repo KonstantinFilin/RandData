@@ -41,12 +41,8 @@ class SqlCreateParserFabric
      * @param string $fieldDefinition Sql field definition
      * @return string Parser result
      */
-    protected function runParser($parser, $fieldDefinition)
+    protected function runParser(\RandData\Fabric\Tuple\SqlCreateParser $parser, $fieldDefinition)
     {
-        if ($parser instanceof SqlCreateParser) {
-            return $parser->parse($fieldDefinition);
-        }
-        
-        return null;
+        return $parser->parse($fieldDefinition);
     }
 }
