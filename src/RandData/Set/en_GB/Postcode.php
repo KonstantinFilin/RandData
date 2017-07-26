@@ -45,13 +45,9 @@ class Postcode extends \RandData\Set
      */
     protected function getPostcodeDistrictList()
     {
-        return array_map("trim", file(__DIR__ . "/data/postcode_district_list.csv"));
-    }
-    
-    /**
-     * @inherit
-     */
-    public function init($params = [])
-    {
+        $reader = new \RandData\CsvReader();
+        $fileName = __DIR__ . "/data/postcode_district_list.csv";
+        $data = $reader->get($fileName);
+        return array_map("trim", $data);
     }
 }

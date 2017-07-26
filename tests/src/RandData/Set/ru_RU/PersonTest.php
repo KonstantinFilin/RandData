@@ -39,6 +39,7 @@ class PersonTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\ru_RU\Person::__construct
      * @covers RandData\Set\ru_RU\Person::get
      */
     public function testGet() 

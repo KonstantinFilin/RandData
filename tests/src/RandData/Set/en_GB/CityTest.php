@@ -29,7 +29,23 @@ class CityTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\en_GB\City::parseDistrict
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Doesn't exist: aa
+     */
+    public function testParseDistrictException() {
+        $obj = new City();
+        $obj->parseDistrict("aa");
+    }
+
+    /**
+     * @covers RandData\Set\en_GB\City::__construct
      * @covers RandData\Set\en_GB\City::get
+     * @covers RandData\Set\en_GB\City::getCityList
+     * @covers RandData\Set\en_GB\City::loadCityList
+     * @covers RandData\Set\en_GB\City::setPostcode
+     * @covers RandData\Set\en_GB\City::parseDistrict
+     * @covers RandData\Set\en_GB\City::getCityList
      */
     public function testGet() {
         $pattern = "/^" . City::VALIDATE_PATTERN . "$/";
@@ -39,8 +55,57 @@ class CityTest extends \PHPUnit_Framework_TestCase {
             $this->assertNotEmpty($value);
             $this->assertRegExp($pattern, $value);
         }
+        
+        $obj = new City();
+        $obj->setPostcode("CR");
+        $value2 = $obj->get();
+        $this->assertNotEmpty($value2);
+        $this->assertRegExp($pattern, $value2);
     }
 
+    /**
+     * @covers RandData\Set\en_GB\City::getCityList
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage No delim at line
+     */
+    public function testGetCityListException()
+    {
+        $obj = new City();
+        $obj->getCityList([ "line1", "line2", "line3" ]);
+    }
+    
+    /**
+     * @covers RandData\Set\en_GB\City::getCityList
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage City list must be an array
+     */
+    public function testGetCityListException2()
+    {
+        $obj = new City();
+        $obj->getCityList(2);
+    }
+    
+    /**
+     * @covers RandData\Set\en_GB\City::getCityList
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage City list must not be empty
+     */
+    public function testGetCityListException3()
+    {
+        $obj = new City();
+        $obj->getCityList([]);
+    }
+    
+    /**
+     * @covers RandData\Set\en_GB\City::getCityList
+     */
+    public function testGetCityList()
+    {
+        $obj = new City();
+        $res = $obj->getCityList([ "aaa; abc", "", "ddd;def", "", "ggg;ghi" ]);
+        $this->assertEquals([ "aaa" => "abc", "ddd" => "def", "ggg" => "ghi" ], $res);
+    }
+    
     /**
      * @covers RandData\Set\en_GB\City::init
      */

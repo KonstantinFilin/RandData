@@ -29,12 +29,50 @@ class PostalCodeTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\ru_RU\PostCode::get
+     * @covers RandData\Set\ru_RU\Postcode::__construct
+     * @covers RandData\Set\ru_RU\Postcode::get
+     * @covers RandData\Set\ru_RU\Postcode::getCityCodeList
+     * @covers RandData\Set\ru_RU\Postcode::getRussiaCityCodeList
      */
     public function testGet() {
         $res = $this->object->get();
         $this->assertNotEmpty($res);
         $this->assertTrue(strlen($res) == 6);
         $this->assertRegExp("/^[\d]{6}$/", $res);
+    }
+    
+    /**
+     * 
+     */
+    public function testInit()
+    {
+        $obj = new Postcode();
+        $hasDiffRegions = false;
+        $testRegions = [ 111, 112, 113 ];
+        
+        for ($i = 1; $i <= 10; $i++) {
+            $res = $obj->get();
+            $reg = substr($res, 0, 3);
+
+            if (!in_array($reg, $testRegions)) {
+                $hasDiffRegions = true;
+            }
+        }
+        
+        $this->assertTrue($hasDiffRegions);
+        
+        $obj->init([ "city_code_list" => $testRegions ]);
+        $hasDiffRegions2 = false;
+        
+        for ($i = 1; $i <= 10; $i++) {
+            $res = $obj->get();
+            $reg = substr($res, 0, 3);
+
+            if (!in_array($reg, $testRegions)) {
+                $hasDiffRegions2 = true;
+            }
+        }
+        
+        $this->assertFalse($hasDiffRegions2);
     }
 }

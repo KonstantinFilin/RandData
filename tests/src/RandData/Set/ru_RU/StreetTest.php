@@ -30,6 +30,7 @@ class StreetTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\ru_RU\Street::get
+     * @covers RandData\Set\ru_RU\Street::getList
      */
     public function testGet() {
         $pattern = "/^[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя\w\s\.-]+\s+(ул|пер)\.$/";

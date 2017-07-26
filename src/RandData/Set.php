@@ -15,5 +15,7 @@ abstract class Set
     /**
      * Initializes DataSet with params
      */
-    abstract public function init($params = []);
+    public function init($params = []) {
+        
+    }
 }

@@ -30,6 +30,9 @@ class PostcodeTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\en_GB\Postcode::get
+     * @covers RandData\Set\en_GB\Postcode::getPostcodeDistrictList
+     * @covers RandData\Set\en_GB\Postcode::getInwardCode
+     * @covers RandData\Set\en_GB\Postcode::getOutwardCode
      */
     public function testGet() {
         $pattern = "/^" . Postcode::VALIDATE_PATTERN . "$/";

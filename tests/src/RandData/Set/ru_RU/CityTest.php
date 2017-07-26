@@ -30,6 +30,7 @@ class CityTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\ru_RU\City::get
+     * @covers RandData\Set\ru_RU\City::getList
      */
     public function testGet() {
         $pattern = "/^[АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя\w\s-]+$/";

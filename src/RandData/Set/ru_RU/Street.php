@@ -17,13 +17,6 @@ class Street extends \RandData\Set
     }
 
     /**
-     * @inherit
-     */
-    public function init($params = [])
-    {
-    }
-
-    /**
      * Returns street list
      * @return array Street list
      */

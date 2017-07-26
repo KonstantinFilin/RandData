@@ -32,11 +32,4 @@ class Address extends \RandData\Set
         
         return implode(", ", $ret);
     }
-
-    /**
-     * @inherit
-     */
-    public function init($params = [])
-    {
-    }
 }

@@ -30,6 +30,15 @@ class CsvReaderTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\CsvReader::get
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage File is not readable
+     */
+    public function testGetException() {
+        $this->object->get("nonexistantfile.txt");
+    }
+    
+    /**
+     * @covers RandData\CsvReader::get
      */
     public function testGet() {
         $expected = [

@@ -17,13 +17,6 @@ class Street extends \RandData\Set
         $streetList = $this->getStreetList();
         return $streetList[array_rand($streetList)];
     }
-
-    /**
-     * @inherit
-     */
-    public function init($params = [])
-    {
-    }
     
     /**
      * Returns street list

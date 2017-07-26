@@ -30,6 +30,7 @@ class TupleTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Tuple::get
+     * @covers RandData\Tuple::__construct
      * @covers RandData\Tuple::isNull
      * @covers RandData\Tuple::getSetValueOrNull
      * @covers RandData\Tuple::getTupleValueOrNull

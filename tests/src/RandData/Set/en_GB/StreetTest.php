@@ -30,6 +30,7 @@ class StreetTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\en_GB\Street::get
+     * @covers RandData\Set\en_GB\Street::getStreetList
      */
     public function testGet() {
         for ($i = 1; $i <= 10; $i++) {

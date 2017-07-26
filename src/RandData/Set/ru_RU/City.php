@@ -16,12 +16,6 @@ class City extends \RandData\Set
         return $cityList[array_rand($cityList)];
     }
 
-    /**
-     * @inherit
-     */
-    public function init($params = [])
-    {
-    }
 
     /**
      * Returns city list

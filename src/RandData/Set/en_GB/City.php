@@ -38,7 +38,7 @@ class City extends \RandData\Set
      */
     public function get()
     {
-        $cityListByPostcode = $this->getCityList();
+        $cityListByPostcode = $this->getCityList($this->loadCityList());
         $cityListStr = "";
         
         if ($this->postcode) {
@@ -68,7 +68,7 @@ class City extends \RandData\Set
     {
         $matches = [];
         $cityListStr = "";
-        $cityListByPostcode = $this->getCityList();
+        $cityListByPostcode = $this->getCityList($this->loadCityList());
         
         preg_match("/^([A-Za-z]{1,2})\d?/", $postcode, $matches);
 
@@ -83,16 +83,38 @@ class City extends \RandData\Set
     }
     
     /**
-     * Returns city list
-     * @return array City list in format postcode => city1, city2, ..., cityN
+     * Loads city list from file
+     * @return array Data lines in format district => city1, city2, ..., cityN
      */
-    protected function getCityList()
+    protected function loadCityList()
+    {
+        $fileName = __DIR__ . "/data/city_list.csv";
+        $reader = new \RandData\CsvReader();
+        
+        return $reader->get($fileName);
+    }
+    
+    /**
+     * Returns city list
+     * @param array $cityLines Data lines in format district => city1, city2, ..., cityN
+     * @return array City list in format postcode => city1, city2, ..., cityN
+     * @throws \InvalidArgumentException When wrong data format
+     */
+    public function getCityList($cityLines)
     {
         $ret = [];
-        $fileContent = file(__DIR__ . "/data/city_list.csv");
+        // $cityLines = file(__DIR__ . "/data/city_list.csv");
         $cnt = 0;
         
-        foreach ($fileContent as $line) {
+        if (!is_array($cityLines)) {
+            throw new \InvalidArgumentException("City list must be an array");
+        }
+        
+        if (!$cityLines) {
+            throw new \InvalidArgumentException("City list must not be empty");
+        }
+        
+        foreach ($cityLines as $line) {
             $cnt++;
             $lineTrimmed = trim($line);
             
@@ -101,9 +123,11 @@ class City extends \RandData\Set
             }
             
             if (strpos($lineTrimmed, ";") === false) {
-                throw new \Exception("No delim at line [" . $cnt . "]: " . $lineTrimmed);
+                throw new \InvalidArgumentException("No delim at line [" . $cnt . "]: " . $lineTrimmed);
             }
+            
             list($region, $cityList) = explode(";", $lineTrimmed);
+            
             if ($region && $cityList) {
                 $ret[trim($region)] = trim($cityList);
             }

@@ -29,6 +29,7 @@ class PersonTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\en_GB\Person::__construct
      * @covers RandData\Set\en_GB\Person::getSex
      * @covers RandData\Set\en_GB\Person::setSex
      */
@@ -36,6 +37,8 @@ class PersonTest extends \PHPUnit_Framework_TestCase {
         $this->assertNull($this->object->getSex());
         $this->object->setSex(Person::SEX_MALE);
         $this->assertEquals(Person::SEX_MALE, $this->object->getSex());
+        $this->object->setSex("a");
+        $this->assertNull($this->object->getSex());
     }
 
     /**
