@@ -157,14 +157,6 @@ class String extends \RandData\Set
             $lengthMin = $lengthMax;
             $lengthMax = $buffer;
         }
-        
-        if ($lengthMin < 1) {
-            $lengthMin = 1;
-        }
-        
-        if ($lengthMax > 100) {
-            $lengthMax = 100;
-        }
 
         return mt_rand($lengthMin, $lengthMax);
     }

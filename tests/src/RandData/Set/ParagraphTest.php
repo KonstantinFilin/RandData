@@ -29,6 +29,7 @@ class ParagraphTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Paragraph::__construct
      * @covers RandData\Set\Paragraph::getWordsMin
      * @covers RandData\Set\Paragraph::setWordsMin
      */
@@ -51,7 +52,9 @@ class ParagraphTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Paragraph::__construct
      * @covers RandData\Set\Paragraph::get
+     * @covers RandData\Set\Paragraph::generateLength
      */
     public function testGet() {
         for ($i = 1; $i <= 10; $i++) {
@@ -60,6 +63,10 @@ class ParagraphTest extends \PHPUnit_Framework_TestCase {
             $this->assertNotEmpty($paragraph);
             $this->assertTrue(mb_strlen($paragraph) > 0);
         }
+        
+        $obj2 = new Paragraph(15, 6);
+        $res2 = $obj2->get();
+        $this->assertTrue(mb_strlen($res2) > 0);
     }
 
     /**

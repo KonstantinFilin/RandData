@@ -73,7 +73,6 @@ class CounterTest extends \PHPUnit_Framework_TestCase {
     /**
      * @covers RandData\Set\Counter::__construct
      * @covers RandData\Set\Counter::get
-     * @todo   Implement testGet().
      */
     public function testGet() {
         $cnt0 = 0;

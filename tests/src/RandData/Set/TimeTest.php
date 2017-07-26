@@ -29,6 +29,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Time::__construct
      * @covers RandData\Set\Time::getMin
      * @covers RandData\Set\Time::setMin
      */
@@ -71,7 +72,7 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\Time::hasSeconds
+     * @covers RandData\Set\Time::setSeconds
      * @covers RandData\Set\Time::hasSeconds
      */
     public function testSeconds()
@@ -83,7 +84,6 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
     
     /**
      * @covers RandData\Set\Time::get
-     * @todo   Implement testGet().
      */
     public function testGet() 
     {
@@ -104,8 +104,8 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
         }
         
         $this->object->setSeconds(false);
-        $this->object->setMin("18:17");
-        $this->object->setMax("18:21");
+        $this->object->setMin("18:21");
+        $this->object->setMax("18:17");
         
         $possibleArr = [ 
             "18:17", 
@@ -170,6 +170,14 @@ class TimeTest extends \PHPUnit_Framework_TestCase {
      */
     public function testToMin($expected, $input) {
         $this->assertEquals($expected, $this->object->toMin($input));
+    }
+
+    /**
+     * @covers RandData\Set\Time::toMin
+     */
+    public function testToMin2() {
+        $this->assertEquals(1439, $this->object->toMin("23:59:00"));
+        $this->assertEquals(1439, $this->object->toMin("23:59:59"));
     }
     
     public function toMinProvider()

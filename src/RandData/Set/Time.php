@@ -161,16 +161,16 @@ class Time extends \RandData\Set
     {
         $timeClean = \RandData\Checker::time($time, "time");
         
+        $ret = 0;
+        
         if (strlen($timeClean) == 5) {
             list($hours, $minutes) = explode(":", $timeClean);
-            return $hours * 60 + $minutes;
-        }
-
-        if (strlen($timeClean) == 7) {
+            $ret = $hours * 60 + $minutes;
+        } elseif (strlen($timeClean) == 8) {
             list($hours, $minutes, ) = explode(":", $timeClean);
-            return $hours * 60 + $minutes;
+            $ret = $hours * 60 + $minutes;
         }
         
-        return 0;
+        return $ret;
     }
 }

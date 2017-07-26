@@ -33,6 +33,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Integer::__construct
      * @covers RandData\Set\Integer::getMin
      * @covers RandData\Set\Integer::setMin
      */
@@ -52,14 +53,14 @@ class IntegerTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Integer::setMax
      */
     public function testGetMax() {
-        $this->assertEquals($this->param1, $this->object->getMin());
+        $this->assertEquals($this->param2, $this->object->getMax());
         
         $obj2 = new Integer();
-        $this->assertEquals(0, $obj2->getMin());
+        $this->assertEquals(0, $obj2->getMax());
         
         $value2 = 5;
-        $obj2->setMin($value2);
-        $this->assertEquals($value2, $obj2->getMin());
+        $obj2->setMax($value2);
+        $this->assertEquals($value2, $obj2->getMax());
     }
 
     /**
@@ -67,7 +68,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGet() {
         $min = 7;
-        $max = 21;
+        $max = 16;
         $hasMin = false;        
         $hasMax = false;        
         
@@ -91,6 +92,10 @@ class IntegerTest extends \PHPUnit_Framework_TestCase {
         
         $this->assertTrue($hasMin);
         $this->assertTrue($hasMax);
+        
+        $obj2 = new Integer($max, $min);
+        $res2 = $obj2->get();
+        $this->assertTrue(is_integer($res2));
     }
 
     /**

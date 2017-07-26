@@ -115,15 +115,7 @@ class Paragraph extends \RandData\Set\String
             $wordsMin = $wordsMax;
             $wordsMax = $buffer;
         }
-        
-        if ($wordsMin < 1) {
-            $wordsMin = 1;
-        }
-        
-        if ($wordsMax > 500) {
-            $wordsMax = 500;
-        }
-         
+
         return mt_rand($wordsMin, $wordsMax);
     }
     

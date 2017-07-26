@@ -29,6 +29,7 @@ class ValueTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Value::__construct
      * @covers RandData\Set\Value::get
      */
     public function testGet() {

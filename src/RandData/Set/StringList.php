@@ -38,36 +38,46 @@ class StringList extends \RandData\Set
         ksort($flipped);
         $randVal = rand(1, 100);
         $sumAcc = 0;
+        $ret = $this->values[0];
         
         foreach ($flipped as $probability => $key) {
             if ($randVal <= $probability + $sumAcc) {
-                return $this->values[$key];
+                $ret = $this->values[$key];
             } else {
                 $sumAcc += $probability;
             }
         }
 
-        return $this->values[0];
+        return $ret;
     }
 
+    /**
+     * Returns if random value should be by given possibility
+     */
+    public function getByPossibility()
+    {
+        return $this->possibility
+            && array_keys($this->possibility) == array_keys($this->getValues())
+            && array_sum($this->possibility) == 100;
+    }
+    
     /**
      * @inherit
      */
     public function get()
     {
-        if (!$this->values) {
+        $values = $this->getValues();
+
+        if (!$values) {
             throw new \InvalidArgumentException("Empty string list");
         }
         
-        if ($this->possibility
-            && array_keys($this->possibility) == array_keys($this->values)
-            && array_sum($this->possibility) == 100
-        ) {
+        if ($this->getByPossibility()) {
             return $this->getPossibility();
         }
         
-        $key = array_rand($this->values);
-        return $this->values[$key];
+        $key = array_rand($values);
+        return $values[$key];
     }
     
     /**

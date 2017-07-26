@@ -29,6 +29,7 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Datetime::__construct
      * @covers RandData\Set\Datetime::getD
      * @covers RandData\Set\Datetime::setD
      */
@@ -95,8 +96,7 @@ class DatetimeTest extends \PHPUnit_Framework_TestCase {
             "time_max" => $maxT1,
             "date_min" => $minD1,
             "date_max" => $maxD1,
-            "date_format" => $format1,
-            "seconds" => $seconds1
+            "date_format" => $format1
         ];
         
         $params2 = [

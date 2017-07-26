@@ -29,6 +29,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Email::__construct
      * @covers RandData\Set\Email::getDomainList
      * @covers RandData\Set\Email::setDomainList
      */
@@ -42,7 +43,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\Email::get
-     * @todo   Implement testGet().
      */
     public function testGet() {
         $regexp = "/^[abcdefghijklmnopqrstunwxyz0123456789]+@[abcdefghijklmnoprstuvwxyz0123456789-]+\.[\w]{2,4}$/";
@@ -55,8 +55,8 @@ class EmailTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Email::get
      * @covers RandData\Set\Email::init
-     * @todo   Implement testInit().
      */
     public function testInit() {
         $domainList = [ "abc.com", "def.edu", "ghi.org" ];
@@ -67,5 +67,8 @@ class EmailTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotEquals($domainList, $this->object->getDomainList());
         $this->object->init($params);
         $this->assertEquals($domainList, $this->object->getDomainList());
+        $res = $this->object->get();
+        $this->assertNotEmpty($res);
+        $this->assertRegExp("/(abc\.com|def\.edu|ghi\.org)$/", $res);
     }
 }

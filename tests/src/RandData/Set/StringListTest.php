@@ -31,18 +31,60 @@ class StringListTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\StringList::getValues
+     * @covers RandData\Set\StringList::setValues
+     */
+    public function testGetValues()
+    {
+        $values1 = [ "abc", "def", "ghi" ];
+        $values2 = [ "aaa", "bbb", "ccc", "ddd" ];
+        $obj = new StringList($values1);
+        $this->assertEquals($values1, $obj->getValues());
+        $obj->setValues($values2);
+        $this->assertEquals($values2, $obj->getValues());
+    }
+    
+    /**
      * @covers RandData\Set\StringList::get
-     * @todo   Implement testGet().
+     * @covers RandData\Set\StringList::getByPossibility
      */
     public function testGet() {
         for ($i = 1; $i <= 10; $i++) {
             $this->assertTrue(in_array($this->object->get(), $this->values));
         }
     }
+    
+    /**
+     * @covers RandData\Set\StringList::__construct
+     * @covers RandData\Set\StringList::get
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Empty string list
+     */
+    public function testGetException() {
+        $obj = new StringList([]);
+        $obj->get();
+    }
 
     /**
+     * @covers RandData\Set\StringList::setPossibility
+     * @covers RandData\Set\StringList::getPossibility
+     * @covers RandData\Set\StringList::get
+     * @covers RandData\Set\StringList::getByPossibility
+     */
+    public function testGetPossibility()
+    {
+        $values = [ "aaa", "bbb", "ccc" ];
+        $obj = new StringList($values);
+        $obj->setPossibility([ 30, 50, 20 ]);
+        
+        for ($i = 1; $i <= 10; $i++) {
+            $res = $obj->get();
+            $this->assertContains($res, $values);
+        }
+    }
+    
+    /**
      * @covers RandData\Set\StringList::init
-     * @todo   Implement testInit().
      */
     public function testInit() 
     {
@@ -55,7 +97,8 @@ class StringListTest extends \PHPUnit_Framework_TestCase {
         ];
         
         $params = [
-            "values" => $values
+            "values" => $values,
+            "possibility" => [ 1, 2, 3, 4 ]
         ];
         
         $this->object->init($params);

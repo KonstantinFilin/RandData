@@ -38,12 +38,27 @@ class DecimalTest extends \PHPUnit_Framework_TestCase
     protected function tearDown()
     {
     }
+    /**
+     * @covers RandData\Set\Decimal::get
+     */
+    public function testGet()
+    {
+        $res = $this->object->get();
+        $this->assertTrue(is_float($res));
+        $dataset = new Decimal(3, 99);
+        $dataset->setMaxFractionDigits(3);
+        $dataset->setMinFractionDigits(7);
+        $res2 = $dataset->get();
+        $this->assertTrue(is_float($res));
+        $this->assertRegExp("/^[\d]{1,2}\.[\d]{3,7}$/", (string) $res2);
+    }
 
     /**
+     * @covers RandData\Set\Decimal::__construct
      * @covers RandData\Set\Decimal::getMin
      * @covers RandData\Set\Decimal::setMin
      */
-    public function testGet()
+    public function testGetMin()
     {
         $this->assertEquals($this->param1, $this->object->getMin());
         
@@ -89,7 +104,6 @@ class DecimalTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers RandData\Set\Decimal::init
-     * @todo   Implement testInit().
      */
     public function testInit()
     {

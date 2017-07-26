@@ -43,7 +43,6 @@ class BooleanTest extends \PHPUnit_Framework_TestCase {
      * @covers RandData\Set\Boolean::setValTrue
      * @covers RandData\Set\Boolean::getValFalse
      * @covers RandData\Set\Boolean::setValFalse
-     * @todo   Implement testGetValTrue().
      */
     public function testGetValTrue() {
         $val1 = "a";
@@ -63,7 +62,6 @@ class BooleanTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\Boolean::init
-     * @todo   Implement testInit().
      */
     public function testInit() 
     {

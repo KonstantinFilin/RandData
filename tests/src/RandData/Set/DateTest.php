@@ -43,6 +43,7 @@ class DateTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Date::__construct
      * @covers RandData\Set\Date::getMax
      * @covers RandData\Set\Date::setMax
      */
@@ -68,7 +69,6 @@ class DateTest extends \PHPUnit_Framework_TestCase {
     
     /**
      * @covers RandData\Set\Date::get
-     * @todo   Implement testGet().
      */
     public function testGet() 
     {
@@ -108,10 +108,51 @@ class DateTest extends \PHPUnit_Framework_TestCase {
             $this->assertTrue(in_array($val, $values2));
         }
     }
+    
+    /**
+     * @covers RandData\Set\Date::get
+     */
+    public function testGet2() 
+    {
+        for ($i = 1; $i <= 10; $i++) {
+            $val = $this->object->get();
+            $this->assertNotEmpty($val);
+            $this->assertRegExp("/^[\d]{4}-[\d]{2}-[\d]{2}$/", $val);
+        }
+        
+        $min = "2016-12-26";
+        $max = "2016-12-23";
+        $values = [
+            "2016-12-23",
+            "2016-12-24",
+            "2016-12-25",
+            "2016-12-26"
+        ];
+        $values2 = [
+            "23.12.2016",
+            "24.12.2016",
+            "25.12.2016",
+            "26.12.2016"
+        ];
+        
+        $this->object->setMin($min);
+        $this->object->setMax($max);
+        
+        for ($i = 1; $i <= 10; $i++) {
+            $val = $this->object->get();
+            $this->assertTrue(in_array($val, $values));
+        }
+        
+        $this->object->setFormat("d.m.Y");
+        
+        for ($i = 1; $i <= 10; $i++) {
+            $val = $this->object->get();
+            $this->assertTrue(in_array($val, $values2));
+        }
+    }
 
     /**
      * @covers RandData\Set\Date::init
-     * @todo   Implement testInit().
      */
     public function testInit() {
         $format1 = "m/d/Y";

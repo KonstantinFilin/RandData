@@ -43,6 +43,8 @@ class StringTest extends \PHPUnit_Framework_TestCase {
         $this->object->setLengthMax($val2);
         $this->assertEquals($val1, $this->object->getLengthMin());
         $this->assertEquals($val2, $this->object->getLengthMax());
+        $this->object->setLengthMax(0);
+        $this->assertEquals(String::LENGTH_MAX_MAX, $this->object->getLengthMax());
     }
 
     /**
@@ -81,12 +83,14 @@ class StringTest extends \PHPUnit_Framework_TestCase {
 
 
     /**
+     * @covers RandData\Set\String::__construct
      * @covers RandData\Set\String::get
+     * @covers RandData\Set\String::generateLength
      */
     public function testGet() {
         $minLen = 5;
         $maxLen = 7;
-        $obj = new String($minLen, $maxLen);
+        $obj = new String($maxLen, $minLen);
         
         foreach ( [ "abc", "7890", "+-*/=" ] as $charList ) {
             $obj->setChars($charList);

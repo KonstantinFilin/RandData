@@ -29,6 +29,34 @@ class DomainTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers RandData\Set\Domain::setTldList
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Tld list must be array or string
+     */
+    public function testGetTldListException1() {
+        $this->object->setTldList(123);
+    }
+
+    /**
+     * @covers RandData\Set\Domain::setTldList
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Empty tld list
+     */
+    public function testGetTldListException2() {
+        $this->object->setTldList("");
+    }
+
+    /**
+     * @covers RandData\Set\Domain::setTldList
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Empty tld list
+     */
+    public function testGetTldListException3() {
+        $this->object->setTldList([]);
+    }
+
+    /**
+     * @covers RandData\Set\Domain::__construct
      * @covers RandData\Set\Domain::getTldList
      * @covers RandData\Set\Domain::setTldList
      */
@@ -64,6 +92,7 @@ class DomainTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * @covers RandData\Set\Domain::get
+     * @covers RandData\Set\Domain::skipWww
      */
     public function testGet() 
     {
@@ -96,7 +125,8 @@ class DomainTest extends \PHPUnit_Framework_TestCase {
         $this->object->init([
             "tld_list" => $tldList,
             "char_list" => $charList,
-            "char_list_edge" => $charListEdge
+            "char_list_edge" => $charListEdge,
+            "skip_www" => true
         ]);
         
         $this->assertEquals(explode(",", $tldList), $this->object->getTldList());
