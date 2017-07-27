@@ -50,7 +50,7 @@ class Person extends \RandData\Set\en_GB\Person
      * @param string $sex Sex of the last name. m - Male, f - female
      * @return string Random last name
      */
-    public function getLastName($sex)
+    public function getLastName($sex = null)
     {
         $arr = $sex == self::SEX_MALE ? $this->getLastNameMale() : $this->getLastNameFemale();
         return $arr[array_rand($arr)];
