@@ -5,7 +5,7 @@ namespace RandData\Fabric\Tuple\SqlCreateParser;
 /**
  * Parser of Sql CREATE TABLE string field definition
  */
-class String extends \RandData\Fabric\Tuple\SqlCreateParser
+class Str extends \RandData\Fabric\Tuple\SqlCreateParser
 {
     /**
      * @inherit

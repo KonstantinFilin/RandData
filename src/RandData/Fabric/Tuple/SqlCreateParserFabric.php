@@ -19,7 +19,7 @@ class SqlCreateParserFabric
             new SqlCreateParser\IntegerUnsigned(),
             new SqlCreateParser\Integer(),
             new SqlCreateParser\Decimal(),
-            new SqlCreateParser\String(),
+            new SqlCreateParser\Str(),
             new SqlCreateParser\Text(),
             new SqlCreateParser\Dt
         ];

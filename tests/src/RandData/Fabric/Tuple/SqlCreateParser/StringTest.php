@@ -17,7 +17,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new String;
+        $this->object = new Str;
     }
 
     /**
@@ -29,7 +29,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Fabric\Tuple\SqlCreateParser\String::parse
+     * @covers RandData\Fabric\Tuple\SqlCreateParser\Str::parse
      */
     public function testParse() {
         $fieldDefinition = "`phone` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL";
