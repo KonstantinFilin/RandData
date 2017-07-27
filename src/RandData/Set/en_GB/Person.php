@@ -96,7 +96,7 @@ class Person extends \RandData\Set
      * Returns person's last name
      * @return string Random last name
      */
-    public function getLastName()
+    public function getLastName($sex)
     {
         $arr = [
             'Adams', 'Alexander', 'Allen', 'Alvarez', 'Anderson', 'Andrews', 'Armstrong', 'Arnold', 'Austin', 'Bailey',

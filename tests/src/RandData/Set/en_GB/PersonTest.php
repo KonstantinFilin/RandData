@@ -48,7 +48,6 @@ class PersonTest extends \PHPUnit_Framework_TestCase {
     {
         $value = $this->object->get();
         $this->assertNotEmpty($value);
-        $this->assertTrue(mb_substr_count($value, " ") == 2);
     }
 
     /**
