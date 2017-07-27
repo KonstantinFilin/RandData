@@ -8,7 +8,7 @@ namespace RandData\Fabric\Tuple\SqlCreateParser;
 class IntTest extends \PHPUnit_Framework_TestCase {
 
     /**
-     * @var Int
+     * @var Integer
      */
     protected $object;
 
@@ -17,7 +17,7 @@ class IntTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new Int;
+        $this->object = new Integer;
     }
 
     /**
@@ -29,7 +29,7 @@ class IntTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Fabric\Tuple\SqlCreateParser\Int::parse
+     * @covers RandData\Fabric\Tuple\SqlCreateParser\Integer::parse
      */
     public function testParse() {
         $fieldDefinition = "`report_day` tinyint(3) NOT NULL DEFAULT '0'";

@@ -5,7 +5,7 @@ namespace RandData\Fabric\Tuple\SqlCreateParser;
 /**
  * Parser of Sql CREATE TABLE UNSIGNED INT field definition
  */
-class IntUnsigned extends \RandData\Fabric\Tuple\SqlCreateParser
+class IntegerUnsigned extends \RandData\Fabric\Tuple\SqlCreateParser
 {
     /**
      * @inherit

@@ -16,8 +16,8 @@ class SqlCreateParserFabric
     {
         $parsers = [
             new SqlCreateParser\Counter(),
-            new SqlCreateParser\IntUnsigned(),
-            new SqlCreateParser\Int(),
+            new SqlCreateParser\IntegerUnsigned(),
+            new SqlCreateParser\Integer(),
             new SqlCreateParser\Decimal(),
             new SqlCreateParser\String(),
             new SqlCreateParser\Text(),

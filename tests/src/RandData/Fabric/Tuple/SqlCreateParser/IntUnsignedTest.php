@@ -8,7 +8,7 @@ namespace RandData\Fabric\Tuple\SqlCreateParser;
 class IntUnsignedTest extends \PHPUnit_Framework_TestCase {
 
     /**
-     * @var IntUnsigned
+     * @var IntegerUnsigned
      */
     protected $object;
 
@@ -17,7 +17,7 @@ class IntUnsignedTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new IntUnsigned;
+        $this->object = new IntegerUnsigned;
     }
 
     /**
@@ -29,7 +29,7 @@ class IntUnsignedTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Fabric\Tuple\SqlCreateParser\IntUnsigned::parse
+     * @covers RandData\Fabric\Tuple\SqlCreateParser\IntegerUnsigned::parse
      */
     public function testParse() {
         $fieldDefinition0 = "`report_day` tinyint(1) unsigned NOT NULL DEFAULT '0'";
