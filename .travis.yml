@@ -8,7 +8,7 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
   
-script: phpunit
+script: phpunit --bootstrap vendor/autoload.php --configuration tests/src/RandData/conf.xml --run=tests
 
 notifications:
     on_success: never
