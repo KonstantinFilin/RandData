@@ -29,9 +29,9 @@ class FabricTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Fabric\DataSet\String::create
-     * @covers RandData\Fabric\DataSet\String::parse
-     * @covers RandData\Fabric\DataSet\String::parseParamStr
+     * @covers RandData\Fabric\DataSet\Str::create
+     * @covers RandData\Fabric\DataSet\Str::parse
+     * @covers RandData\Fabric\DataSet\Str::parseParamStr
      */
     public function testCreateObjectFromString() {
         $this->assertInstanceOf(

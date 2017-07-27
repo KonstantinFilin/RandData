@@ -29,10 +29,10 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\String::getLengthMin
-     * @covers RandData\Set\String::setLengthMin
-     * @covers RandData\Set\String::getLengthMax
-     * @covers RandData\Set\String::setLengthMax
+     * @covers RandData\Set\Str::getLengthMin
+     * @covers RandData\Set\Str::setLengthMin
+     * @covers RandData\Set\Str::getLengthMax
+     * @covers RandData\Set\Str::setLengthMax
      */
     public function testGetLength() {
         $this->assertEquals(1, $this->object->getLengthMin());
@@ -48,8 +48,8 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\String::getChars
-     * @covers RandData\Set\String::setChars
+     * @covers RandData\Set\Str::getChars
+     * @covers RandData\Set\Str::setChars
      */
     public function testGetChars() {
         $this->assertEquals(
@@ -65,8 +65,8 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\String::addChars
-     * @covers RandData\Set\String::setChars
+     * @covers RandData\Set\Str::addChars
+     * @covers RandData\Set\Str::setChars
      */
     public function testAddChars() {
         $val1 = "abcd";
@@ -83,9 +83,9 @@ class StringTest extends \PHPUnit_Framework_TestCase {
 
 
     /**
-     * @covers RandData\Set\String::__construct
-     * @covers RandData\Set\String::get
-     * @covers RandData\Set\String::generateLength
+     * @covers RandData\Set\Str::__construct
+     * @covers RandData\Set\Str::get
+     * @covers RandData\Set\Str::generateLength
      */
     public function testGet() {
         $minLen = 5;
@@ -109,7 +109,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @covers RandData\Set\String::init
+     * @covers RandData\Set\Str::init
      */
     public function testInit() {
         $lenMin1 = 7;
