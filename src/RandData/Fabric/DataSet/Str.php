@@ -5,7 +5,7 @@ namespace RandData\Fabric\DataSet;
 /**
  * DataSets common fabric (from string)
  */
-class String
+class Str
 {
     /**
      * Create DataSet from string description

@@ -34,7 +34,7 @@ class Postcode extends \RandData\Set
     protected function getInwardCode()
     {
         $postcodeSector = mt_rand(0, 9);
-        $stringGenerator = new \RandData\Set\String(2, 2);
+        $stringGenerator = new \RandData\Set\Str(2, 2);
         $stringGenerator->setChars("QWERTYUPASDFGHJLZXBN");
         return $postcodeSector . $stringGenerator->get();
     }

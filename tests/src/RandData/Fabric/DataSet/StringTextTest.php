@@ -55,7 +55,7 @@ class StringTextTest extends \PHPUnit_Framework_TestCase {
         $setInfo = new \RandData\SetInfo("string");
         $actual = $this->object->create($setInfo);
         
-        $this->assertEquals(\RandData\Set\String::class, get_class($actual));
+        $this->assertEquals(\RandData\Set\Str::class, get_class($actual));
     }
     
     /**

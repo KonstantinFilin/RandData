@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSet1 = $fabric->create("paragraph");
 printBlock("Paragraph default", $dataSet1);
 

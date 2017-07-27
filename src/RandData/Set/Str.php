@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Random string generator
  */
-class String extends \RandData\Set
+class Str extends \RandData\Set
 {
     const LENGTH_MIN_MIN = 0;
     const LENGTH_MIN_MAX = 16777216;

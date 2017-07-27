@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSetPhone = $fabric->create("phone");
 printData("No parameters", $dataSetPhone);
 $dataSetPhone2 = $fabric->create("phone:country_list=3,7;region_list=123,456,7890");

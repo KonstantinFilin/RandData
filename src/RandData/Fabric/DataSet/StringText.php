@@ -17,7 +17,7 @@ class StringText
         if ($setInfo->getName() == "string_list") {
             return new \RandData\Set\StringList();
         } elseif ($setInfo->getName() == "string") {
-            return new \RandData\Set\String();
+            return new \RandData\Set\Str();
         } elseif ($setInfo->getName() == "paragraph") {
             return new \RandData\Set\Paragraph();
         }

@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSet = $fabric->create("domain");
 printData("No parameters", $dataSet);
 $dataSet2 = $fabric->create("domain:skip_www=1");

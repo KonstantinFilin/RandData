@@ -74,8 +74,8 @@ class Phone extends \RandData\Set
      */
     private function getFinish($length)
     {
-        $strGenerator = new String();
-        $strGenerator->setChars(\RandData\Set\String::CHARS_DIGITS);
+        $strGenerator = new Str();
+        $strGenerator->setChars(\RandData\Set\Str::CHARS_DIGITS);
         $strGenerator->setLengthMin(3);
         $strGenerator->setLengthMax(3);
         $part3 = $strGenerator->get();

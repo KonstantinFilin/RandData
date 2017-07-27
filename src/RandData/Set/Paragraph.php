@@ -5,7 +5,7 @@ namespace RandData\Set;
 /**
  * Random paragraph generator
  */
-class Paragraph extends \RandData\Set\String
+class Paragraph extends \RandData\Set\Str
 {
     const WORDS_MIN_MIN = 3;
     const WORDS_MIN_MAX = 500;
@@ -89,7 +89,7 @@ class Paragraph extends \RandData\Set\String
     public function get()
     {
         $wordsAmount = $this->generateLength();
-        $strRandObj = new String(2, 12);
+        $strRandObj = new Str(2, 12);
         $strRandObj->setChars($this->getChars());
 
         $words = [];

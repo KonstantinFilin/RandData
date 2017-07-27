@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSet1 = $fabric->create("string");
 printData("Default chars of [A-Za-z0-9], length from 1 to 10", $dataSet1);
 

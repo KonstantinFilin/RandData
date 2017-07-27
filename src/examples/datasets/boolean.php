@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSetInteger = $fabric->create("boolean");
 printData("No parameters", $dataSetInteger);
 

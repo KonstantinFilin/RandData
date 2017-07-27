@@ -28,7 +28,7 @@ class Complex extends \RandData\Set
     {
         $matches = [];
         $ret = $this->template;
-        $fabric = new \RandData\Fabric\DataSet\String();
+        $fabric = new \RandData\Fabric\DataSet\Str();
        
         preg_match_all("/{([^}]+)}/", $ret, $matches);
         $data = !empty($matches[1]) ? $matches[1] : [];

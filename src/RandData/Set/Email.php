@@ -60,7 +60,7 @@ class Email extends \RandData\Set
         }
         
         $loginChars = "abcdefghijklmnopqrstunwxyz0123456789";
-        $obj3 = new String(1, 15);
+        $obj3 = new Str(1, 15);
         $obj3->setChars($loginChars);
 
         return $obj3->get() . "@" . $domain;

@@ -43,7 +43,7 @@ abstract class Tuple
             $set = $datasets[$fldName];
             
             if (is_string($set)) {
-                $fabric = new \RandData\Fabric\DataSet\String();
+                $fabric = new \RandData\Fabric\DataSet\Str();
                 $set = $fabric->create($set);
             }
             

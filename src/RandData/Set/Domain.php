@@ -38,8 +38,8 @@ class Domain extends \RandData\Set
     {
         $this->skipWww = false;
         $this->setTldList("com,edu,org,net");
-        $this->setChars(String::CHARS_LAT_L . String::CHARS_DIGITS . "-");
-        $this->setCharsEdge(String::CHARS_LAT_L . String::CHARS_DIGITS);
+        $this->setChars(Str::CHARS_LAT_L . Str::CHARS_DIGITS . "-");
+        $this->setCharsEdge(Str::CHARS_LAT_L . Str::CHARS_DIGITS);
     }
 
     /**
@@ -119,9 +119,9 @@ class Domain extends \RandData\Set
      */
     public function get()
     {
-        $obj1 = new String(1, 1);
+        $obj1 = new Str(1, 1);
         $obj1->setChars($this->getCharsEdge());
-        $obj2 = new String(1, 13);
+        $obj2 = new Str(1, 13);
         $obj2->setChars($this->getChars());
         $obj3 = new StringList(is_array($this->getTldList()) && $this->getTldList()
             ? $this->getTldList()

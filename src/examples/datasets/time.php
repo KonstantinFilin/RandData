@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSetTime = $fabric->create("time");
 printData("No parameters", $dataSetTime);
 $dataSetTime2 = $fabric->create("time:seconds=1");

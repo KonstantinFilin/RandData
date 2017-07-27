@@ -2,7 +2,7 @@
 
 require '../init.php';
 
-$fabric = new \RandData\Fabric\DataSet\String();
+$fabric = new \RandData\Fabric\DataSet\Str();
 $dataSetDecimal1 = $fabric->create("decimal:min=8;max=13");
 printData("8 to 13", $dataSetDecimal1);
 

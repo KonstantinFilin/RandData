@@ -17,7 +17,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new String;
+        $this->object = new Str;
     }
 
     /**
@@ -44,7 +44,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($val1, $this->object->getLengthMin());
         $this->assertEquals($val2, $this->object->getLengthMax());
         $this->object->setLengthMax(0);
-        $this->assertEquals(String::LENGTH_MAX_MAX, $this->object->getLengthMax());
+        $this->assertEquals(Str::LENGTH_MAX_MAX, $this->object->getLengthMax());
     }
 
     /**
@@ -53,7 +53,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
      */
     public function testGetChars() {
         $this->assertEquals(
-            String::CHARS_LAT_U . String::CHARS_LAT_L . String::CHARS_DIGITS, 
+            Str::CHARS_LAT_U . Str::CHARS_LAT_L . Str::CHARS_DIGITS, 
             $this->object->getChars()
         );
         $val1 = "abcde";
@@ -90,7 +90,7 @@ class StringTest extends \PHPUnit_Framework_TestCase {
     public function testGet() {
         $minLen = 5;
         $maxLen = 7;
-        $obj = new String($maxLen, $minLen);
+        $obj = new Str($maxLen, $minLen);
         
         foreach ( [ "abc", "7890", "+-*/=" ] as $charList ) {
             $obj->setChars($charList);
