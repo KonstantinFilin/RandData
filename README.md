@@ -1,4 +1,6 @@
 # RandData
+
+[![Build Status](https://travis-ci.org/KonstantinFilin/RandData.svg?branch=master)](https://travis-ci.org/KonstantinFilin/RandData)
 Data generator with support for complex data and dependency realization. 
 You can check [demo site](http://randdata.kfilin.com/) of the project.
 
