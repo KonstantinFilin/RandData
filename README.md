@@ -51,6 +51,10 @@ You can check [demo site](http://randdata.kfilin.com/) of the project.
 
 ## Installation
 
+```
+composer require kfilin/randdata
+```
+
 ## Basic usage
 
 More examples in src/examples folder
