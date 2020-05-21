@@ -23,16 +23,16 @@ class Person extends \RandData\Set\en_GB\Person
     public function get()
     {
         $sex = $this->sex;
-        
+
         if (!$this->sex) {
             $sexGenerator = mt_rand(1, 100);
             $sex = $sexGenerator > 50 ? self::SEX_FEMALE : self::SEX_MALE;
         }
-        
+
         $nameLast = $this->getLastName($sex);
         $nameFirst = $this->getFirstName($sex);
         $nameMiddle = $this->getMiddleName($sex);
-        
+
         $subst = [
             "%l1" => mb_substr($nameLast, 0, 1),
             "%l" => $nameLast,
@@ -41,10 +41,10 @@ class Person extends \RandData\Set\en_GB\Person
             "%m1" => mb_substr($nameMiddle, 0, 1),
             "%m" => $nameMiddle
         ];
-        
+
         return str_replace(array_keys($subst), array_values($subst), $this->format);
     }
-    
+
     /**
      * Returns person's last name
      * @param string $sex Sex of the last name. m - Male, f - female
@@ -52,8 +52,11 @@ class Person extends \RandData\Set\en_GB\Person
      */
     public function getLastName($sex = null)
     {
-        $arr = $sex == self::SEX_MALE ? $this->getLastNameMale() : $this->getLastNameFemale();
-        return $arr[array_rand($arr)];
+//        $arr = $sex == self::SEX_MALE ? $this->getLastNameMale() : $this->getLastNameFemale();
+//        return $arr[array_rand($arr)];
+
+        $reader = new \RandData\CsvReader();
+        return $reader->get(__DIR__ . "/data/last_name_male.csv");
     }
 
     /**
@@ -75,7 +78,7 @@ class Person extends \RandData\Set\en_GB\Person
         $reader = new \RandData\CsvReader();
         return $reader->get(__DIR__ . "/data/first_name_female.csv");
     }
-    
+
     /**
      * Returns list of male first name
      * @return array List of male first name
@@ -102,7 +105,7 @@ class Person extends \RandData\Set\en_GB\Person
             'Юлиан','Юлий','Юрий','Яков','Ян','Яромир','Ярослав'
         ];
     }
-    
+
     /**
      * Returns list of female middle names
      * @return array list of female middle names
@@ -118,7 +121,7 @@ class Person extends \RandData\Set\en_GB\Person
             'Николаевна','Олеговна'
         ];
     }
-    
+
     /**
      * Returns list of male middle names
      * @return array List of male middle names
@@ -136,7 +139,7 @@ class Person extends \RandData\Set\en_GB\Person
             'Тимофеевич','Федорович','Феликсович','Филиппович','Эдуардович','Юрьевич','Яковлевич','Ярославович'
         ];
     }
-    
+
     /**
      * Returns list of male last names
      * @return array List of male last names
