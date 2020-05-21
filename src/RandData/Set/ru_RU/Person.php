@@ -52,11 +52,8 @@ class Person extends \RandData\Set\en_GB\Person
      */
     public function getLastName($sex = null)
     {
-//        $arr = $sex == self::SEX_MALE ? $this->getLastNameMale() : $this->getLastNameFemale();
-//        return $arr[array_rand($arr)];
-
-        $reader = new \RandData\CsvReader();
-        return $reader->get(__DIR__ . "/data/last_name_male.csv");
+        $arr = $sex == self::SEX_MALE ? $this->getLastNameMale() : $this->getLastNameFemale();
+        return $arr[array_rand($arr)];
     }
 
     /**
